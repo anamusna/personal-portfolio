@@ -1,3 +1,4 @@
+import ContactLinks from "components/elements/contact-links";
 import HeroHeader from "components/elements/hero-header";
 import { useEnvironmentSettings } from "context/EnvironmentContext";
 import { contactPageContent } from "data/contact-page";
@@ -40,7 +41,6 @@ const ContactDestination: React.FC = () => {
     eyebrow,
     title,
     subtitle,
-    introduction,
     conversationTypesTitle,
     conversationTypes,
     expectationsTitle,
@@ -49,6 +49,8 @@ const ContactDestination: React.FC = () => {
     faqSubtitle,
     faqLinkLabel,
     faqLinkHref,
+    // cvDownloadLabel, cvDownloadHref: CV link hidden below (still wired
+    // up in data/contact-page.ts if it needs to come back).
   } = contactPageContent;
 
   return (
@@ -64,11 +66,19 @@ const ContactDestination: React.FC = () => {
         icon={contactHeroIcon}
       />
 
-      <p className={`${TEXT_BODY} text-center max-w-2xl mx-auto`}>
-        {introduction}
-      </p>
+      {/* The actual way to reach out, right under the hero. Previously the
+          only contact action on this page was the shared footer band, so a
+          visitor had to scroll past both sections below before finding a way
+          to get in touch. */}
+      <div className="max-w-2xl mx-auto">
+        <ContactLinks />
+      </div>
 
-      <section aria-labelledby="contact-conversations-heading">
+      <section
+        id="contact-conversations"
+        className="scroll-mt-24"
+        aria-labelledby="contact-conversations-heading"
+      >
         <h2
           id="contact-conversations-heading"
           className={`${TEXT_DETAIL_SECTION_TITLE} text-center mb-5 sm:mb-6`}
@@ -77,10 +87,7 @@ const ContactDestination: React.FC = () => {
         </h2>
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
           {conversationTypes.map((item) => (
-            <li
-              key={item.id}
-              className={`${SURFACE_CARD_PANEL} p-4 sm:p-5`}
-            >
+            <li key={item.id} className={`${SURFACE_CARD_PANEL} p-4 sm:p-5`}>
               <h3 className={`${TEXT_CARD_TITLE} mb-2`}>{item.title}</h3>
               <p className={TEXT_BODY}>{item.description}</p>
             </li>
@@ -88,7 +95,11 @@ const ContactDestination: React.FC = () => {
         </ul>
       </section>
 
-      <section aria-labelledby="contact-expectations-heading">
+      <section
+        id="contact-expectations"
+        className="scroll-mt-24"
+        aria-labelledby="contact-expectations-heading"
+      >
         <h2
           id="contact-expectations-heading"
           className={`${TEXT_DETAIL_SECTION_TITLE} text-center mb-5 sm:mb-6`}
@@ -97,10 +108,7 @@ const ContactDestination: React.FC = () => {
         </h2>
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
           {expectations.map((item) => (
-            <li
-              key={item.id}
-              className={`${SURFACE_CARD_PANEL} p-4 sm:p-5`}
-            >
+            <li key={item.id} className={`${SURFACE_CARD_PANEL} p-4 sm:p-5`}>
               <p className={`${TEXT_CARD_TITLE} mb-1`}>{item.label}</p>
               <p className={TEXT_MUTED}>{item.detail}</p>
             </li>
@@ -108,12 +116,13 @@ const ContactDestination: React.FC = () => {
         </ul>
       </section>
 
-      <section aria-labelledby="contact-faq-heading">
+      <section
+        id="contact-faq"
+        className="scroll-mt-24"
+        aria-labelledby="contact-faq-heading"
+      >
         <div className="text-center mb-5 sm:mb-6">
-          <h2
-            id="contact-faq-heading"
-            className={TEXT_DETAIL_SECTION_TITLE}
-          >
+          <h2 id="contact-faq-heading" className={TEXT_DETAIL_SECTION_TITLE}>
             {faqTitle}
           </h2>
           <p className={`${TEXT_MUTED} mt-2 max-w-2xl mx-auto`}>

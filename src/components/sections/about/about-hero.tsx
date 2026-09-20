@@ -1,12 +1,13 @@
 import { aboutPageContent } from "data/aboutPage";
 import { motion } from "motion/react";
 import React, { memo, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import {
   ABOUT_HERO_CONFIG,
   ABOUT_HERO_STYLES,
 } from "../../../data/aboutHeroData";
 import { personalInfo } from "../../../data/personalInfo";
-import ansuImage from "../../../images/ansu6-b.png";
+import ansuImage from "../../../images/ansu6-b.webp";
 import CTAButtons from "../../elements/cta-buttons";
 import HeroHeader from "../../elements/hero-header";
 import { PAGE_HEADER_HERO_TITLE } from "../../../tailwind/styles/pageHeader";
@@ -68,25 +69,29 @@ const HeroTextContent: React.FC = memo(() => {
 
 HeroTextContent.displayName = "HeroTextContent";
 
-const HeroImageContent: React.FC = memo(() => (
-  <motion.div
-    className={ABOUT_HERO_STYLES.IMAGE_COLUMN}
-    initial={{ opacity: 0, x: 30 }}
-    whileInView={{ opacity: 1, x: 0 }}
-    viewport={{ once: true, margin: "-60px" }}
-    transition={{ type: "spring", stiffness: 300, damping: 28, delay: 0.15 }}
-  >
-    <div className="relative w-full max-w-lg rounded-2xl sm:rounded-3xl overflow-hidden">
-      <Image
-        src={ansuImage}
-        alt="Ansumana Darboe"
-        objectFit="cover"
-        aspectRatio="portrait"
-        className="rounded-2xl sm:rounded-3xl"
-      />
-    </div>
-  </motion.div>
-));
+const HeroImageContent: React.FC = memo(() => {
+  const { t } = useTranslation("ansumana");
+
+  return (
+    <motion.div
+      className={ABOUT_HERO_STYLES.IMAGE_COLUMN}
+      initial={{ opacity: 0, x: 30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ type: "spring", stiffness: 300, damping: 28, delay: 0.15 }}
+    >
+      <div className="relative w-full max-w-lg rounded-2xl sm:rounded-3xl overflow-hidden">
+        <Image
+          src={ansuImage}
+          alt={t("a11y.about.heroImageAlt")}
+          objectFit="cover"
+          aspectRatio="portrait"
+          className="rounded-2xl sm:rounded-3xl"
+        />
+      </div>
+    </motion.div>
+  );
+});
 
 HeroImageContent.displayName = "HeroImageContent";
 

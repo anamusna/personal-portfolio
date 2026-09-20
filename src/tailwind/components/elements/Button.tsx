@@ -4,8 +4,6 @@ import clsx from "clsx";
 import React, { forwardRef } from "react";
 import Icon from "./Icon";
 
-import { useEnvironmentSettings } from "../../../context/EnvironmentContext";
-
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label?: string;
@@ -56,8 +54,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
-    const { fontSize } = useEnvironmentSettings();
-
     // Button base styles by variant and theme
     const variantStyles = {
       primary: {

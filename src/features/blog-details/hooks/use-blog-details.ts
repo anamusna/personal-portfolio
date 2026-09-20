@@ -3,7 +3,6 @@ import { blogs } from "data/blogs";
 import { useCallback, useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { buildBlogPostSchema } from "utils/structured-data/build-blog-schema";
-import { slugify } from "utils/slugify";
 import { getSimilarBlogs } from "../utils/get-similar-blogs";
 
 type BlogPost = (typeof blogs)[number];
@@ -24,7 +23,7 @@ export function useBlogDetails(): UseBlogDetailsResult {
 
   const blogPost = useMemo(() => {
     if (!slug) return null;
-    return blogs.find((blog) => slugify(blog.title) === slug) ?? null;
+    return blogs.find((blog) => blog.titleSlug === slug) ?? null;
   }, [slug]);
 
   const similarBlogs = useMemo(
@@ -54,7 +53,7 @@ export function useBlogDetails(): UseBlogDetailsResult {
 
   const handleSimilarBlogClick = useCallback(
     (blog: BlogPost) => {
-      navigate(`/blog/${slugify(blog.title)}`);
+      navigate(`/blog/${blog.titleSlug}`);
     },
     [navigate],
   );

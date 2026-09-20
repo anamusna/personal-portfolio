@@ -34,7 +34,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ projects }) => {
       <motion.div
         className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4 md:gap-5"
         variants={containerVariants}
-        initial="hidden"
+        initial={false}
         whileInView="visible"
         viewport={SECTION_VIEWPORT}
       >

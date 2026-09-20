@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Project } from "types/project";
 import { getVisibleProjects } from "../utils/get-visible-projects";
 
@@ -19,7 +20,12 @@ type UseProjectDetailsResult = {
 export function useProjectDetails(): UseProjectDetailsResult {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const visibleProjects = useMemo(() => getVisibleProjects(), []);
+  const { i18n } = useTranslation();
+  const visibleProjects = useMemo(
+    () => getVisibleProjects(),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [i18n.language],
+  );
 
   const project = useMemo(
     () => visibleProjects.find((entry) => entry.id === id) ?? null,

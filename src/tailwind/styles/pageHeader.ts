@@ -23,15 +23,10 @@ export const PAGE_HEADER_SECTION_EYEBROW = TEXT_SECTION_EYEBROW;
 
 export const PAGE_HEADER_SECTION_CAPTION = TEXT_SECTION_CAPTION;
 
-/** Eyebrow / badge pill (SectionHeader) */
 export const PAGE_HEADER_BADGE = [
   "inline-flex items-center gap-2",
   "text-xs sm:text-sm font-semibold tracking-wider uppercase",
   "text-orange-700 dark:text-orange-400",
-  CHROME_CHIP,
-  "rounded-full px-3 sm:px-4 py-1.5",
-  "shadow-sm hover:shadow-md",
-  "transition-all duration-300",
 ].join(" ");
 
 /** Greeting pill (HeroHeader) — badge-sized chip, width follows content */

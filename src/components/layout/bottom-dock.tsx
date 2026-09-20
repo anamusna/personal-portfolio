@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,6 +10,7 @@ import {
 } from "data/pageNavigation";
 import { AnimatePresence, motion } from "motion/react";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useSpotlightSearch } from "../../hooks/useSpotlightSearch";
 import { P } from "../../tailwind/components/elements/Typography";
 
@@ -23,12 +25,13 @@ const BottomDock: React.FC<BottomDockProps> = ({
   launcherRef,
   className = "",
 }) => {
+  const { t } = useTranslation();
   const [activeSection, setActiveSection] = useState<string>("");
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAboveFooter, setIsAboveFooter] = useState(true);
   const [isScrolling, setIsScrolling] = useState(false);
 
-  const { showSpotlight, openSpotlight, closeSpotlight } = useSpotlightSearch();
+  useSpotlightSearch();
   const currentSections = useMemo(() => getDockSections(pageId), [pageId]);
 
   const scrollToTop = useCallback(() => {
@@ -38,6 +41,7 @@ const BottomDock: React.FC<BottomDockProps> = ({
   const scrollToSection = useCallback((sectionId: string) => {
     setIsScrolling(true);
     scrollToNavSection(sectionId);
+    window.history.replaceState(null, "", `#${sectionId}`);
     setActiveSection(sectionId);
     setTimeout(() => setIsScrolling(false), 1000);
   }, []);
@@ -60,6 +64,11 @@ const BottomDock: React.FC<BottomDockProps> = ({
     };
 
     handleScroll();
+    const hashSectionId = window.location.hash.replace("#", "");
+    if (hashSectionId) {
+      scrollToNavSection(hashSectionId);
+      setActiveSection(hashSectionId);
+    }
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleScroll);
     return () => {
@@ -68,20 +77,29 @@ const BottomDock: React.FC<BottomDockProps> = ({
     };
   }, [currentSections, isScrolling]);
 
-  if (!isAboveFooter || !shouldShowDock(pageId)) return null;
+  // The dock is in-page section navigation, so it has nothing to offer before
+  // the reader has scrolled. It is `fixed bottom-6`, and on a 390x844 phone
+  // that puts it directly over the hero's primary call to action, which was
+  // swallowing taps meant for the button. Its contents are already gated on
+  // `isScrolled`; gate the dock itself on the same thing.
+  if (!isScrolled || !isAboveFooter || !shouldShowDock(pageId)) return null;
 
   const hasNav = currentSections.length > 0;
 
   return (
     <div
-      className={`fixed bottom-6 left-0 right-0 z-[65] flex justify-center px-4 pointer-events-none ${className}`}
+      className={clsx(
+        "fixed bottom-6 left-0 right-0 z-[65] flex justify-center px-4 pointer-events-none",
+        className,
+      )}
     >
       <motion.div
         layout
         transition={{ type: "spring", stiffness: 380, damping: 32, mass: 0.8 }}
-        className={`pointer-events-auto glass ring-1 ring-light-border/40 dark:ring-dark-border/40 shadow-xl rounded-2xl flex items-center gap-0.5 py-2 px-2${
-          pageId === "story" ? "overflow-x-auto scrollbar-none" : ""
-        }`}
+        className={clsx(
+          "pointer-events-auto glass ring-1 ring-light-border/40 dark:ring-dark-border/40 shadow-xl rounded-2xl flex items-center gap-0.5 py-2 px-2",
+          pageId === "story" && "overflow-x-auto scrollbar-none",
+        )}
       >
         {/* Scroll to top — mobile only; tablet+ uses standalone button */}
         <div className="md:hidden">
@@ -94,8 +112,8 @@ const BottomDock: React.FC<BottomDockProps> = ({
                 exit={{ opacity: 0, width: 0 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
                 onClick={scrollToTop}
-                aria-label="Scroll to top"
-                title="Scroll to top"
+                aria-label={t("common.actions.scrollToTop")}
+                title={t("common.actions.scrollToTop")}
                 className="group flex items-center justify-center w-8 h-8 rounded-lg hover:bg-light-surface/60 dark:hover:bg-dark-surface/50 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-royal-primary/50 shrink-0 overflow-hidden"
               >
                 <FontAwesomeIcon
@@ -134,8 +152,8 @@ const BottomDock: React.FC<BottomDockProps> = ({
             )}
             <button
               onClick={() => scrollToSection(section.id)}
-              title={section.label}
-              aria-label={section.label}
+              title={t(section.labelKey)}
+              aria-label={t(section.labelKey)}
               className={`group relative flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg transition-all duration-200 hover:bg-light-surface/60 dark:hover:bg-dark-surface/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-royal-primary/50 ${
                 activeSection === section.id
                   ? "glass-2 ring-1 ring-light-border/70 dark:ring-dark-border/60"
@@ -159,7 +177,7 @@ const BottomDock: React.FC<BottomDockProps> = ({
                     : "text-light-text/90 dark:text-dark-text/90 group-hover:text-indigo-600 dark:group-hover:text-indigo-400"
                 }`}
               >
-                {section.label}
+                {t(section.labelKey)}
               </P>
               {activeSection === section.id && (
                 <span className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full bg-indigo-600 dark:bg-indigo-400" />

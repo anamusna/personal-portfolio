@@ -2,7 +2,7 @@ import { SECTION_VIEWPORT } from "constants/section-motion";
 import { careerPageContent } from "data/careerPage";
 import { motion } from "motion/react";
 import React from "react";
-import { SURFACE_CARD_INTERACTIVE } from "../../../tailwind/styles/surfaceCard";
+import { SURFACE_CARD_BASE } from "../../../tailwind/styles/surfaceCard";
 import {
   TEXT_BODY,
   TEXT_DETAIL_SECTION_TITLE,
@@ -60,6 +60,7 @@ const CareerImpactStrip: React.FC = () => {
             ),
             iconAnimation: false,
           }}
+          title={impact.title}
           description={impact.description}
           highlightText={impact.highlightText}
         />
@@ -67,7 +68,7 @@ const CareerImpactStrip: React.FC = () => {
         <motion.div
           className="mt-6 sm:mt-8 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4"
           variants={containerVariants}
-          initial="hidden"
+          initial={false}
           whileInView="visible"
           viewport={SECTION_VIEWPORT}
         >
@@ -75,7 +76,7 @@ const CareerImpactStrip: React.FC = () => {
             <motion.div
               key={item.metric}
               variants={itemVariants}
-              className={`${SURFACE_CARD_INTERACTIVE} p-4 sm:p-5 text-center border-indigo-200/30 dark:border-indigo-500/20`}
+              className={`${SURFACE_CARD_BASE} p-4 sm:p-5 text-center`}
             >
               <p
                 className={`${TEXT_DETAIL_SECTION_TITLE} text-2xl sm:text-3xl mb-1.5 sm:mb-2 text-heading`}

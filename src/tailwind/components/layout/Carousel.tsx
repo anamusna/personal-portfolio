@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React, {
   ReactNode,
   useCallback,
@@ -5,6 +6,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { useTranslation } from "react-i18next";
 import { useEnvironmentSettings } from "../../../context/EnvironmentContext";
 
 export interface CarouselItem {
@@ -42,6 +44,7 @@ const Carousel: React.FC<CarouselProps> = ({
   reducedMotion: propReducedMotion,
   onSlideChange,
 }) => {
+  const { t } = useTranslation("ansumana");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(autoPlay);
   const { theme: contextTheme } = useEnvironmentSettings();
@@ -63,8 +66,6 @@ const Carousel: React.FC<CarouselProps> = ({
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
-
-  const theme = propTheme || contextTheme;
 
   // Minimum distance for a swipe to be considered valid
   const minSwipeDistance = 50;
@@ -201,11 +202,12 @@ const Carousel: React.FC<CarouselProps> = ({
   }, [currentIndex, onSlideChange]);
 
   const baseClasses = "relative w-full";
-  const combinedClasses = `${baseClasses} ${className}`;
+  const combinedClasses = clsx(baseClasses, className);
 
   return (
     <div
       ref={carouselRef}
+      data-theme={propTheme ?? contextTheme}
       className={combinedClasses}
       aria-roledescription="carousel"
       onTouchStart={handleTouchStart}
@@ -224,9 +226,11 @@ const Carousel: React.FC<CarouselProps> = ({
       }}
     >
       <div
-        className={`relative h-full overflow-hidden transition-transform duration-200 ${
-          rounded ? "rounded-3xl sm:rounded-[2rem]" : ""
-        } ${isDragging ? "cursor-grabbing" : ""}`}
+        className={clsx(
+          "relative h-full overflow-hidden transition-transform duration-200",
+          rounded && "rounded-3xl sm:rounded-[2rem]",
+          isDragging && "cursor-grabbing",
+        )}
         style={{
           transform: `translateX(${dragOffset * 0.1}px)`,
         }}
@@ -272,7 +276,11 @@ const Carousel: React.FC<CarouselProps> = ({
                 >
                   <img
                     src={item.tagImage?.carouselTag}
-                    alt="Carousel Tag"
+                    alt={t("a11y.shared.carouselTag")}
+                    width={32}
+                    height={32}
+                    loading="lazy"
+                    decoding="async"
                     className="h-6 w-6 sm:h-8 sm:w-8 dark:invert"
                   />
                 </button>
@@ -292,7 +300,7 @@ const Carousel: React.FC<CarouselProps> = ({
                        focus:outline-none focus:ring-2 focus:ring-primary-light/20 dark:focus:ring-primary-dark/20
                        min-h-[48px] min-w-[48px]"
               onClick={previousSlide}
-              aria-label="Previous slide"
+              aria-label={t("a11y.shared.previousSlide")}
             >
               <svg
                 className="h-5 w-5 sm:h-6 sm:w-6 text-body group-hover:text-primary-light dark:group-hover:text-primary-dark transition-colors duration-300"
@@ -318,7 +326,7 @@ const Carousel: React.FC<CarouselProps> = ({
                        focus:outline-none focus:ring-2 focus:ring-primary-light/20 dark:focus:ring-primary-dark/20
                        min-h-[48px] min-w-[48px]"
               onClick={nextSlide}
-              aria-label="Next slide"
+              aria-label={t("a11y.shared.nextSlide")}
             >
               <svg
                 className="h-5 w-5 sm:h-6 sm:w-6 text-body group-hover:text-primary-light dark:group-hover:text-primary-dark transition-colors duration-300"
@@ -351,7 +359,7 @@ const Carousel: React.FC<CarouselProps> = ({
                     ? "bg-primary-light dark:bg-primary-dark"
                     : "bg-light-border/60 dark:bg-dark-border/60 hover:bg-light-text/40 dark:hover:bg-dark-text/40"
                 }`}
-                aria-label={`Go to slide ${index + 1}`}
+                aria-label={t("a11y.shared.goToSlide", { index: index + 1 })}
                 onClick={() => goToSlide(index)}
               />
             ))}
@@ -368,7 +376,9 @@ const Carousel: React.FC<CarouselProps> = ({
                  focus:outline-none focus:ring-2 focus:ring-primary-light/20 dark:focus:ring-primary-dark/20
                  min-h-[48px] min-w-[48px]"
         onClick={() => setIsPlaying(!isPlaying)}
-        aria-label={isPlaying ? "Pause" : "Play"}
+        aria-label={
+          isPlaying ? t("common.actions.pause") : t("common.actions.play")
+        }
       >
         {isPlaying ? (
           <svg

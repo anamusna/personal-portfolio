@@ -1,7 +1,9 @@
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import clsx from "clsx";
 import { AnimatePresence, motion } from "motion/react";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface ScrollToTopButtonProps {
   className?: string;
@@ -10,6 +12,7 @@ interface ScrollToTopButtonProps {
 const ScrollToTopButton: React.FC<ScrollToTopButtonProps> = ({
   className = "",
 }) => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -54,16 +57,16 @@ const ScrollToTopButton: React.FC<ScrollToTopButtonProps> = ({
           exit={{ opacity: 0, y: 12 }}
           transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           onClick={scrollToTop}
-          className={`
-            fixed bottom-6 left-6 z-[55]
-            w-12 h-12 sm:w-14 sm:h-14
-            surface-card border border-light-border/50 dark:border-dark-border/50
-            rounded-full hover:bg-light-surface/40 dark:hover:bg-dark-surface/40
-            transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-royal-primary/50 dark:focus-visible:ring-royal-primary/40
-            text-light-text dark:text-dark-text grid place-items-center
-            ${className}
-          `}
-          aria-label="Scroll to top"
+          className={clsx(
+            "fixed bottom-6 left-6 z-[55]",
+            "w-12 h-12 sm:w-14 sm:h-14",
+            "surface-card border border-light-border/50 dark:border-dark-border/50",
+            "rounded-full hover:bg-light-surface/40 dark:hover:bg-dark-surface/40",
+            "transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-royal-primary/50 dark:focus-visible:ring-royal-primary/40",
+            "text-light-text dark:text-dark-text grid place-items-center",
+            className,
+          )}
+          aria-label={t("common.actions.scrollToTop")}
           data-cy="scroll-to-top"
         >
           <FontAwesomeIcon

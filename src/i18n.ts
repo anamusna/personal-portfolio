@@ -7,8 +7,10 @@ import de from "./locales/de.json";
 import en from "./locales/en.json";
 
 export const namespace = "ansumana";
+const SUPPORTED_LANGUAGES = ["en", "de"] as const;
+export const DEFAULT_LANGUAGE = "en";
 
- export const resources = {
+export const resources = {
   en: {
     [namespace]: en,
   },
@@ -18,16 +20,30 @@ export const namespace = "ansumana";
 };
 
 const options: any = {
-  supportedLngs: ["en", "de"],
   ns: namespace,
   defaultNS: namespace,
-  fallbackLng: "en",
+  fallbackLng: DEFAULT_LANGUAGE,
+  supportedLngs: SUPPORTED_LANGUAGES,
+  nonExplicitSupportedLngs: false,
+  resources,
+  showSupportNotice: false,
+  parseMissingKeyHandler(key: string) {
+    return `{{${key}}}`;
+  },
   interpolation: {
     escapeValue: false,
+    skipOnVariables: false,
   },
   debug: false,
   detection: {
-    order: ["path", "querystring", "navigator"],
+    order: [
+      "path",
+      "querystring",
+      "localStorage",
+      "cookie",
+      "sessionStorage",
+      "navigator",
+    ],
     lookupQuerystring: "lng",
     lookupCookie: "i18next",
     lookupLocalStorage: "i18nextLng",
@@ -64,5 +80,19 @@ i18nInstance
   });
 
 loadLocales(i18nInstance);
+
+// Keep <html lang> in step with the active language. Language switching is
+// client side, so without this the document stays lang="en" while showing
+// German, which is what screen readers and search engines read.
+const syncDocumentLanguage = (language?: string) => {
+  if (typeof document === "undefined") return;
+  const resolved = language?.toLowerCase().startsWith("de") ? "de" : "en";
+  if (document.documentElement.lang !== resolved) {
+    document.documentElement.lang = resolved;
+  }
+};
+
+syncDocumentLanguage(i18nInstance.resolvedLanguage ?? i18nInstance.language);
+i18nInstance.on("languageChanged", syncDocumentLanguage);
 
 export default i18nInstance;

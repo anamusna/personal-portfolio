@@ -1,5 +1,7 @@
+import clsx from "clsx";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import Icon from "./Icon";
 
 interface ModalProps {
@@ -19,6 +21,7 @@ const Modal: React.FC<ModalProps> = ({
   size = "md",
   theme = "light",
 }) => {
+  const { t } = useTranslation("ansumana");
   useEffect(() => {
     const handleEscapeKey = (event: KeyboardEvent) => {
       if (event.key === "Escape" && isOpen) {
@@ -52,15 +55,15 @@ const Modal: React.FC<ModalProps> = ({
           role="dialog"
           aria-modal="true"
           aria-labelledby={titleId}
-          className={`
-            inline-block w-full p-6 my-8 overflow-hidden text-left align-middle transition-all transform shadow-xl rounded-lg
-            ${size === "sm" ? "max-w-sm" : ""}
-            ${size === "md" ? "max-w-md" : ""}
-            ${size === "lg" ? "max-w-lg" : ""}
-            ${size === "xl" ? "max-w-xl" : ""}
-            ${size === "full" ? "max-w-full" : ""}
-            ${theme === "light" ? "bg-white" : "bg-gray-800"}
-          `}
+          className={clsx(
+            "inline-block w-full p-6 my-8 overflow-hidden text-left align-middle transition-all transform shadow-xl rounded-lg",
+            size === "sm" && "max-w-sm",
+            size === "md" && "max-w-md",
+            size === "lg" && "max-w-lg",
+            size === "xl" && "max-w-xl",
+            size === "full" && "max-w-full",
+            theme === "light" ? "bg-white" : "bg-gray-800",
+          )}
         >
           <div className="flex justify-between items-center mb-4">
             {title && (
@@ -73,7 +76,7 @@ const Modal: React.FC<ModalProps> = ({
             )}
             <button
               data-testid="modal-close-button"
-              aria-label="Close"
+              aria-label={t("common.actions.close")}
               className="text-gray-400 hover:text-gray-500"
               onClick={onClose}
             >

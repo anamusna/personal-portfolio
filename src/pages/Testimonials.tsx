@@ -1,5 +1,6 @@
 import { ABOUT_HERO_STYLES } from "data/aboutHeroData";
 import React, { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import Toast from "tailwind/components/elements/Toast";
 import TestimonialGrid from "components/sections/testimonial/testimonial-grid";
 import { testimonials } from "data/testimonials";
@@ -9,6 +10,7 @@ import { useTestimonialFeedback } from "components/sections/testimonial/hooks/us
 import { TestimonialPageHero } from "components/sections/testimonial/testimonial-page-hero";
 
 const Testimonials: React.FC = () => {
+  const { t } = useTranslation();
   const containerClasses = useMemo(
     () => `${ABOUT_HERO_STYLES.CONTAINER_BASE}`,
     [],
@@ -27,7 +29,7 @@ const Testimonials: React.FC = () => {
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      <main className={`relative z-10 ${containerClasses}`}>
+      <div className={`relative z-10 ${containerClasses}`}>
         <section
           id="testimonials-hero"
           className="relative py-12 overflow-hidden"
@@ -36,6 +38,7 @@ const Testimonials: React.FC = () => {
             <TestimonialPageHero />
 
             <div id="testimonial-grid">
+              <h2 className="sr-only">{t("a11y.testimonials.gridHeading")}</h2>
               <TestimonialGrid testimonials={testimonials.group} />
             </div>
 
@@ -51,7 +54,7 @@ const Testimonials: React.FC = () => {
             )}
           </div>
         </section>
-      </main>
+      </div>
 
       {toast.show && (
         <Toast

@@ -1,6 +1,7 @@
 import { SECTION_VARIANTS, SECTION_VIEWPORT } from "constants/section-motion";
 import { motion } from "motion/react";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { P } from "tailwind/components/elements/Typography";
 import { TEXT_DETAIL_SECTION_TITLE } from "tailwind/styles/textTokens";
 import { SURFACE_CARD_ICON, SURFACE_CARD_INTERACTIVE } from "tailwind/styles/surfaceCard";
@@ -18,6 +19,8 @@ export const BlogSimilarPosts: React.FC<BlogSimilarPostsProps> = ({
   similarBlogs,
   onSimilarBlogClick,
 }) => {
+  const { t } = useTranslation();
+
   if (similarBlogs.length === 0) {
     return null;
   }
@@ -25,7 +28,7 @@ export const BlogSimilarPosts: React.FC<BlogSimilarPostsProps> = ({
   return (
     <motion.section
       variants={SECTION_VARIANTS}
-      initial="hidden"
+      initial={false}
       whileInView="visible"
       viewport={SECTION_VIEWPORT}
       className="relative py-8 sm:py-12 md:py-16 bg-white/20 dark:bg-gray-800/20"
@@ -38,10 +41,10 @@ export const BlogSimilarPosts: React.FC<BlogSimilarPostsProps> = ({
             </span>
           </div>
           <h2 className={`${TEXT_DETAIL_SECTION_TITLE} mb-3`}>
-            Similar Articles
+            {t("features.blogDetails.similar.title")}
           </h2>
           <p className="text-sm sm:text-base text-muted max-w-2xl mx-auto">
-            Explore more content related to this topic
+            {t("features.blogDetails.similar.subtitle")}
           </p>
         </div>
 
@@ -65,7 +68,7 @@ export const BlogSimilarPosts: React.FC<BlogSimilarPostsProps> = ({
                   />
 
                   <div className="absolute top-2 right-2 surface-card rounded-lg px-2.5 py-1 text-sm font-medium text-body border border-light-border/55 dark:border-dark-border/40">
-                    {blog.readTime} min read
+                    {t("pages.blog.cards.readTime", { minutes: blog.readTime })}
                   </div>
                 </div>
 
@@ -108,7 +111,7 @@ export const BlogSimilarPosts: React.FC<BlogSimilarPostsProps> = ({
                     </div>
 
                     <div className="flex items-center gap-1.5 text-sm sm:text-base text-indigo-600 dark:text-indigo-400 font-medium">
-                      <span>Read More</span>
+                      <span>{t("common.actions.readMore")}</span>
                       <svg
                         className="w-3 h-3 sm:w-4 sm:h-4"
                         fill="none"

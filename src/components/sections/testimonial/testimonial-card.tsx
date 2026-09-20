@@ -53,6 +53,10 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
             <img
               src={imageError ? daphneImg : testimonialImage}
               alt={testimonial.name}
+              width={64}
+              height={64}
+              loading="lazy"
+              decoding="async"
               className="w-16 h-16 rounded-full object-cover border-2 border-primary-light dark:border-primary-dark"
               onError={() => setImageError(true)}
             />

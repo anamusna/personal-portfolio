@@ -42,6 +42,7 @@ const CareerHighlights: React.FC = () => {
             ),
             iconAnimation: false,
           }}
+          title={homeWorkSection.title}
           description={homeWorkSection.description}
           highlightText={homeWorkSection.highlightText}
         />
@@ -49,7 +50,7 @@ const CareerHighlights: React.FC = () => {
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-5"
           variants={containerVariants}
-          initial="hidden"
+          initial={false}
           whileInView="visible"
           viewport={SECTION_VIEWPORT}
         >

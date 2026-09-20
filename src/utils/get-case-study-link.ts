@@ -1,3 +1,5 @@
+import i18n from "../i18n";
+
 export type CaseStudyLinkSource = {
   id: string;
   hasDetailLink?: boolean;
@@ -16,14 +18,14 @@ export function getCaseStudyLink(
   if (source.hasDetailLink) {
     return {
       href: `/projects/${source.id}`,
-      label: "View Case Study",
+      label: i18n.t("common.actions.viewCaseStudy"),
     };
   }
 
   if (source.caseStudyHref) {
     return {
       href: source.caseStudyHref,
-      label: source.caseStudyLinkLabel ?? "View on career page",
+      label: source.caseStudyLinkLabel ?? i18n.t("common.actions.viewOnCareerPage"),
     };
   }
 

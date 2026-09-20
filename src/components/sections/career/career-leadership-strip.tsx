@@ -2,7 +2,7 @@ import { SECTION_VARIANTS, SECTION_VIEWPORT } from "constants/section-motion";
 import { careerPageContent } from "data/careerPage";
 import { motion } from "motion/react";
 import React from "react";
-import { SURFACE_CARD_INTERACTIVE } from "../../../tailwind/styles/surfaceCard";
+import { SURFACE_CARD_BASE } from "../../../tailwind/styles/surfaceCard";
 import { TEXT_BODY } from "../../../tailwind/styles/textTokens";
 import SectionHeader from "../../elements/section-header";
 
@@ -14,11 +14,11 @@ const CareerLeadershipStrip: React.FC = () => {
       id="career-leadership"
       className="relative scroll-mt-24 py-6 sm:py-8 md:py-10 bg-light-background dark:bg-dark-background"
       variants={SECTION_VARIANTS}
-      initial="hidden"
+      initial={false}
       whileInView="visible"
       viewport={SECTION_VIEWPORT}
     >
-      <div className="container max-w-5xl mx-auto px-3 sm:px-4 lg:px-6">
+      <div className="container max-w-7xl mx-auto">
         <SectionHeader
           badge={{
             text: leadership.badge,
@@ -40,6 +40,7 @@ const CareerLeadershipStrip: React.FC = () => {
             ),
             iconAnimation: false,
           }}
+          title={leadership.title}
           description={leadership.description}
           highlightText={leadership.highlightText}
         />
@@ -48,12 +49,14 @@ const CareerLeadershipStrip: React.FC = () => {
           {leadership.items.map((item) => (
             <li
               key={item.id}
-              className={`${SURFACE_CARD_INTERACTIVE} p-4 sm:p-5 border-indigo-200/35 dark:border-indigo-500/25`}
+              className={`${SURFACE_CARD_BASE} p-4 sm:p-5`}
             >
               <p className="text-sm sm:text-base font-semibold text-heading mb-2">
                 {item.title}
               </p>
-              <p className={`${TEXT_BODY} text-sm sm:text-base leading-relaxed`}>
+              <p
+                className={`${TEXT_BODY} text-sm sm:text-base leading-relaxed`}
+              >
                 {item.detail}
               </p>
             </li>

@@ -4,15 +4,14 @@ import { careerPageContent } from "data/careerPage";
 import { motion } from "motion/react";
 import React, { useMemo } from "react";
 import HeroHeader from "../components/elements/hero-header";
-import { PAGE_HEADER_HERO_TITLE } from "../tailwind/styles/pageHeader";
 import SectionHeader from "../components/elements/section-header";
-import CareerTimeline from "../components/sections/career/career-timeline";
-import Journey from "../components/sections/career/career-journey";
-import CareerCaseStudies from "../components/sections/career/career-case-studies";
 import CareerImpactStrip from "../components/sections/career/career-impact-strip";
+import Journey from "../components/sections/career/career-journey";
 import CareerLeadershipStrip from "../components/sections/career/career-leadership-strip";
 import CareerNextSteps from "../components/sections/career/career-next-steps";
 import CareerPrologue from "../components/sections/career/career-prologue";
+import CareerTimeline from "../components/sections/career/career-timeline";
+import { PAGE_HEADER_HERO_TITLE } from "../tailwind/styles/pageHeader";
 
 const careerHeroIcon = (
   <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
@@ -34,12 +33,12 @@ const Career: React.FC = () => {
 
   return (
     <div className="relative min-h-screen overflow-hidden md:overflow-visible z-10">
-      <main className={`relative z-10 ${containerClasses}`}>
+      <div className={`relative z-10 ${containerClasses}`}>
         <motion.section
           id="career-hero"
           className="relative py-8 sm:py-12 md:py-16"
           variants={SECTION_VARIANTS}
-          initial="hidden"
+          initial={false}
           animate="visible"
         >
           <div className="container mx-auto px-3 sm:px-4 lg:px-6 relative z-10">
@@ -65,7 +64,7 @@ const Career: React.FC = () => {
           id="career-milestones"
           className="relative scroll-mt-24 py-6 sm:py-8 md:py-12"
           variants={SECTION_VARIANTS}
-          initial="hidden"
+          initial={false}
           whileInView="visible"
           viewport={SECTION_VIEWPORT}
         >
@@ -92,6 +91,7 @@ const Career: React.FC = () => {
                 ),
                 iconAnimation: false,
               }}
+              title={milestones.title}
               description={milestones.description}
               highlightText={milestones.highlightText}
             />
@@ -103,7 +103,7 @@ const Career: React.FC = () => {
           id="career-roles"
           className="relative scroll-mt-24 bg-light-background-alt dark:bg-dark-background-alt pt-6 sm:pt-8 md:pt-12"
           variants={SECTION_VARIANTS}
-          initial="hidden"
+          initial={false}
           whileInView="visible"
           viewport={SECTION_VIEWPORT}
         >
@@ -129,6 +129,7 @@ const Career: React.FC = () => {
                 ),
                 iconAnimation: false,
               }}
+              title={roles.title}
               description={roles.description}
               highlightText={roles.highlightText}
             />
@@ -136,11 +137,13 @@ const Career: React.FC = () => {
           <CareerTimeline hideHeader />
         </motion.section>
 
-        <CareerCaseStudies />
-
+        {/* No project-card gallery here: it repeated the same six roles
+            already covered by the timeline and role list above, with the
+            same card treatment as /projects. CareerNextSteps below already
+            sends the reader there for the technical detail per role. */}
         <CareerImpactStrip />
         <CareerNextSteps />
-      </main>
+      </div>
     </div>
   );
 };

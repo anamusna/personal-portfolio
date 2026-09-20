@@ -3,7 +3,7 @@ import { values } from "data/values";
 import { motion } from "motion/react";
 import React from "react";
 import Icon from "../../../tailwind/components/elements/Icon";
-import { SURFACE_CARD_ICON, SURFACE_CARD_INTERACTIVE } from "../../../tailwind/styles/surfaceCard";
+import { SURFACE_CARD_BASE, SURFACE_CARD_ICON } from "../../../tailwind/styles/surfaceCard";
 import { TEXT_CARD_TITLE } from "../../../tailwind/styles/textTokens";
 import SectionHeader from "../../elements/section-header";
 
@@ -56,13 +56,14 @@ const Values: React.FC = () => {
             text: "Philosophy",
             iconAnimation: true,
           }}
+          title="Four principles I return to"
           description="Four principles I return to when choosing tools, designing interfaces, and working with a team."
           highlightText="working with a team"
         />
 
         <motion.div
           variants={containerVariants}
-          initial="hidden"
+          initial={false}
           whileInView="visible"
           viewport={SECTION_VIEWPORT}
           className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3 lg:gap-4"
@@ -71,7 +72,7 @@ const Values: React.FC = () => {
             <motion.div
               key={value.title}
               variants={cardVariants}
-              className={`${SURFACE_CARD_INTERACTIVE} p-2 sm:p-4 flex flex-col border-indigo-200/40 dark:border-indigo-500/25 hover:border-indigo-400/50 dark:hover:border-indigo-400/40`}
+              className={`${SURFACE_CARD_BASE} p-2 sm:p-4 flex flex-col`}
             >
               <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
                 <div
@@ -85,20 +86,18 @@ const Values: React.FC = () => {
                   />
                 </div>
 
-                <h4 className={`${TEXT_CARD_TITLE} flex-1 leading-tight min-w-0`}>
+                <h3 className={`${TEXT_CARD_TITLE} flex-1 leading-tight min-w-0`}>
                   {value.title}
-                </h4>
+                </h3>
               </div>
 
               <div className="space-y-2 flex-1">
                 <p className="text-body text-sm leading-snug font-medium">
                   {value.description}
                 </p>
-                <div className="surface-card p-2 sm:p-2.5 rounded-md border border-light-border/55 dark:border-dark-border/40">
-                  <p className="text-sm text-body leading-snug">
-                    {value.details}
-                  </p>
-                </div>
+                <p className="text-sm text-muted leading-snug">
+                  {value.details}
+                </p>
               </div>
             </motion.div>
           ))}

@@ -9,9 +9,9 @@ const SocialConnectCard: React.FC = memo(() => (
   >
     <div className="flex items-center gap-2 mb-2.5">
       <div className="w-1 h-1 rounded-full bg-indigo-500 dark:bg-indigo-400" aria-hidden />
-      <h3 className="text-sm font-medium text-body">
+      <p className="text-sm font-medium text-body">
         {ABOUT_HERO_CONTENT.SOCIAL_CARD_TITLE}
-      </h3>
+      </p>
     </div>
 
     <SocialLinks

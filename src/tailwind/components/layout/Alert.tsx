@@ -5,6 +5,7 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Button from "../elements/Button";
 import Icon from "../elements/Icon";
 import { Label, Small } from "../elements/Typography";
@@ -66,6 +67,7 @@ const Alert: React.FC<AlertProps> = ({
   className = "",
 }) => {
   const [isVisible, setIsVisible] = useState(isOpen);
+  const { t } = useTranslation("ansumana");
 
   const handleDismiss = () => {
     setIsVisible(false);
@@ -110,7 +112,7 @@ const Alert: React.FC<AlertProps> = ({
         </div>
         {dismissible && !onConfirm && (
           <Button
-            label="Close"
+            label={t("common.actions.close")}
             variant="transparent"
             size={size}
             iconOnly
@@ -118,7 +120,7 @@ const Alert: React.FC<AlertProps> = ({
             theme={theme as "light" | "dark"}
             className={`text-primary-${theme}-700`}
             onClick={handleDismiss}
-            aria-label="Dismiss"
+            aria-label={t("common.actions.dismiss")}
           />
         )}
       </div>
@@ -126,7 +128,7 @@ const Alert: React.FC<AlertProps> = ({
       {onConfirm && (
         <div className="flex justify-end gap-2 mt-4">
           <Button
-            label="Abbrechen"
+            label={t("common.actions.cancel")}
             variant="transparent"
             size={size}
             icon={faXmark}
@@ -134,7 +136,7 @@ const Alert: React.FC<AlertProps> = ({
             onClick={handleDismiss}
           />
           <Button
-            label="Bestätigen"
+            label={t("common.actions.confirm")}
             variant="primary"
             size={size}
             icon={faCheck}

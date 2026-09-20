@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useEnvironmentSettings } from "../../../context/EnvironmentContext";
 import { PaginationProps } from "../../../tailwind/types/elements/pagination";
 
@@ -12,6 +13,7 @@ const Pagination: React.FC<PaginationProps> = ({
   size = "md",
 }) => {
   const { fontSize } = useEnvironmentSettings();
+  const { t } = useTranslation("ansumana");
   const baseClasses =
     "inline-flex items-center justify-center font-medium transition focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
 
@@ -91,14 +93,14 @@ const Pagination: React.FC<PaginationProps> = ({
   return (
     <nav
       className="relative z-0 inline-flex rounded shadow -space-x-px"
-      aria-label="Pagination"
+      aria-label={t("a11y.shared.pagination")}
     >
       <button
         onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
         className={getPrevClasses()}
       >
-        <span className="sr-only">Previous</span>
+        <span className="sr-only">{t("common.actions.previous")}</span>
         &lt;
       </button>
 
@@ -117,7 +119,7 @@ const Pagination: React.FC<PaginationProps> = ({
         disabled={currentPage === totalPages}
         className={getNextClasses()}
       >
-        <span className="sr-only">Next</span>
+        <span className="sr-only">{t("common.actions.next")}</span>
         &gt;
       </button>
     </nav>

@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import { useTranslation } from "react-i18next";
 import { useEnvironmentSettings } from "../../../context/EnvironmentContext";
 import { BreadcrumbProps } from "../../../tailwind/types/elements/breadcrumb";
 
@@ -13,6 +14,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
   icon,
 }) => {
   const { fontSize } = useEnvironmentSettings();
+  const { t } = useTranslation("ansumana");
 
   const baseClasses =
     "inline-flex items-center space-x-2 font-medium transition focus:outline-none focus:ring-2 focus:ring-offset-2";
@@ -39,7 +41,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
         themeClass,
         className
       )}
-      aria-label="Breadcrumb"
+      aria-label={t("a11y.shared.breadcrumb")}
     >
       {icon && <span className="mr-2">{icon}</span>}
       {children || label}

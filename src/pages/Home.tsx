@@ -3,14 +3,11 @@ import { registerPeekComposers } from "components/peek/samples/register-peek-com
 import { SECTION_VARIANTS, SECTION_VIEWPORT } from "constants/section-motion";
 import { motion } from "motion/react";
 import React, { useEffect } from "react";
+import CapabilityHighlights from "../components/sections/home/capability-highlights";
 import CareerHighlights from "../components/sections/home/career-highlights";
 import Hero from "../components/sections/home/hero";
-import HomeIdentity from "../components/sections/home/home-identity";
 import HowIWork from "../components/sections/home/how-i-work";
 import RecentPosts from "../components/sections/home/recent-posts";
-import HomeClosing from "../components/sections/home/home-closing";
-import Services from "../components/sections/home/services";
-import TechStack from "../components/sections/home/tech-stack";
 import Testimonials from "../components/sections/home/testimonials";
 import { personalInfo } from "../data/personalInfo";
 
@@ -29,21 +26,10 @@ const Home: React.FC = () => {
             </section>
 
             <motion.section
-              id="who-i-am"
-              className="relative scroll-mt-24 bg-light-background-alt dark:bg-dark-background-alt"
-              variants={SECTION_VARIANTS}
-              initial="hidden"
-              whileInView="visible"
-              viewport={SECTION_VIEWPORT}
-            >
-              <HomeIdentity />
-            </motion.section>
-
-            <motion.section
               id="career-highlights"
               className="relative scroll-mt-24"
               variants={SECTION_VARIANTS}
-              initial="hidden"
+              initial={false}
               whileInView="visible"
               viewport={SECTION_VIEWPORT}
             >
@@ -54,7 +40,7 @@ const Home: React.FC = () => {
               id="testimonials"
               className="relative scroll-mt-24 bg-light-background-alt dark:bg-dark-background-alt"
               variants={SECTION_VARIANTS}
-              initial="hidden"
+              initial={false}
               whileInView="visible"
               viewport={SECTION_VIEWPORT}
             >
@@ -65,7 +51,7 @@ const Home: React.FC = () => {
               id="how-i-work"
               className="relative scroll-mt-24"
               variants={SECTION_VARIANTS}
-              initial="hidden"
+              initial={false}
               whileInView="visible"
               viewport={SECTION_VIEWPORT}
             >
@@ -73,47 +59,25 @@ const Home: React.FC = () => {
             </motion.section>
 
             <motion.section
-              id="services"
+              id="tech-stack"
               className="relative scroll-mt-24 bg-light-background-alt dark:bg-dark-background-alt"
               variants={SECTION_VARIANTS}
-              initial="hidden"
+              initial={false}
               whileInView="visible"
               viewport={SECTION_VIEWPORT}
             >
-              <Services />
-            </motion.section>
-
-            <motion.section
-              id="tech-stack"
-              className="relative scroll-mt-24"
-              variants={SECTION_VARIANTS}
-              initial="hidden"
-              whileInView="visible"
-              viewport={SECTION_VIEWPORT}
-            >
-              <TechStack skills={personalInfo.skills} />
+              <CapabilityHighlights skills={personalInfo.skills} />
             </motion.section>
 
             <motion.section
               id="recent-posts"
               className="relative scroll-mt-24 bg-light-background-alt dark:bg-dark-background-alt"
               variants={SECTION_VARIANTS}
-              initial="hidden"
+              initial={false}
               whileInView="visible"
               viewport={SECTION_VIEWPORT}
             >
               <RecentPosts />
-            </motion.section>
-
-            <motion.section
-              id="home-closing"
-              className="relative scroll-mt-24"
-              variants={SECTION_VARIANTS}
-              initial="hidden"
-              whileInView="visible"
-              viewport={SECTION_VIEWPORT}
-            >
-              <HomeClosing />
             </motion.section>
           </div>
         </div>

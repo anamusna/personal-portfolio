@@ -1,11 +1,12 @@
 import { faCalendar, faClock } from "@fortawesome/free-solid-svg-icons";
-import React, { useCallback, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import clsx from "clsx";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { blogImages } from "../../../data/blogImages";
 import Icon from "../../../tailwind/components/elements/Icon";
 import { SURFACE_CARD_INTERACTIVE } from "../../../tailwind/styles/surfaceCard";
 import { Blog } from "../../../types/blog";
-import { slugify } from "../../../utils/slugify";
 import { devWarn } from "../../../utils/logger";
 
 interface BlogCardProps {
@@ -14,29 +15,33 @@ interface BlogCardProps {
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({ blog, className = "" }) => {
+  const { t } = useTranslation();
   const [imageError, setImageError] = useState(false);
-  const navigate = useNavigate();
   const blogImage = blogImages[blog.coverImage];
-
-  const handleBlogClick = useCallback(() => {
-    navigate(`/blog/${slugify(blog.title)}`);
-  }, [navigate, blog.title]);
 
   if (!blogImage && !imageError) {
     devWarn(`No image found for: ${blog.coverImage}`);
   }
 
   return (
-    <article className={`${SURFACE_CARD_INTERACTIVE} rounded-2xl overflow-hidden ${className}`}>
-      <button
-        type="button"
-        onClick={handleBlogClick}
-        className="block w-full text-left"
-      >
+    <article
+      className={clsx(
+        SURFACE_CARD_INTERACTIVE,
+        "rounded-2xl overflow-hidden",
+        className,
+      )}
+    >
+      {/* A real link, not a button with a navigate() handler: the post needs a
+          crawlable href, and readers expect middle-click and copy-link. */}
+      <Link to={`/blog/${blog.titleSlug}`} className="block w-full text-left">
         <div className="relative aspect-video overflow-hidden bg-light-elevated dark:bg-dark-surface">
           <img
             src={imageError ? blogImages["react.png"] : blogImage}
             alt={blog.title}
+            width={640}
+            height={360}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover"
             onError={() => {
               devWarn(`Failed to load image: ${blog.coverImage}`);
@@ -81,15 +86,15 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog, className = "" }) => {
                 size="sm"
                 className="text-primary-light/70 dark:text-primary-dark/70"
               />
-              {blog.readTime} min read
+              {t("pages.blog.cards.readTime", { minutes: blog.readTime })}
             </span>
           </div>
 
           <div className="mt-4 text-primary-light dark:text-primary-dark font-medium">
-            Read More
+            {t("common.actions.readMore")}
           </div>
         </div>
-      </button>
+      </Link>
     </article>
   );
 };

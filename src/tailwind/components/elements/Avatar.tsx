@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import { IconProp, SizeProp } from "@fortawesome/fontawesome-svg-core";
+import { useTranslation } from "react-i18next";
 import Icon from "../elements/Icon";
 import { AvatarProps } from "../../types/elements/avatar";
 import { useEnvironmentSettings } from "../../../context/EnvironmentContext";
@@ -22,6 +23,7 @@ const Avatar: React.FC<AvatarProps> = ({
   className,
 }) => {
   const { fontSize } = useEnvironmentSettings();
+  const { t } = useTranslation("ansumana");
 
   const sizeClasses = {
     sm: "w-8 h-8",
@@ -82,11 +84,17 @@ const Avatar: React.FC<AvatarProps> = ({
     >
       {loading ? (
         <div className="w-full h-full flex items-center justify-center">
-          <span className={`text-${fontSize}`}>Loading...</span>
+          <span className={`text-${fontSize}`}>{t("common.status.loading")}</span>
         </div>
       ) : (
         <>
-          <img src={src} alt={alt} className="w-full h-full object-cover" />
+          <img
+            src={src}
+            alt={alt}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover"
+          />
           {icon && !iconOnly && (
             <span className="absolute inset-0 flex items-center justify-center">
               <Icon

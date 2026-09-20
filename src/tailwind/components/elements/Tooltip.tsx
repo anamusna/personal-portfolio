@@ -19,8 +19,6 @@ const Tooltip: React.FC<TooltipProps> = ({
     language: contextLanguage,
   } = useEnvironmentSettings();
 
-  const finalTheme = contextTheme;
-
   const finalLanguage = contextLanguage;
 
   const [isVisible, setIsVisible] = useState(false);
@@ -100,7 +98,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     [position, arrowClasses]
   );
 
-  const baseClasses = "relative inline-flex items-center group cursor-pointer";
+  void contextTheme;
 
   return (
     <div

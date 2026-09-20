@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import TypingText from "components/spotlight/typing-text";
 
 interface SearchHeaderProps {
@@ -25,6 +26,7 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
   resetSelection,
   onClose,
 }) => {
+  const { t } = useTranslation("ansumana");
   const showAnimatedPlaceholder = !searchInput;
 
   return (
@@ -49,9 +51,9 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
             {showAnimatedPlaceholder ? (
               <TypingText
                 text={[
-                  "Search or ask about Ansu…",
-                  'Try "What are Ansu\'s projects?"',
-                  'Ask "Tell me about experience"',
+                  t("spotlight.search.prompts.search"),
+                  t("spotlight.search.prompts.projects"),
+                  t("spotlight.search.prompts.experience"),
                 ]}
                 typingSpeed={45}
                 deletingSpeed={24}
@@ -66,7 +68,7 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
               ref={inputRef}
               type="text"
               value={searchInput}
-              aria-label="Search or ask a question about Ansu"
+              aria-label={t("spotlight.search.aria.input")}
               onChange={(event) => onSearchInputChange(event.target.value)}
               onFocus={() => {
                 resetSelection();
@@ -85,7 +87,7 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
                   ? "bg-transparent"
                   : "bg-white/40 dark:bg-slate-800/60"
               )}
-              aria-label="Clear search input"
+              aria-label={t("spotlight.search.aria.clear")}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +111,7 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
                 "hidden h-7 w-7 items-center justify-center rounded-full border border-emerald-400/50 bg-emerald-500/10 text-xs font-medium text-emerald-500 transition hover:bg-emerald-500/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 disabled:cursor-not-allowed disabled:border-white/20 disabled:bg-white/20 disabled:text-slate-400 sm:inline-flex dark:border-emerald-400/50 dark:bg-emerald-500/10 dark:text-emerald-200 dark:hover:bg-emerald-500/20 dark:disabled:border-slate-700/60 dark:disabled:bg-slate-800/60 dark:disabled:text-slate-500",
                 isSearchSendDisabled && "pointer-events-none"
               )}
-              aria-label="Submit search"
+              aria-label={t("spotlight.search.aria.submit")}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -134,7 +136,7 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
         type="button"
         onClick={onClose}
         className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
-        aria-label="Close spotlight search"
+        aria-label={t("spotlight.search.aria.close")}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

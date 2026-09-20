@@ -6,6 +6,7 @@ import { SpotlightCategory } from "data/about/spotlightData";
 import { SpotlightResult, useSpotlightSearch } from "hooks/useSpotlightSearch";
 import { AnimatePresence, motion } from "motion/react";
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 type ChatbotEvent =
   | { type: "asked"; question: string }
@@ -24,6 +25,7 @@ const SpotlightChatbot: React.FC<SpotlightChatbotProps> = ({
   onEvent,
   launcherRef,
 }) => {
+  const { t } = useTranslation("ansumana");
   const {
     searchInput,
     results,
@@ -125,7 +127,7 @@ const SpotlightChatbot: React.FC<SpotlightChatbotProps> = ({
   }, [messages]);
 
   return (
-    <section aria-label="Spotlight Biography Chatbot">
+    <section aria-label={t("spotlight.aria.chatbot")}>
       <AnimatePresence>
         {showSpotlight && (
           <motion.div

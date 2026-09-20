@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import clsx from "clsx";
+import { useTranslation } from "react-i18next";
 import { BannerProps } from "../../../tailwind/types/layout/banner";
 
 const Banner: React.FC<BannerProps> = ({
@@ -11,6 +12,7 @@ const Banner: React.FC<BannerProps> = ({
   onDismiss,
 }) => {
   const [isVisible, setIsVisible] = useState(true);
+  const { t } = useTranslation("ansumana");
 
   const themeClasses = {
     light: {
@@ -48,9 +50,9 @@ const Banner: React.FC<BannerProps> = ({
               if (onDismiss) onDismiss();
             }}
             className="ml-4 text-gray-400 hover:text-gray-600"
-            aria-label="Dismiss banner"
+            aria-label={t("common.actions.dismissBanner")}
           >
-            <span className="sr-only">Dismiss</span>
+            <span className="sr-only">{t("common.actions.dismiss")}</span>
             &times;
           </button>
         )}

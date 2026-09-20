@@ -25,6 +25,8 @@ export interface BlogPost {
 export interface Blog {
   id: number;
   title: string;
+  /** Stable, language-independent slug used for internal routing (must not be derived from the translated title). */
+  titleSlug: string;
   slug: string;
   summary: string;
   content: {

@@ -6,18 +6,18 @@ import FAQSection from "../components/sections/faq/faq-section";
 const Faq: React.FC = () => {
   return (
     <div className="relative overflow-hidden md:overflow-visible">
-      <main className="relative z-10">
+      <div className="relative z-10">
         <motion.section
           id="faq"
           className="relative"
           variants={SECTION_VARIANTS}
-          initial="hidden"
+          initial={false}
           whileInView="visible"
           viewport={SECTION_VIEWPORT}
         >
           <FAQSection />
         </motion.section>
-      </main>
+      </div>
     </div>
   );
 };

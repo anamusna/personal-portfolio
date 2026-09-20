@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { blogs } from "../../../data/blogs";
 import BlogCard from "./blog-card";
 
@@ -7,6 +8,7 @@ interface BlogGridProps {
 }
 
 const BlogGrid: React.FC<BlogGridProps> = ({ selectedTags }) => {
+  const { t } = useTranslation();
   // Filter blogs based on selected tags
   const filteredBlogs = useMemo(() => {
     if (selectedTags.length === 0) return blogs;
@@ -57,16 +59,15 @@ const BlogGrid: React.FC<BlogGridProps> = ({ selectedTags }) => {
           </div>
 
           <h3 className="text-xl sm:text-2xl font-bold text-heading mb-2 sm:mb-3">
-            No Posts Found
+            {t("pages.blog.empty.title")}
           </h3>
             <p className="text-sm sm:text-base text-muted leading-relaxed mb-4 sm:mb-6 lg:mb-8 container max-w-5xl mx-auto">
-              No blog posts match your current filter selection. Try adjusting
-              your filters or{" "}
+              {t("pages.blog.empty.description")}{" "}
               <button
                 onClick={() => window.location.reload()}
                 className="text-indigo-600 dark:text-indigo-400 hover:text-violet-600 dark:hover:text-violet-400 font-semibold underline decoration-2 underline-offset-2 transition-colors duration-300 active:scale-95"
               >
-                browse all posts
+                {t("pages.blog.empty.browseAll")}
               </button>
               .
             </p>
@@ -91,7 +92,7 @@ const BlogGrid: React.FC<BlogGridProps> = ({ selectedTags }) => {
                     d="M10 19l-7-7m0 0l7-7m-7 7h18"
                   />
                 </svg>
-                Go Back
+                {t("common.actions.goBack")}
               </button>
 
               <button
@@ -113,7 +114,7 @@ const BlogGrid: React.FC<BlogGridProps> = ({ selectedTags }) => {
                     d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
                   />
                 </svg>
-                Reset Filters
+                {t("pages.blog.filters.reset")}
               </button>
             </div>
         </div>

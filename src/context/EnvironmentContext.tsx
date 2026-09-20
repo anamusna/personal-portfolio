@@ -93,13 +93,9 @@ export const EnvironmentProvider: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <EnvironmentContext.Provider value={value}>
-      <div
-        className={`
-            font-${fontSize}
-        `}
-        lang="en"
-        dir="ltr"
-      >
+      {/* No `lang` here: it would claim German content is English. The
+          document language is kept in step with i18n in src/i18n.ts. */}
+      <div className={`font-${fontSize}`} dir="ltr">
         {children}
       </div>
     </EnvironmentContext.Provider>

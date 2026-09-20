@@ -1,9 +1,10 @@
 import clsx from "clsx";
 import SocialLinks from "components/elements/social-links";
+import MobileNavMenu from "components/layout/mobile-nav-menu";
 import ThemeToggle from "components/layout/theme-toggle";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
-import { useTranslation } from "../../context/LanguageContext";
 import {
   getHeaderHref,
   isHeaderNavActive,
@@ -19,108 +20,82 @@ import {
   CHROME_CHIP_ACTIVE,
   CHROME_CHIP_HOVER,
 } from "../../tailwind/styles/chromeBar";
-import { DeviceType, getDeviceType } from "../../utils/device-type";
-
+// Header height, logo size and horizontal padding come from the
+// `--header-*` custom properties in index.css, which resolve per breakpoint
+// in CSS. Deriving them from a measured viewport in React made the markup
+// depend on the render environment: react-snap prerenders at 480x850, so the
+// committed HTML carried phone-sized classes while the client's first render
+// produced something else. React aborted hydration on that mismatch and
+// re-rendered every route from scratch. Keep this markup viewport
+// independent.
 const HeaderContent: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isInitialRender, setIsInitialRender] = useState(true);
-  const [screenSize, setScreenSize] = useState<{
-    width: number;
-    height: number;
-    orientation: "portrait" | "landscape";
-  }>({
-    width: typeof window !== "undefined" ? window.innerWidth : 0,
-    height: typeof window !== "undefined" ? window.innerHeight : 0,
-    orientation:
-      typeof window !== "undefined" && window.innerWidth > window.innerHeight
-        ? "landscape"
-        : "portrait",
-  });
 
   const location = useLocation();
-  const { language } = useTranslation();
+  const { t } = useTranslation();
   // const {  openSpotlight} = useSpotlightSearch();
 
   const navigation = PRIMARY_HEADER_NAV.map((item) => ({
-    name: item.label,
+    name: t(item.labelKey),
     href: getHeaderHref(item.url),
     url: item.url,
     highlight: item.highlight ?? false,
+    isPrimaryAction: item.isPrimaryAction ?? false,
   }));
+  const secondaryNavLinks = navigation.filter((item) => !item.isPrimaryAction);
+  const primaryAction = navigation.find((item) => item.isPrimaryAction);
 
-  const deviceType: DeviceType = getDeviceType(screenSize);
-  const getHeaderHeight = () => {
-    switch (deviceType) {
-      case "mobile-xs":
-        return "h-[56px]";
-      case "mobile":
-      case "mobile-large":
-        return "h-[60px]";
-      case "mobile-landscape":
-        return "h-[52px]"; // Shorter for landscape mobile
-      case "tablet":
-        return "h-[68px]";
-      case "tablet-landscape":
-        return "h-[50px]"; // Shorter for landscape tablet
-      case "laptop":
-        return "h-[72px]";
-      case "desktop":
-        return "h-[78px]";
-      case "desktop-large":
-        return "h-[80px]";
-      default:
-        return "h-[68px]";
-    }
+  const renderNavLink = (item: (typeof navigation)[number]) => {
+    const isActive = isHeaderNavActive(location.pathname, item.url);
+
+    return (
+      <Link
+        key={item.url}
+        to={item.href}
+        aria-current={isActive ? "page" : undefined}
+        className={clsx(
+          "group relative shrink-0 px-3 py-2 text-sm md:text-base font-medium transition-all duration-300 whitespace-nowrap rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-royal-primary/50 inline-flex items-center min-h-[44px]",
+          isActive
+            ? CHROME_CHIP_ACTIVE
+            : clsx(
+                CHROME_CHIP,
+                CHROME_CHIP_HOVER,
+                "text-light-text/85 dark:text-dark-text/85",
+              ),
+        )}
+      >
+        <span className="relative">
+          {item.name}
+          <div
+            className={clsx(
+              "absolute -bottom-1 left-0 h-0.5 w-full bg-indigo-600 dark:bg-indigo-400 transition-transform duration-300 origin-left",
+              isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100",
+            )}
+          />
+        </span>
+      </Link>
+    );
   };
 
-  const getLogoSize = () => {
-    switch (deviceType) {
-      case "mobile-xs":
-        return "w-7 h-7";
-      case "mobile":
-      case "mobile-large":
-        return "w-8 h-8";
-      case "mobile-landscape":
-        return "w-7 h-7"; // Smaller for landscape
-      case "tablet":
-      case "tablet-landscape":
-        return "w-9 h-9";
-      case "laptop":
-        return "w-10 h-10";
-      case "desktop":
-      case "desktop-large":
-        return "w-11 h-11";
-      default:
-        return "w-8 h-8";
-    }
-  };
+  const renderPrimaryAction = () =>
+    primaryAction ? renderNavLink(primaryAction) : null;
 
+  // Effect justification: subscribing to an external system (window scroll).
+  // Scroll position is not derivable from props or state and has no CSS
+  // equivalent here, so this is the case the React docs still call for an
+  // effect. The initial read covers a restored or hash-targeted scroll
+  // position; `isScrolled` starts false on both the prerender and the
+  // client's first render, so it does not affect hydration.
   useEffect(() => {
-    setIsScrolled(window.scrollY > 20);
-    setIsInitialRender(false);
-
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
 
-    const handleResize = () => {
-      setScreenSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-        orientation: (window.innerWidth > window.innerHeight
-          ? "landscape"
-          : "portrait") as "landscape" | "portrait",
-      });
-    };
-
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("orientationchange", handleResize);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("orientationchange", handleResize);
     };
   }, []);
 
@@ -128,27 +103,13 @@ const HeaderContent: React.FC = () => {
     <>
       <header
         className={clsx(
-          "fixed top-0 left-0 right-0 z-[60]",
-          !isInitialRender && "duration-500",
-          getHeaderHeight(),
+          "fixed top-0 left-0 right-0 z-[60] duration-500",
+          "h-[var(--header-height)] px-[var(--header-padding-x)]",
           CHROME_BAR_BASE,
-        deviceType === "mobile-xs"
-          ? "px-3"
-          : deviceType === "mobile"
-            ? "px-4"
-            : deviceType === "mobile-large"
-              ? "px-4"
-              : deviceType === "mobile-landscape"
-                ? "px-4"
-                : deviceType === "tablet"
-                  ? "px-6"
-                  : deviceType === "tablet-landscape"
-                    ? "px-6"
-                    : "px-4",
-        isScrolled
-          ? clsx(CHROME_BAR_GLASS, CHROME_BAR_BORDER_BOTTOM)
-          : CHROME_BAR_TOP_FADE,
-      )}
+          isScrolled
+            ? clsx(CHROME_BAR_GLASS, CHROME_BAR_BORDER_BOTTOM)
+            : CHROME_BAR_TOP_FADE,
+        )}
     >
       <nav className="relative h-full">
         <div className="container mx-auto h-full max-w-7xl sm:px-6 md:px-4 lg:px-5">
@@ -160,8 +121,8 @@ const HeaderContent: React.FC = () => {
             >
               <img
                 src="/logo.png"
-                alt="Ansu Darboe"
-                className={clsx("relative object-cover", getLogoSize())}
+                alt={t("a11y.header.logoAlt")}
+                className="relative object-cover w-[var(--header-logo-size)] h-[var(--header-logo-size)]"
               />
 
               {/* Enhanced Name and Title with responsive display */}
@@ -199,10 +160,10 @@ const HeaderContent: React.FC = () => {
               </div> */}
             </Link>
 
-            {/* Equal flex spacers center SocialLinks between logo and nav+theme */}
+            {/* Equal flex spacers center SocialLinks between logo and nav+theme (desktop only) */}
             <div className="flex-1 basis-0 min-w-0 shrink" aria-hidden="true" />
 
-            <div className="shrink-0 pointer-events-auto z-10">
+            <div className="hidden lg:flex shrink-0 pointer-events-auto z-10">
               <SocialLinks
                 variant="header"
                 spacing="compact"
@@ -213,51 +174,29 @@ const HeaderContent: React.FC = () => {
 
             <div className="flex-1 basis-0 min-w-0 shrink" aria-hidden="true" />
 
-            <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 shrink-0 min-w-0 z-20">
-              <div className="min-w-0 max-w-full overflow-x-auto scrollbar-hide py-1 -my-1 flex justify-end">
-                <div className="flex items-center gap-1 sm:gap-2 md:gap-4 lg:gap-6 shrink-0">
-                  {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      to={item.href}
-                      className={clsx(
-                        "group relative shrink-0 px-2 sm:px-3 py-2.5 sm:py-2 text-xs sm:text-sm md:text-base font-medium transition-all duration-300 whitespace-nowrap rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-royal-primary/50 inline-flex items-center sm:min-h-0",
-                        isHeaderNavActive(location.pathname, item.url)
-                          ? CHROME_CHIP_ACTIVE
-                          : clsx(
-                              CHROME_CHIP,
-                              CHROME_CHIP_HOVER,
-                              item.highlight
-                                ? "text-indigo-700 dark:text-indigo-300 font-semibold"
-                                : "text-light-text/85 dark:text-dark-text/85",
-                            ),
-                      )}
-                    >
-                      <span className="relative">
-                        {item.name}
-                        <div
-                          className={clsx(
-                            "absolute -bottom-1 left-0 h-0.5 w-full bg-indigo-600 dark:bg-indigo-400 transition-transform duration-300 origin-left",
-                            isHeaderNavActive(location.pathname, item.url)
-                              ? "scale-x-100"
-                              : "scale-x-0 group-hover:scale-x-100",
-                          )}
-                        />
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-              <div className="shrink-0">
+            {/* Career and Projects are the two pages a visitor coming from a CV
+                or LinkedIn needs, so they stay in the header rather than only
+                inside the mobile menu. */}
+            <div className="hidden lg:flex items-center gap-2 md:gap-3 shrink-0 min-w-0 z-20">
+              {secondaryNavLinks.map(renderNavLink)}
+              {renderPrimaryAction()}
+
+              <div className="flex items-center gap-1.5 md:gap-2 shrink-0 pl-1 md:pl-2 ml-1 md:ml-2 border-l border-light-border/50 dark:border-dark-border/40">
                 <ThemeToggle />
               </div>
+            </div>
+
+            {/* Tablet / mobile: About Me stays visible, everything else lives in the menu */}
+            <div className="flex lg:hidden items-center gap-2 shrink-0 min-w-0 z-20">
+              {renderPrimaryAction()}
+              <MobileNavMenu navigation={secondaryNavLinks} />
             </div>
           </div>
         </div>
       </nav>
     </header>
     {/* Reserves space so fixed header does not cover page content */}
-    <div aria-hidden className={clsx("w-full shrink-0", getHeaderHeight())} />
+    <div aria-hidden className="w-full shrink-0 h-[var(--header-height)]" />
     </>
   );
 };

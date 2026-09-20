@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { motion } from "motion/react";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { SpotlightCategory } from "data/about/spotlightData";
 import { SpotlightResult } from "hooks/useSpotlightSearch";
 
@@ -28,6 +29,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   selectedIndex,
   onSelectResult,
 }) => {
+  const { t } = useTranslation("ansumana");
   if (results.length === 0) {
     return (
       <motion.div
@@ -37,9 +39,9 @@ const SearchResults: React.FC<SearchResultsProps> = ({
         className="flex flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-slate-300/60 bg-white/50 p-8 text-center text-sm text-slate-500 dark:border-slate-700/60 dark:bg-slate-900/40 dark:text-slate-400"
       >
         <span className="font-semibold text-slate-600 dark:text-slate-300">
-          No results found
+          {t("spotlight.search.empty.title")}
         </span>
-        <span>Try another question or a different keyword.</span>
+        <span>{t("spotlight.search.empty.subtitle")}</span>
       </motion.div>
     );
   }
@@ -52,7 +54,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   return (
     <motion.div
       className="flex w-full flex-wrap items-center justify-start gap-2 sm:gap-2.5"
-      initial="hidden"
+      initial={false}
       animate="visible"
       variants={{
         hidden: {},

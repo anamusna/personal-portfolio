@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React, { memo } from "react";
 import { HERO_CONTENT } from "../../data/heroData";
 import AnimatedCTAButton from "./animated-cta-button";
@@ -319,7 +320,12 @@ const CTAButtons: React.FC<CTAButtonsProps> = memo(
 
     return (
       <div
-        className={`${getLayoutClasses()} ${getSpacingClasses()} ${getAlignmentClasses()} ${className}`}
+        className={clsx(
+          getLayoutClasses(),
+          getSpacingClasses(),
+          getAlignmentClasses(),
+          className,
+        )}
       >
         {primaryButton && (
           <div className={getButtonWidthClasses()}>

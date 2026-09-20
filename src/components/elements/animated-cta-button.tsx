@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React, { memo } from "react";
 import { Link } from "react-router-dom";
 
@@ -90,134 +91,6 @@ const AnimatedCTAButton: React.FC<AnimatedCTAButtonProps> = memo(
     external = false,
     ariaLabel,
   }) => {
-    // Enhanced color scheme configurations with modern gradients
-    const colorSchemes = {
-      "blue-purple": {
-        gradient:
-          "from-blue-600 via-purple-600 to-violet-700 dark:from-blue-500 dark:via-purple-500 dark:to-violet-600",
-        hoverGradient: "from-purple-600 via-pink-600 to-blue-600",
-        borderColor: "border-white/20 dark:border-white/15",
-        shadowColor: "shadow-blue-500/30",
-        glowColor: "from-blue-500/20 via-purple-500/15 to-pink-500/20",
-        textColor: "text-white",
-      },
-      "indigo-violet": {
-        gradient:
-          "from-indigo-600 via-purple-600 to-violet-700 dark:from-indigo-500 dark:via-purple-500 dark:to-violet-600",
-        hoverGradient: "from-violet-600 via-purple-600 to-indigo-600",
-        borderColor: "border-white/20 dark:border-white/15",
-        shadowColor: "shadow-indigo-500/30",
-        glowColor: "from-indigo-500/20 via-violet-500/15 to-purple-500/20",
-        textColor: "text-white",
-      },
-      "emerald-teal": {
-        gradient:
-          "from-emerald-600 via-teal-600 to-cyan-700 dark:from-emerald-500 dark:via-teal-500 dark:to-cyan-600",
-        hoverGradient: "from-teal-600 via-cyan-600 to-emerald-600",
-        borderColor: "border-white/20 dark:border-white/15",
-        shadowColor: "shadow-emerald-500/30",
-        glowColor: "from-emerald-500/20 via-teal-500/15 to-cyan-500/20",
-        textColor: "text-white",
-      },
-      "violet-purple": {
-        gradient:
-          "from-violet-600 via-purple-600 to-fuchsia-700 dark:from-violet-500 dark:via-purple-500 dark:to-fuchsia-600",
-        hoverGradient: "from-purple-600 via-pink-600 to-violet-600",
-        borderColor: "border-white/20 dark:border-white/15",
-        shadowColor: "shadow-violet-500/30",
-        glowColor: "from-violet-500/20 via-purple-500/15 to-pink-500/20",
-        textColor: "text-white",
-      },
-      "rose-pink": {
-        gradient:
-          "from-rose-600 via-pink-600 to-rose-700 dark:from-rose-500 dark:via-pink-500 dark:to-rose-600",
-        hoverGradient: "from-pink-600 via-purple-600 to-rose-600",
-        borderColor: "border-white/20 dark:border-white/15",
-        shadowColor: "shadow-rose-500/30",
-        glowColor: "from-rose-500/20 via-pink-500/15 to-purple-500/20",
-        textColor: "text-white",
-      },
-      "cyan-blue": {
-        gradient:
-          "from-cyan-600 via-blue-600 to-indigo-700 dark:from-cyan-500 dark:via-blue-500 dark:to-indigo-600",
-        hoverGradient: "from-blue-600 via-indigo-600 to-cyan-600",
-        borderColor: "border-white/20 dark:border-white/15",
-        shadowColor: "shadow-cyan-500/30",
-        glowColor: "from-cyan-500/20 via-blue-500/15 to-indigo-500/20",
-        textColor: "text-white",
-      },
-      "transparent-light": {
-        gradient: "from-transparent to-transparent",
-        hoverGradient: "from-white/10 via-white/5 to-white/10",
-        borderColor: "border-gray-200/50 dark:border-gray-700/50",
-        shadowColor: "shadow-gray-500/10",
-        glowColor: "from-gray-500/5 via-gray-400/3 to-gray-500/5",
-        textColor: "text-body",
-      },
-      "transparent-dark": {
-        gradient: "from-transparent to-transparent",
-        hoverGradient:
-          "from-gray-900/10 via-gray-800/5 to-gray-900/10 dark:from-white/5 dark:via-white/3 dark:to-white/5",
-        borderColor: "border-gray-300/50 dark:border-gray-600/50",
-        shadowColor: "shadow-gray-500/10",
-        glowColor: "from-gray-500/5 via-gray-400/3 to-gray-500/5",
-        textColor: "text-gray-800 dark:text-gray-100",
-      },
-      "transparent-colored": {
-        gradient: "from-transparent to-transparent",
-        hoverGradient: "from-indigo-500/10 via-purple-500/5 to-violet-500/10",
-        borderColor: "border-indigo-200/50 dark:border-indigo-700/50",
-        shadowColor: "shadow-indigo-500/10",
-        glowColor: "from-indigo-500/10 via-purple-500/5 to-violet-500/10",
-        textColor: "text-indigo-700 dark:text-indigo-300",
-      },
-      default: {
-        gradient:
-          "from-indigo-600 via-purple-600 to-violet-700 dark:from-indigo-500 dark:via-purple-500 dark:to-violet-600",
-        hoverGradient: "from-violet-600 via-purple-600 to-indigo-600",
-        borderColor: "border-white/20 dark:border-white/15",
-        shadowColor: "shadow-indigo-500/30",
-        glowColor: "from-indigo-500/20 via-violet-500/15 to-purple-500/20",
-        textColor: "text-white",
-      },
-      emerald: {
-        gradient:
-          "from-emerald-600 via-teal-600 to-cyan-700 dark:from-emerald-500 dark:via-teal-500 dark:to-cyan-600",
-        hoverGradient: "from-teal-600 via-cyan-600 to-emerald-600",
-        borderColor: "border-white/20 dark:border-white/15",
-        shadowColor: "shadow-emerald-500/30",
-        glowColor: "from-emerald-500/20 via-teal-500/15 to-cyan-500/20",
-        textColor: "text-white",
-      },
-      violet: {
-        gradient:
-          "from-violet-600 via-purple-600 to-fuchsia-700 dark:from-violet-500 dark:via-purple-500 dark:to-fuchsia-600",
-        hoverGradient: "from-purple-600 via-pink-600 to-violet-600",
-        borderColor: "border-white/20 dark:border-white/15",
-        shadowColor: "shadow-violet-500/30",
-        glowColor: "from-violet-500/20 via-purple-500/15 to-pink-500/20",
-        textColor: "text-white",
-      },
-      rose: {
-        gradient:
-          "from-rose-600 via-pink-600 to-rose-700 dark:from-rose-500 dark:via-pink-500 dark:to-rose-600",
-        hoverGradient: "from-pink-600 via-purple-600 to-rose-600",
-        borderColor: "border-white/20 dark:border-white/15",
-        shadowColor: "shadow-rose-500/30",
-        glowColor: "from-rose-500/20 via-pink-500/15 to-purple-500/20",
-        textColor: "text-white",
-      },
-      cyan: {
-        gradient:
-          "from-cyan-600 via-blue-600 to-indigo-700 dark:from-cyan-500 dark:via-blue-500 dark:to-indigo-600",
-        hoverGradient: "from-blue-600 via-indigo-600 to-cyan-600",
-        borderColor: "border-white/20 dark:border-white/15",
-        shadowColor: "shadow-cyan-500/30",
-        glowColor: "from-cyan-500/20 via-blue-500/15 to-indigo-500/20",
-        textColor: "text-white",
-      },
-    };
-
     // Size configurations with enhanced spacing and typography
     const sizeConfigs = {
       sm: {
@@ -365,46 +238,43 @@ const AnimatedCTAButton: React.FC<AnimatedCTAButtonProps> = memo(
 
     const buttonContent = (
       <div
-        className={`group relative inline-flex items-center justify-between font-semibold
-                 ${
-                   isTransparent
-                     ? "bg-transparent"
-                     : isGlass
-                       ? "glass-2"
-                       : "bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600"
-                 }
-                 ${
-                   variant === "outline"
-                     ? "text-indigo-600 dark:text-indigo-400 bg-transparent hover:bg-indigo-50 dark:hover:bg-indigo-950/30"
-                     : isTransparent
-                       ? "text-current"
-                       : "text-white"
-                 } ${currentShape.borderRadius} ${currentSize.padding} ${
-                   currentSize.text
-                 } ${currentSize.minHeight}
-                 ${currentVariant.backdrop} ${currentVariant.border} ${
-                   currentVariant.shadow
-                 }
-                 transition-colors duration-300 cursor-pointer
-                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-royal-primary/60 dark:focus-visible:ring-royal-primary/50
-                 ${hoverLift ? "hover:-translate-y-0.5" : ""}
-                 ${
-                   variant === "outline"
-                     ? "border-indigo-600 dark:border-indigo-400"
-                     : isTransparent
-                       ? "border-current"
-                       : "border-indigo-600 dark:border-indigo-500"
-                 }
-                 ${fullWidth ? "w-full" : ""}
-                 ${
-                   disabled
-                     ? "opacity-50 cursor-not-allowed pointer-events-none"
-                     : ""
-                 }
-                 ${className}`}
-        style={{
-          animationDelay: `${animationDelay}ms`,
-        }}
+        className={clsx(
+          "group relative inline-flex items-center justify-between font-semibold",
+          isTransparent
+            ? "bg-transparent"
+            : isGlass
+              ? "glass-2"
+              : "bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600",
+          variant === "outline"
+            ? "text-indigo-600 dark:text-indigo-400 bg-transparent hover:bg-indigo-50 dark:hover:bg-indigo-950/30"
+            : isTransparent
+              ? "text-current"
+              : "text-white",
+          currentShape.borderRadius,
+          currentSize.padding,
+          currentSize.text,
+          currentSize.minHeight,
+          currentVariant.backdrop,
+          currentVariant.border,
+          currentVariant.shadow,
+          "transition-colors duration-300 cursor-pointer",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-royal-primary/60 dark:focus-visible:ring-royal-primary/50",
+          hoverLift && "hover:-translate-y-0.5",
+          variant === "outline"
+            ? "border-indigo-600 dark:border-indigo-400"
+            : isTransparent
+              ? "border-current"
+              : "border-indigo-600 dark:border-indigo-500",
+          fullWidth && "w-full",
+          disabled && "opacity-50 cursor-not-allowed pointer-events-none",
+          className,
+        )}
+        // Omitted at 0 so no inline style is emitted for the default case.
+        // `0ms` would be prerendered, then folded to `0s` by the snapshot's
+        // CSS minifier, which React reads as a hydration mismatch.
+        style={
+          animationDelay ? { animationDelay: `${animationDelay}ms` } : undefined
+        }
         onClick={renderAsButton ? undefined : onClick}
       >
         <div

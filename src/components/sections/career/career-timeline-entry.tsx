@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "motion/react";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { P } from "tailwind/components/elements/Typography";
 import { SURFACE_CARD_INTERACTIVE } from "tailwind/styles/surfaceCard";
@@ -39,8 +40,11 @@ export const CareerTimelineEntry: React.FC<CareerTimelineEntryProps> = ({
   itemVariants,
   isAchievementsOpen,
   onToggleAchievements,
-}) => (
-  <motion.div
+}) => {
+  const { t } = useTranslation("ansumana");
+
+  return (
+    <motion.div
     variants={itemVariants}
     className="relative pl-10 sm:pl-12 md:pl-16 lg:pl-20 group"
   >
@@ -108,7 +112,7 @@ export const CareerTimelineEntry: React.FC<CareerTimelineEntryProps> = ({
               🏆
             </span>
             <span className="text-xs sm:text-sm font-semibold text-heading truncate">
-              Key Achievements
+              {t("components.careerTimeline.keyAchievements")}
             </span>
             <span className="flex-shrink-0 inline-flex items-center justify-center text-xs font-semibold px-1.5 py-0.5 rounded-full surface-card border border-light-border/55 dark:border-dark-border/40 text-muted">
               {Math.min(experience.achievements.length, 3)}
@@ -201,5 +205,6 @@ export const CareerTimelineEntry: React.FC<CareerTimelineEntryProps> = ({
         </div>
       )}
     </div>
-  </motion.div>
-);
+    </motion.div>
+  );
+};

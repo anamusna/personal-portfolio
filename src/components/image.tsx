@@ -1,5 +1,6 @@
+import clsx from "clsx";
 import React, { memo, useCallback, useMemo, useState } from "react";
-import ansuImage from "images/ansu6-b.png";
+import ansuImage from "images/ansu6-b.webp";
 
 export type ImageProps = {
   src?: string;
@@ -33,6 +34,8 @@ export type ImageProps = {
   showOverlay?: boolean;
   hoverEffect?: boolean;
   animate?: boolean;
+  onLoad?: () => void;
+  onError?: () => void;
   // Custom color props
   backgroundColor?: string;
   gradientFrom?: string;
@@ -351,6 +354,8 @@ const Image: React.FC<ImageProps> = memo(
     showOverlay: showOverlayProp,
     hoverEffect: hoverEffectProp,
     animate: animateProp,
+    onLoad,
+    onError,
     // Custom color props
     backgroundColor,
     gradientFrom,
@@ -419,29 +424,52 @@ const Image: React.FC<ImageProps> = memo(
       return null;
     }, [gradientFrom, gradientVia, gradientTo]);
 
-    // Track image load state to prevent flickering in Safari
-    const [isImageLoaded, setIsImageLoaded] = useState(isVideo);
+    // Track image load state to prevent flickering in Safari. A priority
+    // image is always eager-loaded and is already loaded in the prerendered
+    // HTML for every route that ships it, so starting this false meant the
+    // client's first render (opacity-0, load spinner) never matched the
+    // prerendered markup (already loaded and visible), a guaranteed
+    // hydration mismatch on every page that used one. Non-priority images
+    // keep the real load-state tracking, since their prerendered markup
+    // genuinely does start unloaded.
+    const [isImageLoaded, setIsImageLoaded] = useState(isVideo || priority);
 
     const handleImageLoad = useCallback(() => {
       setIsImageLoaded(true);
-    }, []);
+      onLoad?.();
+    }, [onLoad]);
 
-    const containerClasses = `flex justify-center relative group ${sizeClasses} ${alignmentClasses} ${aspectClasses} ${
-      animate && isImageLoaded ? "animate-[slideIn_1s_ease-out_forwards]" : ""
-    } ${backgroundColor || ""}`;
+    const handleImageError = useCallback(() => {
+      setIsImageLoaded(true);
+      onError?.();
+    }, [onError]);
+
+    const containerClasses = clsx(
+      "flex justify-center relative group",
+      sizeClasses,
+      alignmentClasses,
+      aspectClasses,
+      animate && isImageLoaded && "animate-[slideIn_1s_ease-out_forwards]",
+      backgroundColor,
+    );
 
     const borderColorClass =
       borderColor || "border-white/20 dark:border-gray-700/30";
 
-    const imageClasses = `w-full h-full object-${objectFit} ${roundedClasses} ${shadowClasses} ${
-      border ? `border-2 ${borderColorClass}` : ""
-    } ${
-      hoverEffect && isImageLoaded
-        ? "transform group-hover:scale-105 transition-all duration-500 will-change-transform"
-        : ""
-    } relative z-10 ${
-      isImageLoaded ? "" : "opacity-0"
-    } transition-opacity duration-300 ${className}`;
+    const imageClasses = clsx(
+      "w-full h-full",
+      `object-${objectFit}`,
+      roundedClasses,
+      shadowClasses,
+      border && ["border-2", borderColorClass],
+      hoverEffect &&
+        isImageLoaded &&
+        "transform group-hover:scale-105 transition-all duration-500 will-change-transform",
+      "relative z-10",
+      !isImageLoaded && "opacity-0",
+      "transition-opacity duration-300",
+      className,
+    );
 
     return (
       <div
@@ -496,6 +524,7 @@ const Image: React.FC<ImageProps> = memo(
                 className={imageClasses}
                 loading={priority ? "eager" : loading}
                 onLoad={handleImageLoad}
+                onError={handleImageError}
               />
             </picture>
           ) : (
@@ -505,6 +534,7 @@ const Image: React.FC<ImageProps> = memo(
               className={imageClasses}
               loading={priority ? "eager" : loading}
               onLoad={handleImageLoad}
+              onError={handleImageError}
             />
           )}
 

@@ -3,13 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^44.0.0",
-    "@ckeditor/ckeditor5-react": "^9.0.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@heroicons/react": "^2.2.0",
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.10",
     "@testing-library/jest-dom": "^6.1.0",
@@ -19,14 +16,10 @@
     "@types/node": "^20.0.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
-    "@types/react-syntax-highlighter": "^15.5.13",
-    "ajv": "^8.12.0",
     "autoprefixer": "^10.4.16",
     "clsx": "^1.2.1",
     "date-fns": "^2.30.0",
-    "formik": "^2.4.6",
-    "framer-motion": "^12.23.24",
-    "i18next": "23.0.1",
+    "i18next": "^23.0.1",
     "i18next-browser-languagedetector": "^7.2.1",
     "i18next-xhr-backend": "^3.2.2",
     "intl-pluralrules": "^2.0.1",
@@ -35,27 +28,42 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "13.0.0",
-    "react-intersection-observer": "^10.0.0",
-    "react-responsive": "^10.0.1",
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
-    "react-select": "^5.7.0",
-    "react-syntax-highlighter": "^15.6.1",
-    "react-tailwindcss-datepicker": "^1.6.0",
     "tailwindcss": "^3.3.6",
     "typescript": "^4.9.5",
-    "web-vitals": "^3.4.0",
-    "yup": "^1.6.1"
+    "web-vitals": "^3.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "generate:sitemap": "node scripts/generate-sitemap.mjs",
     "prebuild": "npm run generate:sitemap",
     "build": "react-scripts build",
+    "postbuild": "node scripts/prerender.mjs",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "eject": "react-scripts eject"
+  },
+  "reactSnap": {
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
+    "include": [
+      "/",
+      "/about",
+      "/career",
+      "/projects",
+      "/projects/doctorly",
+      "/projects/quincy",
+      "/projects/zula",
+      "/projects/innnit",
+      "/projects/propstack",
+      "/testimonials",
+      "/faq",
+      "/privacy",
+      "/contact",
+      "/blog"
+    ]
   },
   "eslintConfig": {
     "extends": [
@@ -76,6 +84,8 @@
     ]
   },
   "devDependencies": {
-    "prettier": "^3.9.4"
+    "prettier": "^3.9.4",
+    "puppeteer": "^25.10.0",
+    "react-snap": "^1.23.0"
   }
 }

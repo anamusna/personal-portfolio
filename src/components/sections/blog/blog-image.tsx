@@ -2,7 +2,6 @@ import React, { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { blogImages } from "../../../data/blogImages";
 import { Blog } from "../../../types/blog";
-import { slugify } from "../../../utils/slugify";
 import { devWarn } from "../../../utils/logger";
 
 interface BlogImageProps {
@@ -16,8 +15,8 @@ const Image: React.FC<BlogImageProps> = ({ blog, className = "" }) => {
   const blogImage = blogImages[blog.coverImage];
 
   const handleBlogClick = useCallback(() => {
-    navigate(`/blog/${slugify(blog.title)}`);
-  }, [navigate, blog.title]);
+    navigate(`/blog/${blog.titleSlug}`);
+  }, [navigate, blog.titleSlug]);
 
   if (!blogImage && !imageError) {
     devWarn(`No image found for: ${blog.coverImage}`);

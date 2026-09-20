@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { SECTION_VIEWPORT } from "constants/section-motion";
 import { motion } from "motion/react";
 import React from "react";
@@ -19,6 +20,12 @@ interface SectionHeaderProps {
     iconAnimation?: boolean;
   };
   title?: string;
+  /**
+   * Heading level for the title. Defaults to h3 because this component is
+   * normally a section heading under a page h1. Pages that have no other
+   * heading (for example Privacy) pass "h1" so the document still has one.
+   */
+  titleAs?: "h1" | "h2" | "h3";
   subtitle?: string;
   caption?: string;
   description?: string;
@@ -58,6 +65,7 @@ const defaultBadgeIcon = (
 const SectionHeader: React.FC<SectionHeaderProps> = ({
   badge,
   title,
+  titleAs = "h3",
   subtitle,
   caption,
   description,
@@ -71,12 +79,17 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   animationDelay = 40,
   icon,
 }) => {
+  const TitleTag = motion[titleAs];
+
   const resolvedBadgeIcon =
     badge?.icon ?? (badge?.iconAnimation !== false ? defaultBadgeIcon : null);
 
   return (
     <motion.header
-      className={`relative max-w-4xl mx-auto text-center mb-6 md:mb-8 ${className}`}
+      className={clsx(
+        "relative max-w-4xl mx-auto text-center mb-6 md:mb-8",
+        className,
+      )}
       initial={{ opacity: 0, y: 24, scale: 0.98 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={SECTION_VIEWPORT}
@@ -94,7 +107,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
 
       {badge && (
         <motion.div
-          className={`${PAGE_HEADER_BADGE} mb-3 sm:mb-4 ${badgeClassName}`}
+          className={clsx(PAGE_HEADER_BADGE, "mb-3 sm:mb-4", badgeClassName)}
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -111,8 +124,13 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       )}
 
       {title && (
-        <motion.h2
-          className={`mb-2 sm:mb-3 ${PAGE_HEADER_SECTION_TITLE} text-heading ${titleClassName}`}
+        <TitleTag
+          className={clsx(
+            "mb-2 sm:mb-3",
+            PAGE_HEADER_SECTION_TITLE,
+            "text-heading",
+            titleClassName,
+          )}
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -123,21 +141,34 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
           }}
         >
           {title}
-        </motion.h2>
+        </TitleTag>
       )}
 
       {description && (
         <P
-          className={`max-w-3xl mx-auto ${PAGE_HEADER_SUBTITLE} ${descriptionClassName}`}
+          className={clsx(
+            "max-w-3xl mx-auto",
+            PAGE_HEADER_SUBTITLE,
+            descriptionClassName,
+          )}
         >
-          {description.split(highlightText || "").map((part, index, array) => (
-            <React.Fragment key={index}>
-              {part}
-              {index < array.length - 1 && highlightText && (
-                <span className={PAGE_HEADER_HIGHLIGHT}>{highlightText}</span>
-              )}
-            </React.Fragment>
-          ))}
+          {/* Only split when there is something to highlight. `"".split("")`
+              splits on every character, which used to wrap each letter of the
+              description in its own <span>. */}
+          {highlightText
+            ? description
+                .split(highlightText)
+                .map((part, index, parts) => (
+                  <React.Fragment key={index}>
+                    {part}
+                    {index < parts.length - 1 && (
+                      <span className={PAGE_HEADER_HIGHLIGHT}>
+                        {highlightText}
+                      </span>
+                    )}
+                  </React.Fragment>
+                ))
+            : description}
         </P>
       )}
 
@@ -158,13 +189,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
         </div>
       )}
 
-      {caption && (
-        <p
-          className={PAGE_HEADER_SECTION_CAPTION}
-        >
-          {caption}
-        </p>
-      )}
+      {caption && <p className={PAGE_HEADER_SECTION_CAPTION}>{caption}</p>}
       <div
         className="mx-auto mt-4 sm:mt-5 h-px w-16 sm:w-24 bg-light-border/60 dark:bg-dark-border/50"
         aria-hidden

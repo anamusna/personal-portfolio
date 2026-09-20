@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import {
   faBolt,
   faChevronDown,
@@ -7,8 +8,8 @@ import {
   faServer,
   faTools,
 } from "@fortawesome/free-solid-svg-icons";
-import React, { useMemo, useState } from "react";
-import { blogs } from "../../../data/blogs";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Icon from "../../../tailwind/components/elements/Icon";
 
 interface BlogFilterProps {
@@ -27,33 +28,55 @@ const BlogFilter: React.FC<BlogFilterProps> = ({
   selectedTags,
   onTagSelect,
 }) => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [openCategory, setOpenCategory] = useState<
     "topic" | "tech" | "type" | null
   >(null);
 
-  // Get unique tags from all blog posts
-  const uniqueTags = useMemo(() => {
-    const tags = new Set<string>();
-    blogs.forEach((blog) => {
-      blog.tags?.forEach((tag) => tags.add(tag));
-    });
-    return Array.from(tags).sort();
-  }, []);
-
   const allTags: FilterTag[] = [
     // Topics
-    { id: "React", label: "React", icon: faCode, category: "topic" },
-    { id: "Node.js", label: "Node.js", icon: faServer, category: "topic" },
-    { id: "TypeScript", label: "TypeScript", icon: faCode, category: "topic" },
+    {
+      id: "React",
+      label: t("pages.blog.filters.tags.react"),
+      icon: faCode,
+      category: "topic",
+    },
+    {
+      id: "Node.js",
+      label: t("pages.blog.filters.tags.node"),
+      icon: faServer,
+      category: "topic",
+    },
+    {
+      id: "TypeScript",
+      label: t("pages.blog.filters.tags.typescript"),
+      icon: faCode,
+      category: "topic",
+    },
 
     // Technologies
-    { id: "Docker", label: "Docker", icon: faTools, category: "tech" },
-    { id: "Kubernetes", label: "Kubernetes", icon: faTools, category: "tech" },
-    { id: "Redux", label: "Redux", icon: faCode, category: "tech" },
+    {
+      id: "Docker",
+      label: t("pages.blog.filters.tags.docker"),
+      icon: faTools,
+      category: "tech",
+    },
+    {
+      id: "Kubernetes",
+      label: t("pages.blog.filters.tags.kubernetes"),
+      icon: faTools,
+      category: "tech",
+    },
+    {
+      id: "Redux",
+      label: t("pages.blog.filters.tags.redux"),
+      icon: faCode,
+      category: "tech",
+    },
     {
       id: "Microservices",
-      label: "Microservices",
+      label: t("pages.blog.filters.tags.microservices"),
       icon: faServer,
       category: "tech",
     },
@@ -61,17 +84,22 @@ const BlogFilter: React.FC<BlogFilterProps> = ({
     // Types
     {
       id: "Performance Optimization",
-      label: "Performance",
+      label: t("pages.blog.filters.tags.performance"),
       icon: faBolt,
       category: "type",
     },
     {
       id: "Virtual DOM",
-      label: "Virtual DOM",
+      label: t("pages.blog.filters.tags.virtualDom"),
       icon: faGlobe,
       category: "type",
     },
-    { id: "Components", label: "Components", icon: faLaptop, category: "type" },
+    {
+      id: "Components",
+      label: t("pages.blog.filters.tags.components"),
+      icon: faLaptop,
+      category: "type",
+    },
   ];
 
   const toggleTag = (tagId: string) => {
@@ -127,7 +155,7 @@ const BlogFilter: React.FC<BlogFilterProps> = ({
                   />
                 </svg>
             </div>
-            <span className="leading-tight">Filter Posts</span>
+            <span className="leading-tight">{t("pages.blog.filters.title")}</span>
           </div>
           <Icon
             icon={faChevronDown}
@@ -147,7 +175,9 @@ const BlogFilter: React.FC<BlogFilterProps> = ({
                 {selectedTags.length}
               </span>
               <span className="text-sm font-medium text-muted">
-                filter{selectedTags.length !== 1 ? "s" : ""} active
+                {t("pages.blog.filters.activeCount", {
+                  count: selectedTags.length,
+                })}
               </span>
             </div>
             <button
@@ -168,7 +198,7 @@ const BlogFilter: React.FC<BlogFilterProps> = ({
                   d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
-              <span>Clear All</span>
+              <span>{t("pages.blog.filters.clearAll")}</span>
             </button>
           </div>
         )}
@@ -180,7 +210,7 @@ const BlogFilter: React.FC<BlogFilterProps> = ({
           <div className="space-y-2.5 sm:space-y-3">
             {/* Topics */}
             <FilterCategory
-              title="By Topic"
+              title={t("pages.blog.filters.byTopic")}
               category="topic"
               icon={faCode}
               isOpen={openCategory === "topic"}
@@ -201,7 +231,7 @@ const BlogFilter: React.FC<BlogFilterProps> = ({
 
             {/* Technologies */}
             <FilterCategory
-              title="By Technology"
+              title={t("pages.blog.filters.byTechnology")}
               category="tech"
               icon={faTools}
               isOpen={openCategory === "tech"}
@@ -222,7 +252,7 @@ const BlogFilter: React.FC<BlogFilterProps> = ({
 
             {/* Types */}
             <FilterCategory
-              title="By Type"
+              title={t("pages.blog.filters.byType")}
               category="type"
               icon={faBolt}
               isOpen={openCategory === "type"}
@@ -324,15 +354,13 @@ const FilterButton: React.FC<FilterButtonProps> = ({
   <button
     type="button"
     onClick={onClick}
-    className={`
-      flex items-center gap-1.5 px-3 py-2 rounded-lg transition-colors whitespace-nowrap
-      min-h-[44px] text-sm font-semibold border
-      ${
-        isSelected
-          ? "bg-indigo-600 dark:bg-indigo-500 text-white border-indigo-600 dark:border-indigo-500"
-          : "surface-card border-light-border/55 dark:border-dark-border/40 text-body hover:text-heading"
-      }
-    `}
+    className={clsx(
+      "flex items-center gap-1.5 px-3 py-2 rounded-lg transition-colors whitespace-nowrap",
+      "min-h-[44px] text-sm font-semibold border",
+      isSelected
+        ? "bg-indigo-600 dark:bg-indigo-500 text-white border-indigo-600 dark:border-indigo-500"
+        : "surface-card border-light-border/55 dark:border-dark-border/40 text-body hover:text-heading",
+    )}
   >
     <Icon
       icon={tag.icon}

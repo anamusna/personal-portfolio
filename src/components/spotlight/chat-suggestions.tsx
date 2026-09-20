@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
-import React from "react";
+import React, { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { SPOTLIGHT_ENTRIES } from "data/about/spotlightData";
 import { SpotlightResult } from "hooks/useSpotlightSearch";
 
@@ -7,8 +8,6 @@ interface ChatSuggestionsProps {
   suggestions: SpotlightResult[];
   onSelectSuggestion: (result: SpotlightResult) => void;
 }
-
-const entryById = Object.fromEntries(SPOTLIGHT_ENTRIES.map((e) => [e.id, e]));
 
 const toResult = (e: (typeof SPOTLIGHT_ENTRIES)[number]): SpotlightResult => ({
   id: e.id,
@@ -20,7 +19,7 @@ const toResult = (e: (typeof SPOTLIGHT_ENTRIES)[number]): SpotlightResult => ({
 });
 
 interface QuestionGroup {
-  label: string;
+  labelKey: string;
   dot: string;
   labelColor: string;
   hoverClasses: string;
@@ -29,7 +28,7 @@ interface QuestionGroup {
 
 const GROUPS: QuestionGroup[] = [
   {
-    label: "Background & Origins",
+    labelKey: "backgroundAndOrigins",
     dot: "bg-amber-400 dark:bg-amber-500",
     labelColor: "text-amber-700 dark:text-amber-400",
     hoverClasses:
@@ -44,7 +43,7 @@ const GROUPS: QuestionGroup[] = [
     ],
   },
   {
-    label: "Career",
+    labelKey: "career",
     dot: "bg-blue-400 dark:bg-blue-500",
     labelColor: "text-blue-700 dark:text-blue-400",
     hoverClasses:
@@ -57,7 +56,7 @@ const GROUPS: QuestionGroup[] = [
     ],
   },
   {
-    label: "Projects",
+    labelKey: "projects",
     dot: "bg-violet-400 dark:bg-violet-500",
     labelColor: "text-violet-700 dark:text-violet-400",
     hoverClasses:
@@ -72,7 +71,7 @@ const GROUPS: QuestionGroup[] = [
     ],
   },
   {
-    label: "Skills & Craft",
+    labelKey: "skillsAndCraft",
     dot: "bg-emerald-400 dark:bg-emerald-500",
     labelColor: "text-emerald-700 dark:text-emerald-400",
     hoverClasses:
@@ -87,7 +86,7 @@ const GROUPS: QuestionGroup[] = [
     ],
   },
   {
-    label: "Values & Life",
+    labelKey: "valuesAndLife",
     dot: "bg-rose-400 dark:bg-rose-500",
     labelColor: "text-rose-700 dark:text-rose-400",
     hoverClasses:
@@ -120,8 +119,20 @@ const TOTAL_QUESTIONS = GROUPS.reduce((sum, g) => sum + g.ids.length, 0);
 
 const ChatSuggestions: React.FC<ChatSuggestionsProps> = ({
   onSelectSuggestion,
-}) => (
-  <div className="flex h-full flex-col gap-3">
+}) => {
+  const { t, i18n } = useTranslation("ansumana");
+
+  // SPOTLIGHT_ENTRIES is replaced wholesale (new object references) on
+  // language change, so this lookup must be rebuilt whenever the language
+  // changes rather than cached once at module load.
+  const entryById = useMemo(
+    () => Object.fromEntries(SPOTLIGHT_ENTRIES.map((e) => [e.id, e])),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [i18n.language],
+  );
+
+  return (
+    <div className="flex h-full flex-col gap-3">
     {/* ── Header ── */}
     <motion.div
       className="flex flex-col items-center gap-2 pt-1 text-center"
@@ -142,7 +153,9 @@ const ChatSuggestions: React.FC<ChatSuggestionsProps> = ({
       >
         <img
           src="/images/ansu.jpg"
-          alt="Ansu"
+          alt={t("spotlight.suggestions.avatarAlt")}
+          loading="lazy"
+          decoding="async"
           className="h-full w-full object-cover"
         />
       </motion.div>
@@ -154,10 +167,13 @@ const ChatSuggestions: React.FC<ChatSuggestionsProps> = ({
         className="space-y-0.5"
       >
         <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100">
-          Ask me anything
+          {t("spotlight.suggestions.title")}
         </h3>
         <p className="text-[10px] font-medium uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
-          {TOTAL_QUESTIONS} questions across {GROUPS.length} topics
+          {t("spotlight.suggestions.meta", {
+            questions: TOTAL_QUESTIONS,
+            topics: GROUPS.length,
+          })}
         </p>
       </motion.div>
     </motion.div>
@@ -179,7 +195,7 @@ const ChatSuggestions: React.FC<ChatSuggestionsProps> = ({
 
           return (
             <motion.div
-              key={group.label}
+              key={group.labelKey}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -196,7 +212,7 @@ const ChatSuggestions: React.FC<ChatSuggestionsProps> = ({
                 <span
                   className={`text-[10px] font-bold uppercase tracking-[0.14em] ${group.labelColor}`}
                 >
-                  {group.label}
+                  {t(`spotlight.suggestions.groups.${group.labelKey}`)}
                 </span>
                 <span className="flex-1 border-t border-slate-100 dark:border-slate-800" />
               </div>
@@ -247,7 +263,8 @@ const ChatSuggestions: React.FC<ChatSuggestionsProps> = ({
         })}
       </div>
     </div>
-  </div>
-);
+    </div>
+  );
+};
 
 export default React.memo(ChatSuggestions);

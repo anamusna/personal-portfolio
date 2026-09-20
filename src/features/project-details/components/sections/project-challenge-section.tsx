@@ -1,5 +1,6 @@
 import { projectCardImages } from "data/projects";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { P } from "tailwind/components/elements/Typography";
 import { SURFACE_CARD_ICON } from "tailwind/styles/surfaceCard";
 import { TEXT_DETAIL_SECTION_TITLE } from "tailwind/styles/textTokens";
@@ -9,6 +10,7 @@ import { PROJECT_IMAGE_FALLBACK } from "../../utils/project-image-fallback";
 export const ProjectChallengeSection: React.FC<ProjectSectionProps> = ({
   project,
 }) => {
+  const { t } = useTranslation();
   const [hasScreenshotError, setHasScreenshotError] = useState(false);
 
   return (
@@ -30,10 +32,12 @@ export const ProjectChallengeSection: React.FC<ProjectSectionProps> = ({
             />
           </svg>
         </div>
-        <h2 className={`${TEXT_DETAIL_SECTION_TITLE}`}>The Challenge</h2>
+        <h2 className={`${TEXT_DETAIL_SECTION_TITLE}`}>
+          {t("features.projectDetails.sections.challenge.title")}
+        </h2>
       </div>
 
-      <div className="surface-card surface-card--interactive border border-light-border/55 dark:border-dark-border/40 border-l-2 border-l-indigo-500/40 dark:border-l-indigo-400/40 rounded-lg p-3 sm:p-4 space-y-3 sm:space-y-4">
+      <div className="surface-card border border-light-border/55 dark:border-dark-border/40 rounded-lg p-3 sm:p-4 space-y-3 sm:space-y-4">
         <P className="text-sm sm:text-base text-body leading-relaxed">
           {project.problem}
         </P>
@@ -45,7 +49,11 @@ export const ProjectChallengeSection: React.FC<ProjectSectionProps> = ({
                 ? PROJECT_IMAGE_FALLBACK
                 : projectCardImages[project?.profile] || PROJECT_IMAGE_FALLBACK
             }
-            alt="Project challenge visualization"
+            alt={t("features.projectDetails.sections.challenge.imageAlt")}
+            width={640}
+            height={360}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover"
             onError={() => setHasScreenshotError(true)}
           />

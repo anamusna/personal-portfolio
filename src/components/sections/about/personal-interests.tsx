@@ -73,6 +73,7 @@ const PersonalInterests: React.FC = () => {
             ),
             iconAnimation: false,
           }}
+          title={interestsSection.title}
           description={interestsSection.description}
           highlightText={interestsSection.highlightText}
         />
@@ -80,7 +81,7 @@ const PersonalInterests: React.FC = () => {
         {/* Compact Interests Grid */}
         <motion.div
           variants={containerVariants}
-          initial="hidden"
+          initial={false}
           animate="visible"
           className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4 lg:gap-5 xl:gap-6"
         >
@@ -127,9 +128,9 @@ const PersonalInterests: React.FC = () => {
                   </div>
 
                   <div className="flex-1 flex justify-between items-start gap-1.5 sm:gap-2 min-w-0">
-                    <h4 className={`${TEXT_CARD_TITLE} leading-tight min-w-0`}>
+                    <h3 className={`${TEXT_CARD_TITLE} leading-tight min-w-0`}>
                       {interest.title}
-                    </h4>
+                    </h3>
                     {hasExpandedContent ? (
                       <button
                         type="button"

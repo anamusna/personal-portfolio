@@ -1,4 +1,5 @@
 import { type FormEvent, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { devError } from "utils/logger";
 
 type ToastType = "info" | "success" | "warning" | "error";
@@ -26,6 +27,7 @@ const emptyFeedback: TestimonialFeedback = {
 };
 
 export function useTestimonialFeedback() {
+  const { t } = useTranslation();
   const [showFeedbackForm, setShowFeedbackForm] = useState(false);
   const [feedback, setFeedback] = useState<TestimonialFeedback>(emptyFeedback);
   const [toast, setToast] = useState<ToastState>({
@@ -71,14 +73,14 @@ export function useTestimonialFeedback() {
 
       showToast(
         "success",
-        "Thank you for your feedback! It means a lot to me.",
+        t("pages.testimonials.feedbackForm.successToast"),
       );
 
       closeFeedbackForm();
       setFeedback(emptyFeedback);
     } catch (error) {
       devError("Feedback submission error:", error);
-      showToast("error", "Failed to send feedback. Please try again later.");
+      showToast("error", t("pages.testimonials.feedbackForm.errorToast"));
     }
   };
 

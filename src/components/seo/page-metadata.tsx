@@ -1,8 +1,10 @@
 import { PageSeoConfig, resolveCanonicalUrl } from "data/page-seo";
 import { SITE_NAME } from "data/site-config";
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 
-type PageMetadataProps = PageSeoConfig & {
+type PageMetadataProps = Omit<PageSeoConfig, "titleKey" | "descriptionKey"> & {
+  title: string;
+  description: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 };
 
@@ -68,6 +70,11 @@ export const PageMetadata: React.FC<PageMetadataProps> = ({
   noindex = false,
   jsonLd,
 }) => {
+  const jsonLdItems = useMemo(
+    () => (jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []),
+    [jsonLd],
+  );
+
   useEffect(() => {
     const canonical = resolveCanonicalUrl(path);
     const ogImage = image ?? resolveCanonicalUrl("/images/ansu.jpg");
@@ -92,12 +99,6 @@ export const PageMetadata: React.FC<PageMetadataProps> = ({
 
     upsertLink("canonical", canonical);
 
-    const jsonLdItems = jsonLd
-      ? Array.isArray(jsonLd)
-        ? jsonLd
-        : [jsonLd]
-      : [];
-
     jsonLdItems.forEach((item, index) => {
       upsertJsonLd(`page-json-ld-${index}`, item);
     });
@@ -119,7 +120,7 @@ export const PageMetadata: React.FC<PageMetadataProps> = ({
     image,
     type,
     noindex,
-    jsonLd ? JSON.stringify(jsonLd) : "",
+    jsonLdItems,
   ]);
 
   return null;

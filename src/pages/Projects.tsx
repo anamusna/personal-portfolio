@@ -4,12 +4,14 @@ import ProjectGrid from "components/sections/project/project-grid";
 import { ABOUT_HERO_CONFIG, ABOUT_HERO_STYLES } from "data/aboutHeroData";
 import { motion } from "motion/react";
 import React, { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import HeroHeader from "../components/elements/hero-header";
 import { PAGE_HEADER_HERO_TITLE } from "../tailwind/styles/pageHeader";
 import { projectsPageContent } from "data/workShowcase";
 import { getVisibleProjects } from "../features/project-details/utils/get-visible-projects";
 
 const Projects: React.FC = () => {
+  const { t } = useTranslation();
   const sectionClasses = useMemo(
     () =>
       `${ABOUT_HERO_STYLES.SECTION_BASE} ${ABOUT_HERO_CONFIG.HEIGHTS.MIN_SECTION}`,
@@ -28,7 +30,7 @@ const Projects: React.FC = () => {
 
   return (
     <div className={sectionClasses}>
-      <main className={`${containerClasses} container relative z-10 `}>
+      <div className={`${containerClasses} container relative z-10`}>
         {/* Ultra-premium Header Section */}
         <section id="projects-hero" className="relative overflow-hidden">
           <div className="container relative z-10 mx-auto">
@@ -38,7 +40,7 @@ const Projects: React.FC = () => {
               id="project-filters"
               className="max-w-4xl mx-auto text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12"
               variants={SECTION_VARIANTS}
-              initial="hidden"
+              initial={false}
               whileInView="visible"
               viewport={SECTION_VIEWPORT}
             >
@@ -67,10 +69,11 @@ const Projects: React.FC = () => {
               id="project-grid"
               className="relative"
               variants={SECTION_VARIANTS}
-              initial="hidden"
+              initial={false}
               whileInView="visible"
               viewport={SECTION_VIEWPORT}
             >
+              <h2 className="sr-only">{t("a11y.projects.gridHeading")}</h2>
               <ProjectGrid projects={filteredProjects} />
             </motion.div>
 
@@ -78,14 +81,14 @@ const Projects: React.FC = () => {
             <motion.div
               className="relative mt-8 sm:mt-12 lg:mt-16"
               variants={SECTION_VARIANTS}
-              initial="hidden"
+              initial={false}
               whileInView="visible"
               viewport={SECTION_VIEWPORT}
             >
               <div className="text-center flex flex-col items-center gap-4">
                 <div className="inline-flex items-center gap-3 text-body text-sm sm:text-base font-medium">
                   <div className="w-8 h-px bg-light-border/60 dark:bg-dark-border/50" />
-                  <span>Interested in working together?</span>
+                  <span>{t("pages.projects.cta.interested")}</span>
                   <div className="w-8 h-px bg-light-border/60 dark:bg-dark-border/50" />
                 </div>
 
@@ -97,21 +100,12 @@ const Projects: React.FC = () => {
                     size="sm"
                     showIcon={true}
                   />
-                  <AnimatedCTAButton
-                    text="Explore my services"
-                    href="/services"
-                    colorScheme="indigo-violet"
-                    size="sm"
-                    variant="outline"
-                    showIcon={true}
-                    iconPosition="right"
-                  />
                 </div>
               </div>
             </motion.div>
           </div>
         </section>
-      </main>
+      </div>
     </div>
   );
 };

@@ -2,6 +2,8 @@
 User-agent: *
 Allow: /
 Disallow: /story
+Disallow: /prayer
+Disallow: /salary-prep
 Disallow: /images
 
 Sitemap: https://ansumana-darboe.netlify.app/sitemap.xml

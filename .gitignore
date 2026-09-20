@@ -38,6 +38,8 @@ Thumbs.db
 # Tooling cache
 .eslintcache
 *.tsbuildinfo
+.githooks/
+.venv-locale/
 
 # Storybook
 storybook-static/
@@ -51,3 +53,4 @@ docs/
 # Private site content and assets (kept local; not published to GitHub)
 src/data/
 src/images/
+src/locales/

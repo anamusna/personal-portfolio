@@ -1,6 +1,7 @@
 import { SECTION_VARIANTS, SECTION_VIEWPORT } from "constants/section-motion";
 import { motion } from "motion/react";
 import React, { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import HeroHeader from "../components/elements/hero-header";
 import { PAGE_HEADER_HERO_TITLE } from "../tailwind/styles/pageHeader";
 import BlogFilter from "../components/sections/blog/blog-filter";
@@ -9,6 +10,7 @@ import { ABOUT_HERO_CONFIG, ABOUT_HERO_STYLES } from "../data/aboutHeroData";
 import { SURFACE_CARD_PANEL } from "../tailwind/styles/surfaceCard";
 
 const Blog: React.FC = () => {
+  const { t } = useTranslation();
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const sectionClasses = useMemo(
@@ -30,7 +32,7 @@ const Blog: React.FC = () => {
 
   return (
     <div className={sectionClasses}>
-      <main className={`relative ${containerClasses}`}>
+      <div className={`relative ${containerClasses}`}>
         {/* Ultra-premium Header Section */}
         <section id="blog-hero" className="relative overflow-hidden">
           <div className="relative z-10 mx-auto container">
@@ -38,14 +40,14 @@ const Blog: React.FC = () => {
             <motion.div
               className="max-w-4xl mx-auto text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12"
               variants={SECTION_VARIANTS}
-              initial="hidden"
+              initial={false}
               whileInView="visible"
               viewport={SECTION_VIEWPORT}
             >
               <HeroHeader
-                greeting="Blog & Insights"
-                title="Thoughts & Insights"
-                subtitle="Insights from years of building web and mobile apps, exploring modern development, cloud infrastructure, and practical tips for creating high-performance, user-friendly systems."
+                greeting={t("pages.blog.hero.greeting")}
+                title={t("pages.blog.hero.title")}
+                subtitle={t("pages.blog.hero.subtitle")}
                 alignment="center"
                 subtitleClassName="max-w-3xl mx-auto"
                 titleClassName={`${PAGE_HEADER_HERO_TITLE} text-heading`}
@@ -67,7 +69,7 @@ const Blog: React.FC = () => {
               id="blog-filters"
               className="relative mb-6 sm:mb-8 lg:mb-10"
               variants={SECTION_VARIANTS}
-              initial="hidden"
+              initial={false}
               whileInView="visible"
               viewport={SECTION_VIEWPORT}
             >
@@ -86,17 +88,18 @@ const Blog: React.FC = () => {
               id="blog-grid"
               className="relative"
               variants={SECTION_VARIANTS}
-              initial="hidden"
+              initial={false}
               whileInView="visible"
               viewport={SECTION_VIEWPORT}
             >
               <div className={`${SURFACE_CARD_PANEL} p-3 sm:p-5`}>
+                <h2 className="sr-only">{t("a11y.blog.gridHeading")}</h2>
                 <BlogGrid selectedTags={selectedTags} />
               </div>
             </motion.div>
           </div>
         </section>
-      </main>
+      </div>
     </div>
   );
 };

@@ -48,6 +48,10 @@ const convertMarkdownFormatting = (text: string): string =>
     .replace(
       /`(.*?)`/g,
       '<code class="bg-light-background-alt dark:bg-dark-background-alt px-1 py-0.5 rounded text-sm font-mono">$1</code>',
+    )
+    .replace(
+      /\[([^\]]+)\]\(([^)]+)\)/g,
+      '<a href="$2" class="font-medium underline decoration-current underline-offset-4">$1</a>',
     );
 
 const StructuredContentRenderer: React.FC<StructuredContentRendererProps> = ({
@@ -58,7 +62,11 @@ const StructuredContentRenderer: React.FC<StructuredContentRendererProps> = ({
   return (
     <div className="min-w-0 space-y-8 sm:space-y-10">
       {groupedSections.map((group, groupIndex) => (
-        <ChapterGroup key={groupIndex} sections={group} groupIndex={groupIndex} />
+        <ChapterGroup
+          key={groupIndex}
+          sections={group}
+          groupIndex={groupIndex}
+        />
       ))}
     </div>
   );
@@ -144,7 +152,8 @@ const SectionRenderer: React.FC<{
         ? getStoryChapterAnchorId(section.content || "")
         : undefined;
       const headingClass =
-        HEADING_CLASSES[section.level as keyof typeof HEADING_CLASSES] ?? TEXT_BODY;
+        HEADING_CLASSES[section.level as keyof typeof HEADING_CLASSES] ??
+        TEXT_BODY;
 
       return (
         <HeadingTag
@@ -348,7 +357,9 @@ const SectionRenderer: React.FC<{
 
     case "bridge":
       return (
-        <p className={`${TEXT_MUTED} my-8 sm:my-10 text-center italic leading-relaxed px-2`}>
+        <p
+          className={`${TEXT_MUTED} my-8 sm:my-10 text-center italic leading-relaxed px-2`}
+        >
           {section.content}
         </p>
       );

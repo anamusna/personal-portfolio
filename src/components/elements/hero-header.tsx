@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React, { memo } from "react";
 import { P } from "../../tailwind/components/elements/Typography";
 import {
@@ -82,11 +83,20 @@ const HeroHeader: React.FC<HeroHeaderProps> = memo(
 
     return (
       <header
-        className={`relative flex flex-col ${alignmentClasses} ${containerClassName} ${className}`}
+        className={clsx(
+          "relative flex flex-col",
+          alignmentClasses,
+          containerClassName,
+          className,
+        )}
       >
         {showGreeting && greeting && (
           <div
-            className={`${animated ? "animate-spring-in" : ""} mb-4 sm:mb-6 w-full flex ${greetingWrapperClasses}`}
+            className={clsx(
+              animated && "animate-spring-in",
+              "mb-4 sm:mb-6 w-full flex",
+              greetingWrapperClasses,
+            )}
           >
             <span className={greetingClassName || PAGE_HEADER_GREETING}>
               {showIcon && (
@@ -102,7 +112,10 @@ const HeroHeader: React.FC<HeroHeaderProps> = memo(
         {title && (
           <h1 className={titleWrapperClasses}>
             <span
-              className={`relative z-10 ${titleClassName || defaultTitleTextClasses}`}
+              className={clsx(
+                "relative z-10",
+                titleClassName || defaultTitleTextClasses,
+              )}
             >
               {title}
             </span>
@@ -111,18 +124,23 @@ const HeroHeader: React.FC<HeroHeaderProps> = memo(
 
         {subtitle && (
           <P
-            className={`relative max-w-4xl ${PAGE_HEADER_HERO_SUBTITLE} ${
-              alignment === "center" ? "sm:mx-auto" : ""
-            } ${subtitleClassName ?? ""}`}
+            className={clsx(
+              "relative max-w-4xl",
+              PAGE_HEADER_HERO_SUBTITLE,
+              alignment === "center" && "sm:mx-auto",
+              subtitleClassName,
+            )}
           >
             {subtitle}
           </P>
         )}
 
         <div
-          className={`mt-4 sm:mt-5 h-px w-12 sm:w-20 ${
-            alignment === "center" ? "sm:mx-auto" : ""
-          } ${PAGE_HEADER_ACCENT_LINE}`}
+          className={clsx(
+            "mt-4 sm:mt-5 h-px w-12 sm:w-20",
+            alignment === "center" && "sm:mx-auto",
+            PAGE_HEADER_ACCENT_LINE,
+          )}
           aria-hidden
         />
       </header>

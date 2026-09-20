@@ -2,6 +2,7 @@ import { SECTION_VARIANTS, SECTION_VIEWPORT } from "constants/section-motion";
 import { motion } from "motion/react";
 import React from "react";
 import SectionDivider from "../components/elements/section-divider";
+import AboutGrowth from "../components/sections/about/about-growth";
 import AboutHero from "../components/sections/about/about-hero";
 import AboutHeroTransition from "../components/sections/about/about-hero-transition";
 import AboutNextSteps from "../components/sections/about/about-next-steps";
@@ -13,7 +14,7 @@ import Values from "../components/sections/about/values";
 const About: React.FC = () => {
   return (
     <div className="relative min-h-screen overflow-hidden md:overflow-visible z-10">
-      <main className="relative z-10">
+      <div className="relative z-10">
         <section
           id="about-hero"
           className="relative bg-light-background-alt dark:bg-dark-background-alt"
@@ -29,7 +30,7 @@ const About: React.FC = () => {
             id="skills-breakdown"
             className="relative scroll-mt-24"
             variants={SECTION_VARIANTS}
-            initial="hidden"
+            initial={false}
             whileInView="visible"
             viewport={SECTION_VIEWPORT}
           >
@@ -40,7 +41,7 @@ const About: React.FC = () => {
             id="technical-setup"
             className="relative scroll-mt-24"
             variants={SECTION_VARIANTS}
-            initial="hidden"
+            initial={false}
             whileInView="visible"
             viewport={SECTION_VIEWPORT}
           >
@@ -48,10 +49,21 @@ const About: React.FC = () => {
           </motion.section>
 
           <motion.section
+            id="about-growth"
+            className="relative scroll-mt-24 bg-light-background-alt dark:bg-dark-background-alt"
+            variants={SECTION_VARIANTS}
+            initial={false}
+            whileInView="visible"
+            viewport={SECTION_VIEWPORT}
+          >
+            <AboutGrowth />
+          </motion.section>
+
+          <motion.section
             id="values"
             className="relative scroll-mt-24"
             variants={SECTION_VARIANTS}
-            initial="hidden"
+            initial={false}
             whileInView="visible"
             viewport={SECTION_VIEWPORT}
           >
@@ -66,13 +78,13 @@ const About: React.FC = () => {
           id="about-next"
           className="relative bg-light-background dark:bg-dark-background py-8 sm:py-12 md:py-16"
           variants={SECTION_VARIANTS}
-          initial="hidden"
+          initial={false}
           whileInView="visible"
           viewport={SECTION_VIEWPORT}
         >
           <AboutNextSteps />
         </motion.section>
-      </main>
+      </div>
     </div>
   );
 };

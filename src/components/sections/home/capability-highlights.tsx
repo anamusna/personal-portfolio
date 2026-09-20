@@ -1,96 +1,99 @@
 import { SECTION_RISE_VARIANTS, SECTION_VIEWPORT } from "constants/section-motion";
-import CategoriesOverview from "./categories-overview";
 import { homePageContent } from "data/homePage";
-import { technologies } from "data/technologies";
+import { skillCapabilities } from "data/skills";
 import { motion } from "motion/react";
 import React from "react";
+import { useTranslation } from "react-i18next";
+import { SURFACE_CARD_BASE } from "../../../tailwind/styles/surfaceCard";
+import { TEXT_BODY } from "../../../tailwind/styles/textTokens";
 import AnimatedCTAButton from "../../elements/animated-cta-button";
 import SectionHeader from "../../elements/section-header";
 
-const springTransition = {
-  type: "spring" as const,
-  stiffness: 380,
-  damping: 30,
-  mass: 0.7,
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.08, delayChildren: 0.05 },
+  },
 };
 
-const sectionVariants = SECTION_RISE_VARIANTS;
-
-const contentVariants = {
+const cardVariants = {
   hidden: { opacity: 0, y: 16 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { ...springTransition, delay: 0.15 },
+    transition: { type: "spring" as const, stiffness: 350, damping: 28 },
   },
 };
 
-interface TechStackProps {
+interface CapabilityHighlightsProps {
   skills: {
     description: string;
   };
 }
 
-const TechStack: React.FC<TechStackProps> = ({ skills }) => {
+const CapabilityHighlights: React.FC<CapabilityHighlightsProps> = ({
+  skills,
+}) => {
+  const { t } = useTranslation("ansumana");
   const { techStackTeaser } = homePageContent;
 
   return (
     <section className="relative py-8 sm:py-10 md:py-12 overflow-hidden">
       <div className="container max-w-7xl relative z-10 mx-auto px-3 sm:px-4 lg:px-6">
         <motion.div
-          variants={sectionVariants}
-          initial="hidden"
+          variants={SECTION_RISE_VARIANTS}
+          initial={false}
           whileInView="visible"
           viewport={SECTION_VIEWPORT}
         >
           <SectionHeader
             badge={{
-              text: "What I work with",
-              // text: "Technology Stack",
+              text: t("pages.home.techStack.badge"),
               icon: (
                 <svg
-                  className="w-5 h-5 mr-2 animate-spin"
-                  style={{ animationDuration: "4s" }}
+                  className="w-5 h-5 mr-2"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  aria-hidden
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
                   />
                 </svg>
               ),
               iconAnimation: false,
             }}
-            // title="What I work with"
+            title={t("pages.home.techStack.title")}
             description={skills.description}
           />
         </motion.div>
 
         <motion.div
-          variants={contentVariants}
-          initial="hidden"
+          className="mt-6 sm:mt-8 grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4"
+          variants={containerVariants}
+          initial={false}
           whileInView="visible"
           viewport={SECTION_VIEWPORT}
         >
-          <CategoriesOverview
-            categories={technologies}
-            variant="compact"
-            useHighlightSurfaces
-            showIcons={false}
-            showTooltips={false}
-            animationDelay={120}
-            staggerDelay={80}
-          />
+          {skillCapabilities.map((capability) => (
+            <motion.div
+              key={capability.id}
+              variants={cardVariants}
+              className={`${SURFACE_CARD_BASE} p-4 sm:p-5 lg:p-6`}
+            >
+              <h3 className="text-base sm:text-lg font-bold mb-2 text-heading">
+                {capability.title}
+              </h3>
+              <p className={`${TEXT_BODY} text-sm sm:text-base leading-snug`}>
+                {capability.summary}
+              </p>
+            </motion.div>
+          ))}
         </motion.div>
 
         <motion.div
@@ -114,4 +117,4 @@ const TechStack: React.FC<TechStackProps> = ({ skills }) => {
   );
 };
 
-export default TechStack;
+export default CapabilityHighlights;

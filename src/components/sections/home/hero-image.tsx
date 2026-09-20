@@ -1,6 +1,7 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useCallback, useState } from "react";
 import { HERO_CONTENT } from "data/heroData";
-import ansuImage from "images/ansu2.png";
+import ansuImage from "images/ansu2.webp";
+import { useTranslation } from "react-i18next";
 import { P } from "tailwind/components/elements/Typography";
 import Image from "components/image";
 
@@ -14,25 +15,33 @@ interface HeroImageProps {
 const HeroImage: React.FC<HeroImageProps> = memo(
   ({
     src = ansuImage,
-    alt = "Ansumana Darboe - Senior Software Engineer",
+    alt,
     className = "",
     showStats = true,
   }) => {
-    const [imageLoaded, setImageLoaded] = useState(false);
-    const [showContent, setShowContent] = useState(false);
+    const { t } = useTranslation("ansumana");
+    const imageAlt = alt ?? t("a11y.about.heroImageAlt");
+    // This image is always rendered with priority/eager loading (see below)
+    // and is present, already loaded, in the prerendered HTML for every
+    // route that ships this component. Starting these both `false` and
+    // flipping them on the image's onLoad meant the client's first render
+    // (spinner visible, image hidden) never matched the prerendered markup
+    // (image already loaded and visible) — a guaranteed hydration mismatch
+    // on every page load. Defaulting to the loaded state matches what's
+    // already true for a priority image and keeps hydration consistent;
+    // onError below still recovers gracefully if the image genuinely fails.
+    const [imageLoaded, setImageLoaded] = useState(true);
+    const [showContent, setShowContent] = useState(true);
 
-    useEffect(() => {
-      const img = new window.Image();
-      img.src = src;
-      img.onload = () => {
-        setImageLoaded(true);
-        setTimeout(() => setShowContent(true), 50);
-      };
-      img.onerror = () => {
-        setImageLoaded(true);
-        setShowContent(true);
-      };
-    }, [src]);
+    const handleLoad = useCallback(() => {
+      setImageLoaded(true);
+      setTimeout(() => setShowContent(true), 50);
+    }, []);
+
+    const handleError = useCallback(() => {
+      setImageLoaded(true);
+      setShowContent(true);
+    }, []);
 
     return (
       <div className={`relative w-full ${className}`}>
@@ -54,7 +63,7 @@ const HeroImage: React.FC<HeroImageProps> = memo(
             <Image
               variant="minimal"
               src={src}
-              alt={alt}
+              alt={imageAlt}
               aspectRatio="portrait"
               objectFit="contain"
               rounded="2xl"
@@ -63,6 +72,8 @@ const HeroImage: React.FC<HeroImageProps> = memo(
               loading="eager"
               animate={false}
               hoverEffect={false}
+              onLoad={handleLoad}
+              onError={handleError}
             />
           </div>
         </div>

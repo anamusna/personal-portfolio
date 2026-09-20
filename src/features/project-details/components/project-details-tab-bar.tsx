@@ -1,5 +1,6 @@
 import { LAYOUT_STYLES } from "data/heroData";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { SURFACE_CARD_HEADER } from "tailwind/styles/surfaceCard";
 import { ProjectDetailTab } from "../hooks/use-project-details";
 import {
@@ -18,12 +19,16 @@ export const ProjectDetailsTabBar: React.FC<ProjectDetailsTabBarProps> = ({
   activeTabId,
   onTabChange,
 }) => {
+  const { t } = useTranslation();
   const activeIndex = tabs.findIndex((tab) => tab.id === activeTabId);
   const displayIndex = activeIndex >= 0 ? activeIndex + 1 : 1;
   const progressWidth = getProjectTabProgress(tabs, activeTabId);
 
   return (
-    <div className={SURFACE_CARD_HEADER}>
+    <nav
+      className={SURFACE_CARD_HEADER}
+      aria-label={t("features.projectDetails.tabBar.navLabel")}
+    >
       <div className={LAYOUT_STYLES.CONTENT_CONTAINER}>
         <div className="relative">
           <div className="flex items-center justify-between py-1.5 sm:py-2">
@@ -42,8 +47,10 @@ export const ProjectDetailsTabBar: React.FC<ProjectDetailsTabBarProps> = ({
                         : "text-body hover:text-heading"
                     }`}
                     style={{ animationDelay: `${index * 30}ms` }}
-                    aria-pressed={isActive}
-                    aria-label={`View ${tab.label} project details`}
+                    aria-current={isActive ? "page" : undefined}
+                    aria-label={t("features.projectDetails.tabBar.viewTabAria", {
+                      tab: tab.label,
+                    })}
                   >
                     {isActive && (
                       <>
@@ -93,7 +100,7 @@ export const ProjectDetailsTabBar: React.FC<ProjectDetailsTabBarProps> = ({
                     )
                   }
                   className="p-1 sm:p-1.5 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200"
-                  aria-label="Previous project"
+                  aria-label={t("features.projectDetails.tabBar.previousAria")}
                 >
                   <svg
                     className="w-3 h-3"
@@ -119,7 +126,7 @@ export const ProjectDetailsTabBar: React.FC<ProjectDetailsTabBarProps> = ({
                     )
                   }
                   className="p-1 sm:p-1.5 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200"
-                  aria-label="Next project"
+                  aria-label={t("features.projectDetails.tabBar.nextAria")}
                 >
                   <svg
                     className="w-3 h-3"
@@ -148,6 +155,6 @@ export const ProjectDetailsTabBar: React.FC<ProjectDetailsTabBarProps> = ({
           </div>
         </div>
       </div>
-    </div>
+    </nav>
   );
 };

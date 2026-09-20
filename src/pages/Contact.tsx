@@ -1,13 +1,13 @@
 import SectionHeader from "components/elements/section-header";
-import PageSection from "components/sections/page-section";
 import ContactDestination from "components/sections/contact/contact-destination";
+import PageSection from "components/sections/page-section";
 import { contact } from "data/contact";
+import ansuImage from "images/background.webp";
 import React from "react";
 import ContactLinks from "../components/elements/contact-links";
 import { TEXT_MUTED } from "../tailwind/styles/textTokens";
 
 interface ContactProps {
-  /** Site-wide footer CTA — keep minimal; shown on every page. */
   embedded?: boolean;
 }
 
@@ -28,13 +28,6 @@ const contactBadgeIcon = (
   </svg>
 );
 
-const contactSectionBadge = {
-  text: contact.title,
-  icon: contactBadgeIcon,
-  iconAnimation: false,
-} as const;
-
-/** Shared conversion surface: contact channel cards (footer + /contact page). */
 export const ContactConversionSurface: React.FC<{
   showSectionHeader?: boolean;
   leadText?: string;
@@ -42,8 +35,14 @@ export const ContactConversionSurface: React.FC<{
   <div className="max-w-4xl mx-auto">
     {showSectionHeader && (
       <SectionHeader
-        badge={contactSectionBadge}
+        badge={{
+          text: contact.title,
+          icon: contactBadgeIcon,
+          iconAnimation: false,
+        }}
+        title={contact.heading}
         description={contact.subText}
+        descriptionClassName="text-white"
       />
     )}
     {leadText && (
@@ -54,8 +53,16 @@ export const ContactConversionSurface: React.FC<{
 );
 
 const EmbeddedContactBand: React.FC = () => (
-  <div className="relative py-8 sm:py-10 md:py-12 bg-light-background-alt dark:bg-dark-background-alt border-t border-light-border/55 dark:border-dark-border/40">
-    <div className="container max-w-4xl relative z-10 mx-auto px-3 sm:px-4 lg:px-6 text-center">
+  <div
+    className="relative"
+    style={{
+      backgroundImage: `url(${ansuImage})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+    }}
+  >
+    <div className="container max-w-4xl relative z-10 mx-auto px-3 sm:px-4 lg:px-6 py-8 sm:py-10 md:py-12 text-center">
       <ContactConversionSurface showSectionHeader />
     </div>
   </div>

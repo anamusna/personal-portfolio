@@ -1,6 +1,7 @@
 import { LAYOUT_STYLES } from "data/heroData";
 import { projectBannerImages } from "data/projects";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { P } from "tailwind/components/elements/Typography";
 import { PAGE_HEADER_HERO_TITLE } from "tailwind/styles/pageHeader";
 import { Project } from "types/project";
@@ -13,6 +14,7 @@ type ProjectDetailsHeroProps = {
 export const ProjectDetailsHero: React.FC<ProjectDetailsHeroProps> = ({
   project,
 }) => {
+  const { t } = useTranslation();
   const [hasHeroImageError, setHasHeroImageError] = useState(false);
 
   const heroImageSrc = hasHeroImageError
@@ -25,7 +27,7 @@ export const ProjectDetailsHero: React.FC<ProjectDetailsHeroProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-3 lg:gap-5 items-center">
           <div className="order-2 lg:order-1">
             <p className="text-sm font-medium tracking-wider uppercase text-muted mb-2 sm:mb-3">
-              Case Study
+              {t("features.projectDetails.hero.caseStudy")}
             </p>
 
             <h1 className={`${PAGE_HEADER_HERO_TITLE} text-heading mb-2`}>

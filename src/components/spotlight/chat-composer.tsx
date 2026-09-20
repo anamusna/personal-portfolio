@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 interface ChatComposerProps {
   value: string;
@@ -15,6 +16,7 @@ const ChatComposer: React.FC<ChatComposerProps> = ({
   onClearDraft,
   inputRef,
 }) => {
+  const { t } = useTranslation("ansumana");
   const hasInput = value.length > 0;
 
   return (
@@ -28,7 +30,7 @@ const ChatComposer: React.FC<ChatComposerProps> = ({
           type="text"
           value={value}
           onChange={(event) => onChange(event.target.value)}
-          placeholder="Ask a follow-up..."
+          placeholder={t("spotlight.chat.placeholder")}
           className="min-w-0 flex-1 bg-transparent text-[16px] text-light-text placeholder:text-light-muted focus:outline-none sm:text-sm dark:text-dark-text dark:placeholder:text-dark-muted"
         />
         {hasInput && (
@@ -37,7 +39,7 @@ const ChatComposer: React.FC<ChatComposerProps> = ({
               type="button"
               onClick={onClearDraft}
               className="glass-2 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-light-border/50 text-light-muted transition hover:text-light-text focus-visible:ring-2 focus-visible:ring-royal-primary focus-visible:ring-offset-0 dark:border-dark-border/60 dark:text-dark-muted dark:hover:text-dark-text"
-              aria-label="Clear chat input"
+              aria-label={t("spotlight.chat.aria.clearInput")}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +60,7 @@ const ChatComposer: React.FC<ChatComposerProps> = ({
               type="submit"
               className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-royal-primary text-white shadow-lg shadow-royal-primary/20 transition hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-royal-primary focus-visible:ring-offset-0"
             >
-              <span className="sr-only">Send message</span>
+              <span className="sr-only">{t("spotlight.chat.aria.send")}</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"

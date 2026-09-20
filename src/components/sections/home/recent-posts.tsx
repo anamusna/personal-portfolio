@@ -4,11 +4,11 @@ import AnimatedCTAButton from "components/elements/animated-cta-button";
 import SectionHeader from "components/elements/section-header";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import React, { useCallback, useMemo, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import { blogImages } from "../../../data/blogImages";
 import { blogs } from "../../../data/blogs";
 import { P } from "../../../tailwind/components/elements/Typography";
-import { slugify } from "../../../utils/slugify";
 import { SURFACE_CARD_INTERACTIVE } from "../../../tailwind/styles/surfaceCard";
 import PageSection from "../page-section";
 
@@ -63,7 +63,7 @@ const loadMorePanelVariants = {
 
 const RecentPosts: React.FC = () => {
   const { writingSection } = homePageContent;
-  const navigate = useNavigate();
+  const { t } = useTranslation("ansumana");
   const prefersReducedMotion = useReducedMotion();
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_COUNT);
   const [hasLoadedMore, setHasLoadedMore] = useState(false);
@@ -76,14 +76,6 @@ const RecentPosts: React.FC = () => {
 
   const hasMore = visibleCount < blogs.length;
   const remainingCount = blogs.length - visibleCount;
-  const progressPercent = Math.round((visibleCount / blogs.length) * 100);
-
-  const handleBlogClick = useCallback(
-    (blog: (typeof blogs)[0]) => {
-      navigate(`/blog/${slugify(blog.title)}`);
-    },
-    [navigate],
-  );
 
   const handleLoadMore = useCallback(() => {
     setHasLoadedMore(true);
@@ -123,13 +115,14 @@ const RecentPosts: React.FC = () => {
           ),
           iconAnimation: false,
         }}
+        title={writingSection.title}
         description={writingSection.description}
       />
 
       <motion.div
         className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-5 mb-6 sm:mb-8"
         variants={containerVariants}
-        initial="hidden"
+        initial={false}
         whileInView="visible"
         viewport={SECTION_VIEWPORT}
         layout
@@ -163,9 +156,11 @@ const RecentPosts: React.FC = () => {
                     : springTransition
                 }
               >
-                <button
-                  type="button"
-                  onClick={() => handleBlogClick(blog)}
+                {/* A real link, not a button with a navigate() handler: the
+                    post needs a crawlable href, and readers expect
+                    middle-click and copy-link. */}
+                <Link
+                  to={`/blog/${blog.titleSlug}`}
                   className="flex-1 flex flex-col w-full text-left min-h-[44px]"
                 >
                   <div className="relative aspect-video overflow-hidden bg-light-elevated dark:bg-dark-surface">
@@ -177,7 +172,9 @@ const RecentPosts: React.FC = () => {
                     />
 
                     <div className="absolute top-2 right-2 surface-card rounded-lg px-2.5 py-1 text-sm font-medium text-body border border-light-border/55 dark:border-dark-border/40">
-                      {blog.readTime} min read
+                      {t("pages.blog.cards.readTime", {
+                        minutes: blog.readTime,
+                      })}
                     </div>
                   </div>
 
@@ -221,7 +218,7 @@ const RecentPosts: React.FC = () => {
                       </div>
 
                       <div className="flex items-center gap-1.5 text-sm sm:text-base text-indigo-600 dark:text-indigo-400 font-medium">
-                        <span>Read More</span>
+                        <span>{t("common.actions.readMore")}</span>
                         <svg
                           className="w-3 h-3 sm:w-4 sm:h-4"
                           fill="none"
@@ -239,7 +236,7 @@ const RecentPosts: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                </button>
+                </Link>
               </motion.article>
             );
           })}
@@ -252,21 +249,23 @@ const RecentPosts: React.FC = () => {
             key="load-more"
             className="mt-8 sm:mt-12 text-center"
             variants={loadMorePanelVariants}
-            initial="hidden"
+            initial={false}
             animate="visible"
             exit="exit"
             aria-live="polite"
           >
             <AnimatedCTAButton
               as="button"
-              text={`Load ${remainingCount} More Post${remainingCount === 1 ? "" : "s"}`}
+              text={t("pages.blog.cards.loadMore", { count: remainingCount })}
               onClick={handleLoadMore}
               colorScheme="indigo-violet"
               size="sm"
               showIcon={true}
               iconPosition="right"
               customIcon={loadMoreChevronIcon}
-              ariaLabel={`Load ${remainingCount} more post${remainingCount === 1 ? "" : "s"}`}
+              ariaLabel={t("pages.blog.cards.loadMoreAria", {
+                count: remainingCount,
+              })}
             />
           </motion.div>
         )}

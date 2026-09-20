@@ -1,7 +1,8 @@
 import { CareerHighlight } from "data/experiences";
 import { projectCardImages, projects } from "data/projects";
 import { AnimatePresence, motion } from "motion/react";
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { getCaseStudyLink } from "utils/get-case-study-link";
 import MarkdownRenderer from "components/elements/markdown-renderer";
@@ -42,6 +43,7 @@ const HighlightCard: React.FC<HighlightCardProps> = ({
   maxMetrics = 4,
   showTechnologies = true,
 }) => {
+  const { t } = useTranslation("ansumana");
   const [metricsOpen, setMetricsOpen] = useState(false);
   const [techOpen, setTechOpen] = useState(false);
 
@@ -70,13 +72,9 @@ const HighlightCard: React.FC<HighlightCardProps> = ({
     return `${layoutClasses} ${tonalSurface} ${animationClasses} ${className}`;
   };
 
-  const linkedProject = useMemo(
-    () =>
-      highlight.projectId
-        ? projects.find((p) => p.id === highlight.projectId)
-        : undefined,
-    [highlight.projectId],
-  );
+  const linkedProject = highlight.projectId
+    ? projects.find((p) => p.id === highlight.projectId)
+    : undefined;
 
   const imageKey =
     linkedProject?.image ??
@@ -89,7 +87,7 @@ const HighlightCard: React.FC<HighlightCardProps> = ({
       ? projectCardImages[imageKey]
       : undefined;
 
-  const caseStudyLink = useMemo(() => {
+  const caseStudyLink = (() => {
     const source = {
       id: highlight.projectId ?? highlight.id,
       hasDetailLink: highlight.hasDetailLink,
@@ -99,7 +97,7 @@ const HighlightCard: React.FC<HighlightCardProps> = ({
     };
 
     return getCaseStudyLink(source);
-  }, [highlight, linkedProject]);
+  })();
 
   const viewCaseStudyButtonClass =
     "w-full inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 text-sm font-medium rounded-lg min-h-[44px] touch-manipulation";
@@ -117,8 +115,8 @@ const HighlightCard: React.FC<HighlightCardProps> = ({
           className="relative block focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 rounded-t-xl sm:rounded-t-2xl"
           aria-label={
             linkedProject
-              ? `View project: ${linkedProject.title}`
-              : `View project details: ${highlight.title}`
+              ? t("a11y.career.viewProject", { title: linkedProject.title })
+              : t("a11y.career.viewProjectDetails", { title: highlight.title })
           }
         >
           <div className="relative h-56 overflow-hidden">
@@ -138,10 +136,10 @@ const HighlightCard: React.FC<HighlightCardProps> = ({
             {linkedProject && (
               <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 flex justify-between gap-2 text-white pointer-events-none">
                 <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 surface-card rounded-full text-xs sm:text-sm font-medium text-heading border border-light-border/55 dark:border-dark-border/40 truncate max-w-[48%]">
-                  {linkedProject.metrics?.primary ?? "N/A"}
+                  {linkedProject.metrics?.primary ?? t("common.status.notAvailable")}
                 </span>
                 <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 surface-card rounded-full text-xs sm:text-sm font-medium text-muted border border-light-border/55 dark:border-dark-border/40 truncate max-w-[48%] text-right">
-                  {linkedProject.metrics?.secondary ?? "N/A"}
+                  {linkedProject.metrics?.secondary ?? t("common.status.notAvailable")}
                 </span>
               </div>
             )}
@@ -168,10 +166,10 @@ const HighlightCard: React.FC<HighlightCardProps> = ({
             {linkedProject && (
               <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 flex justify-between gap-2 text-white pointer-events-none">
                 <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 surface-card rounded-full text-xs sm:text-sm font-medium text-heading border border-light-border/55 dark:border-dark-border/40 truncate max-w-[48%]">
-                  {linkedProject.metrics?.primary ?? "N/A"}
+                  {linkedProject.metrics?.primary ?? t("common.status.notAvailable")}
                 </span>
                 <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 surface-card rounded-full text-xs sm:text-sm font-medium text-muted border border-light-border/55 dark:border-dark-border/40 truncate max-w-[48%] text-right">
-                  {linkedProject.metrics?.secondary ?? "N/A"}
+                  {linkedProject.metrics?.secondary ?? t("common.status.notAvailable")}
                 </span>
               </div>
             )}
@@ -259,7 +257,7 @@ const HighlightCard: React.FC<HighlightCardProps> = ({
               <div className="flex items-center gap-2 min-w-0">
                 <span className="text-sm flex-shrink-0">📈</span>
                 <span className="text-xs sm:text-sm font-bold text-heading truncate">
-                  Key Metrics
+                  {t("components.careerHighlight.keyMetrics")}
                 </span>
                 <span className="flex-shrink-0 text-xs font-black px-1.5 py-0.5 rounded-full bg-emerald-500/15 dark:bg-emerald-400/20 text-emerald-700 dark:text-emerald-300 border border-emerald-500/25">
                   {Math.min(highlight.keyMetrics.length, maxMetrics)}
@@ -335,7 +333,7 @@ const HighlightCard: React.FC<HighlightCardProps> = ({
                 <div className="flex items-center gap-2 min-w-0">
                   <span className="text-sm flex-shrink-0">⚙️</span>
                   <span className="text-xs sm:text-sm font-bold text-heading truncate">
-                    Skills
+                    {t("components.careerHighlight.skills")}
                   </span>
                   <span className="flex-shrink-0 text-xs font-black px-1.5 py-0.5 rounded-full bg-violet-500/15 dark:bg-violet-400/20 text-violet-700 dark:text-violet-300 border border-violet-500/25">
                     {highlight.technologies.length}
@@ -370,7 +368,7 @@ const HighlightCard: React.FC<HighlightCardProps> = ({
                   >
                     <motion.div
                       className="flex flex-wrap gap-1.5 sm:gap-2"
-                      initial="hidden"
+                      initial={false}
                       animate="visible"
                       variants={{
                         hidden: {},

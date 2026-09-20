@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 import { CardProps } from "../../types/layout/card";
 
@@ -40,15 +41,15 @@ const Card: React.FC<CardProps> = ({
       data-testid="card"
       role="region"
       aria-label={ariaLabel}
-      className={`
-        relative rounded-lg border-2 overflow-hidden transition-all duration-300
-        ${sizeClasses[size]}
-        rounded-lg
-        ${themeClasses[theme]}
-        ${variantClasses[variant]}
-        ${hoverable ? "hover:shadow-lg transition-shadow" : ""}
-        ${className}
-      `}
+      className={clsx(
+        "relative rounded-lg border-2 overflow-hidden transition-all duration-300",
+        sizeClasses[size],
+        "rounded-lg",
+        themeClasses[theme],
+        variantClasses[variant],
+        hoverable && "hover:shadow-lg transition-shadow",
+        className,
+      )}
       onClick={onClick}
     >
       {loading ? (

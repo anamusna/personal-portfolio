@@ -1,6 +1,8 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { P } from "tailwind/components/elements/Typography";
 import {
+  SURFACE_CARD_BASE,
   SURFACE_CARD_ICON,
   SURFACE_CARD_INTERACTIVE,
 } from "tailwind/styles/surfaceCard";
@@ -11,11 +13,27 @@ type ProjectDetailsSidebarProps = {
   project: Project;
 };
 
+const getWebsiteUrl = (websiteUrl?: string): URL | null => {
+  if (!websiteUrl) {
+    return null;
+  }
+
+  try {
+    return new URL(websiteUrl);
+  } catch {
+    return null;
+  }
+};
+
 export const ProjectDetailsSidebar: React.FC<ProjectDetailsSidebarProps> = ({
   project,
-}) => (
-  <div className="sticky top-20 space-y-3 sm:space-y-4">
-    {project.websiteUrl && (
+}) => {
+  const { t } = useTranslation();
+  const websiteUrl = getWebsiteUrl(project.websiteUrl);
+
+  return (
+    <div className="sticky top-20 space-y-3 sm:space-y-4">
+    {websiteUrl && (
       <div
         className={`${SURFACE_CARD_INTERACTIVE} p-3 sm:p-4 border border-light-border/55 dark:border-dark-border/40 rounded-xl`}
       >
@@ -37,24 +55,24 @@ export const ProjectDetailsSidebar: React.FC<ProjectDetailsSidebarProps> = ({
             </svg>
           </div>
           <h2 className={`${TEXT_DETAIL_SECTION_TITLE} text-base sm:text-lg`}>
-            Live Website
+            {t("features.projectDetails.sidebar.liveWebsite")}
           </h2>
         </div>
 
         <div className="space-y-3 sm:space-y-4">
           <div className="p-3 sm:p-4 surface-card rounded-xl border border-light-border/55 dark:border-dark-border/40">
             <P className="text-sm text-muted font-mono break-all">
-              {new URL(project.websiteUrl).hostname}
+              {websiteUrl.hostname}
             </P>
           </div>
 
           <a
-            href={project.websiteUrl}
+            href={websiteUrl.href}
             target="_blank"
             rel="noopener noreferrer"
             className="flex w-full items-center justify-center gap-2 min-h-[44px] px-4 py-3 rounded-xl bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white font-semibold text-sm sm:text-base transition-colors"
           >
-            Visit Live Site
+            {t("features.projectDetails.sidebar.visitLiveSite")}
             <svg
               className="w-4 h-4"
               fill="none"
@@ -72,14 +90,14 @@ export const ProjectDetailsSidebar: React.FC<ProjectDetailsSidebarProps> = ({
           </a>
 
           <P className="text-sm text-muted text-center italic">
-            Opens in new tab
+            {t("features.projectDetails.sidebar.opensInNewTab")}
           </P>
         </div>
       </div>
     )}
 
     <div
-      className={`${SURFACE_CARD_INTERACTIVE} p-5 sm:p-6 border border-light-border/55 dark:border-dark-border/40 rounded-xl`}
+      className={`${SURFACE_CARD_BASE} p-5 sm:p-6 border border-light-border/55 dark:border-dark-border/40 rounded-xl`}
     >
       <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
         <div className={`w-8 h-8 sm:w-10 sm:h-10 ${SURFACE_CARD_ICON}`}>
@@ -99,29 +117,33 @@ export const ProjectDetailsSidebar: React.FC<ProjectDetailsSidebarProps> = ({
           </svg>
         </div>
         <h2 className={`${TEXT_DETAIL_SECTION_TITLE} text-lg md:text-xl`}>
-          Key Metrics
+          {t("features.projectDetails.sidebar.keyMetrics")}
         </h2>
       </div>
 
       <div className="space-y-3 sm:space-y-4">
         <div className="p-4 surface-card rounded-xl border border-light-border/55 dark:border-dark-border/40 text-center">
           <p className="text-3xl md:text-4xl font-bold text-heading mb-2">
-            {project.metrics?.primary || "N/A"}
+            {project.metrics?.primary || t("features.projectDetails.sidebar.na")}
           </p>
-          <P className="text-sm text-muted font-medium">Primary Impact</P>
+          <P className="text-sm text-muted font-medium">
+            {t("features.projectDetails.sidebar.primaryImpact")}
+          </P>
         </div>
 
         <div className="p-4 surface-card rounded-xl border border-light-border/55 dark:border-dark-border/40 text-center">
           <p className="text-3xl sm:text-4xl font-bold text-heading mb-2">
-            {project.metrics?.secondary || "N/A"}
+            {project.metrics?.secondary || t("features.projectDetails.sidebar.na")}
           </p>
-          <P className="text-sm text-muted font-medium">Secondary Impact</P>
+          <P className="text-sm text-muted font-medium">
+            {t("features.projectDetails.sidebar.secondaryImpact")}
+          </P>
         </div>
       </div>
     </div>
 
     <div
-      className={`${SURFACE_CARD_INTERACTIVE} p-5 sm:p-6 border border-light-border/55 dark:border-dark-border/40 rounded-xl`}
+      className={`${SURFACE_CARD_BASE} p-5 sm:p-6 border border-light-border/55 dark:border-dark-border/40 rounded-xl`}
     >
       <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
         <div className={`w-8 h-8 sm:w-10 sm:h-10 ${SURFACE_CARD_ICON}`}>
@@ -141,7 +163,7 @@ export const ProjectDetailsSidebar: React.FC<ProjectDetailsSidebarProps> = ({
           </svg>
         </div>
         <h2 className={`${TEXT_DETAIL_SECTION_TITLE} text-lg sm:text-xl`}>
-          Tech Stack
+          {t("features.projectDetails.sidebar.techStack")}
         </h2>
       </div>
 
@@ -156,5 +178,6 @@ export const ProjectDetailsSidebar: React.FC<ProjectDetailsSidebarProps> = ({
         ))}
       </div>
     </div>
-  </div>
-);
+    </div>
+  );
+};

@@ -4,7 +4,7 @@ import { aboutPageContent } from "data/aboutPage";
 import { skillCapabilities, type SkillCapabilityId } from "data/skills";
 import { motion } from "motion/react";
 import React, { useMemo } from "react";
-import { SURFACE_CARD_INTERACTIVE } from "../../../tailwind/styles/surfaceCard";
+import { SURFACE_CARD_BASE } from "../../../tailwind/styles/surfaceCard";
 import SectionHeader from "../../elements/section-header";
 
 const capabilityColors: Record<
@@ -88,6 +88,7 @@ const SkillsBreakdown: React.FC = () => {
             ),
             iconAnimation: false,
           }}
+          title={aboutPageContent.skills.title}
           description={aboutPageContent.skills.description}
           highlightText={aboutPageContent.skills.highlightText}
         />
@@ -95,7 +96,7 @@ const SkillsBreakdown: React.FC = () => {
         <motion.div
           className="mt-6 sm:mt-8 grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4"
           variants={containerVariants}
-          initial="hidden"
+          initial={false}
           whileInView="visible"
           viewport={SECTION_VIEWPORT}
         >
@@ -106,7 +107,7 @@ const SkillsBreakdown: React.FC = () => {
               <motion.div
                 key={capability.id}
                 variants={cardVariants}
-                className={`${SURFACE_CARD_INTERACTIVE} p-4 sm:p-5 lg:p-6 ${colors.border}`}
+                className={`${SURFACE_CARD_BASE} p-4 sm:p-5 lg:p-6 ${colors.border}`}
               >
                 <h3
                   className={`text-base sm:text-lg font-bold mb-2 ${colors.accent}`}

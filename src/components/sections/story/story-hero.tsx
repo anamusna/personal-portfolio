@@ -1,7 +1,8 @@
 import HeroHeader from "components/elements/hero-header";
 import { storyPageContent } from "data/storyPage";
-import ansuImage from "images/ansu5-bg.png";
+import ansuImage from "images/ansu5-bg.webp";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   PAGE_HEADER_HERO_TITLE,
   PAGE_HEADER_SECTION_EYEBROW,
@@ -27,6 +28,7 @@ const storyHeroIcon = (
 );
 
 const StoryHero: React.FC = () => {
+  const { t } = useTranslation();
   const { eyebrow, title, subtitle, orientationLines, chapterNote } =
     storyPageContent;
 
@@ -49,7 +51,7 @@ const StoryHero: React.FC = () => {
         >
           <img
             src={ansuImage}
-            alt="Ansumana Darboe"
+            alt={t("a11y.story.heroImageAlt")}
             className="h-full w-full contain"
           />
         </div>

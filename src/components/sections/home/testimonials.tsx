@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import {
   SECTION_RISE_VARIANTS,
   SECTION_VARIANTS,
@@ -6,10 +7,11 @@ import {
 import { testimonials } from "data/testimonials";
 import { motion } from "motion/react";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { testimonialImages } from "../../../data/testimonialImages";
 import daphneImg from "../../../images/testimony/daphne.jpeg";
 import Carousel from "../../../tailwind/components/layout/Carousel";
-import { SURFACE_CARD_INTERACTIVE } from "../../../tailwind/styles/surfaceCard";
+import { SURFACE_CARD_BASE } from "../../../tailwind/styles/surfaceCard";
 import AnimatedCTAButton from "../../elements/animated-cta-button";
 import SectionHeader from "../../elements/section-header";
 
@@ -47,6 +49,7 @@ const TestimonialCard: React.FC<{
   isActive: boolean;
   activeIndex: number;
 }> = ({ testimonial, onExpand, isActive, activeIndex }) => {
+  const { t } = useTranslation("ansumana");
   const [isExpanded, setIsExpanded] = React.useState(false);
   const testimonialRef = React.useRef<HTMLDivElement>(null);
   const [isOverflowing, setIsOverflowing] = React.useState(false);
@@ -79,7 +82,7 @@ const TestimonialCard: React.FC<{
   return (
     <div className="flex flex-col items-center justify-center mx-auto">
       <motion.div
-        className={`${SURFACE_CARD_INTERACTIVE} dark:bg-dark-background rounded-2xl p-4 sm:p-6 md:p-8 border-indigo-200/35 dark:border-indigo-500/25`}
+        className={`${SURFACE_CARD_BASE} dark:bg-dark-background rounded-2xl p-4 sm:p-6 md:p-8`}
         transition={springTransition}
       >
         <div className="relative mb-4 sm:mb-6">
@@ -90,6 +93,10 @@ const TestimonialCard: React.FC<{
                 : daphneImg
             }
             alt={testimonial.name}
+            width={96}
+            height={96}
+            loading="lazy"
+            decoding="async"
             className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mx-auto rounded-full object-cover border-2 border-light-border/55 dark:border-dark-border/40"
           />
         </div>
@@ -97,8 +104,10 @@ const TestimonialCard: React.FC<{
         <div className="relative mb-4 sm:mb-6 text-center">
           <div
             ref={testimonialRef}
-            className={`text-base sm:text-lg relative z-10 text-body italic leading-relaxed
-              ${!isExpanded ? "line-clamp-3" : ""}`}
+            className={clsx(
+              "text-base sm:text-lg relative z-10 text-body italic leading-relaxed",
+              !isExpanded && "line-clamp-3",
+            )}
           >
             <svg
               className={`${
@@ -110,7 +119,7 @@ const TestimonialCard: React.FC<{
             >
               <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
             </svg>
-            <p className="text-start md:text-center md:px-6 px-3 group-hover:text-heading transition-colors duration-300">
+            <p className="text-start md:text-center md:px-6 px-3">
               {testimonial.testimony}
             </p>
           </div>
@@ -122,21 +131,22 @@ const TestimonialCard: React.FC<{
                        focus:outline-none transition-colors surface-card rounded-lg border border-light-border/55 dark:border-dark-border/40
                        font-medium text-sm"
             >
-              {isExpanded ? "Read Less" : "Read More"}
+              {isExpanded
+                ? t("common.actions.readLess")
+                : t("common.actions.readMore")}
             </button>
           )}
         </div>
 
         <div className="flex flex-col items-center space-y-1">
-          <cite
-            className="not-italic font-bold text-base sm:text-lg text-heading
-                         group-hover:text-primary-light dark:group-hover:text-primary-dark
-                         transition-colors duration-300"
-          >
+          <cite className="not-italic font-bold text-base sm:text-lg text-heading">
             {testimonial.name}
           </cite>
           <div className="text-sm sm:text-base text-body font-medium">
-            {testimonial.position} at {testimonial.company}
+            {t("pages.home.testimonials.positionAtCompany", {
+              position: testimonial.position,
+              company: testimonial.company,
+            })}
           </div>
         </div>
       </motion.div>
@@ -145,6 +155,7 @@ const TestimonialCard: React.FC<{
 };
 
 const Testimonials: React.FC = () => {
+  const { t } = useTranslation("ansumana");
   const [isAnyExpanded, setIsAnyExpanded] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState(0);
 
@@ -177,14 +188,13 @@ const Testimonials: React.FC = () => {
       <div className="container relative z-10 mx-auto max-w-7xl px-3 sm:px-4 lg:px-6">
         <motion.div
           variants={sectionVariants}
-          initial="hidden"
+          initial={false}
           whileInView="visible"
           viewport={SECTION_VIEWPORT}
         >
           <SectionHeader
             badge={{
-              text: "Words From Teammates",
-              // text: "Testimonials",
+              text: t("pages.home.testimonials.badge"),
               icon: (
                 <svg
                   className="w-4 h-4 mr-2 animate-spin"
@@ -203,15 +213,15 @@ const Testimonials: React.FC = () => {
               ),
               iconAnimation: false,
             }}
-            // title="What people I’ve worked with say"
-            description="Real feedback from teams and collaborators I’ve built with."
+            title={t("pages.home.testimonials.title")}
+            description={t("pages.home.testimonials.description")}
           />
         </motion.div>
 
         <motion.div
           className="mb-8 sm:mb-12"
           variants={carouselVariants}
-          initial="hidden"
+          initial={false}
           whileInView="visible"
           viewport={SECTION_VIEWPORT}
         >
@@ -231,13 +241,13 @@ const Testimonials: React.FC = () => {
 
         <motion.div
           variants={SECTION_VARIANTS}
-          initial="hidden"
+          initial={false}
           whileInView="visible"
           viewport={SECTION_VIEWPORT}
           className="mt-8 sm:mt-12 text-center"
         >
           <AnimatedCTAButton
-            text="View All Testimonials"
+            text={t("pages.home.testimonials.viewAll")}
             href="/testimonials"
             colorScheme="indigo-violet"
             size="sm"

@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import FormPrivacyCaption from "components/elements/form-privacy-caption";
 import { SURFACE_CARD_PANEL } from "tailwind/styles/surfaceCard";
 import { TEXT_CARD_TITLE } from "tailwind/styles/textTokens";
@@ -16,20 +17,23 @@ export const TestimonialFeedbackForm: React.FC<TestimonialFeedbackFormProps> = (
   onChange,
   onClose,
   onSubmit,
-}) => (
-  <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+}) => {
+  const { t } = useTranslation();
+
+  return (
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
     <div className={`${SURFACE_CARD_PANEL} rounded-2xl p-6 sm:p-8 max-w-lg w-full border border-light-border/55 dark:border-dark-border/40 max-h-[90vh] overflow-y-auto`}>
       <div>
         <div className="flex justify-between items-center mb-4 sm:mb-6">
           <h3 className={`${TEXT_CARD_TITLE} text-xl sm:text-2xl`}>
-            Share Your Feedback
+            {t("pages.testimonials.feedbackForm.title")}
           </h3>
           <button
             type="button"
             onClick={onClose}
             className="text-muted hover:text-heading transition-colors p-2 min-h-[44px] min-w-[44px] rounded-lg surface-card border border-light-border/55 dark:border-dark-border/40"
           >
-            <span className="sr-only">Close</span>
+            <span className="sr-only">{t("common.actions.close")}</span>
             <svg
               className="w-6 h-6"
               fill="none"
@@ -58,7 +62,8 @@ export const TestimonialFeedbackForm: React.FC<TestimonialFeedbackFormProps> = (
           <input type="hidden" name="form-name" value="feedback-form" />
           <p hidden>
             <label>
-              Don't fill this out: <input name="bot-field" />
+              {`${t("pages.testimonials.feedbackForm.honeypotLabel")} `}
+              <input name="bot-field" />
             </label>
           </p>
 
@@ -76,7 +81,7 @@ export const TestimonialFeedbackForm: React.FC<TestimonialFeedbackFormProps> = (
               htmlFor="anonymous"
               className="ml-3 text-body text-base font-medium"
             >
-              Submit anonymously
+              {t("pages.testimonials.feedbackForm.submitAnonymously")}
             </label>
           </div>
 
@@ -85,7 +90,7 @@ export const TestimonialFeedbackForm: React.FC<TestimonialFeedbackFormProps> = (
               <input
                 type="text"
                 name="name"
-                placeholder="Your Name"
+                placeholder={t("pages.testimonials.feedbackForm.placeholders.name")}
                 value={feedback.name}
                 onChange={(event) =>
                   onChange({ ...feedback, name: event.target.value })
@@ -95,7 +100,7 @@ export const TestimonialFeedbackForm: React.FC<TestimonialFeedbackFormProps> = (
               <input
                 type="email"
                 name="email"
-                placeholder="Your Email"
+                placeholder={t("pages.testimonials.feedbackForm.placeholders.email")}
                 value={feedback.email}
                 onChange={(event) =>
                   onChange({ ...feedback, email: event.target.value })
@@ -105,7 +110,7 @@ export const TestimonialFeedbackForm: React.FC<TestimonialFeedbackFormProps> = (
               <input
                 type="text"
                 name="role"
-                placeholder="Your Role"
+                placeholder={t("pages.testimonials.feedbackForm.placeholders.role")}
                 value={feedback.role}
                 onChange={(event) =>
                   onChange({ ...feedback, role: event.target.value })
@@ -117,7 +122,7 @@ export const TestimonialFeedbackForm: React.FC<TestimonialFeedbackFormProps> = (
 
           <textarea
             name="message"
-            placeholder="Your Message"
+            placeholder={t("pages.testimonials.feedbackForm.placeholders.message")}
             value={feedback.message}
             onChange={(event) =>
               onChange({ ...feedback, message: event.target.value })
@@ -134,17 +139,18 @@ export const TestimonialFeedbackForm: React.FC<TestimonialFeedbackFormProps> = (
               onClick={onClose}
               className="px-5 py-3 rounded-lg surface-card border border-light-border/55 dark:border-dark-border/40 text-body font-medium hover:text-heading transition-colors min-h-[48px]"
             >
-              Cancel
+              {t("common.actions.cancel")}
             </button>
             <button
               type="submit"
               className="px-5 py-3 rounded-lg bg-indigo-600 dark:bg-indigo-500 text-white hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors font-medium min-h-[48px]"
             >
-              Submit
+              {t("common.actions.submit")}
             </button>
           </div>
         </form>
       </div>
     </div>
-  </div>
-);
+    </div>
+  );
+};

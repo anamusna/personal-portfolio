@@ -21,9 +21,8 @@ export const SURFACE_CARD_HEADER =
 export const SURFACE_CARD_STICKY =
   "sticky top-0 z-20 surface-card border-b border-light-border/60 dark:border-dark-border/40";
 
-/** Main content panels (replaces translucent blur cards) */
 export const SURFACE_CARD_PANEL =
-  "surface-card surface-card--interactive relative overflow-hidden transition-all duration-500 border border-light-border/55 dark:border-dark-border/40";
+  "surface-card relative overflow-hidden transition-all duration-500 border border-light-border/55 dark:border-dark-border/40";
 
 export const SURFACE_CARD_ICON =
   "relative bg-white dark:bg-dark-surface rounded-lg border border-light-border/50 dark:border-dark-border/40 flex items-center justify-center shadow-md";

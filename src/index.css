@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,800,800i,900i&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+/* Inter is loaded via a <link> in public/index.html, not @import, so it
+   doesn't block on CSS parsing. Didact Gothic and Nunito Sans were never
+   reached in the font-family stack below and have been dropped. */
 /* background-color: rgb(242, 242, 242); */
 
 :root {
@@ -40,6 +40,74 @@
   --glass-shadow-strong: 0 0 18px 12px rgba(2, 6, 23, 0.5);
 }
 
+/* Header chrome sizing.
+   These have to be CSS, not JavaScript. The prerendered HTML is produced by
+   react-snap in a 480x850 viewport, so any header markup derived from a
+   measured viewport is baked in at phone size. The client's first render
+   measures something else, React sees a mismatch on the very first element
+   it hydrates and throws away the whole prerendered tree (error #418, then
+   #423) on every page load. Driving the sizes from media queries keeps the
+   markup viewport independent: hydration matches by construction, and the
+   header is already the right size at first paint instead of resizing once
+   JavaScript runs. Breakpoints mirror `screens` in tailwind.config.js. */
+:root {
+  --header-height: 56px;
+  --header-logo-size: 1.75rem;
+  --header-padding-x: 0.75rem;
+}
+
+@media (min-width: 480px) {
+  :root {
+    --header-height: 60px;
+    --header-logo-size: 2rem;
+    --header-padding-x: 1rem;
+  }
+}
+
+/* Large phones held sideways: shorter bar, smaller mark. */
+@media (min-width: 640px) and (max-width: 767px) and (orientation: landscape) {
+  :root {
+    --header-height: 52px;
+    --header-logo-size: 1.75rem;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --header-height: 68px;
+    --header-logo-size: 2.25rem;
+    --header-padding-x: 1.5rem;
+  }
+}
+
+/* Tablets held sideways: shorter bar, mark and padding unchanged. */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+  :root {
+    --header-height: 50px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-height: 72px;
+    --header-logo-size: 2.5rem;
+    --header-padding-x: 1rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --header-height: 78px;
+    --header-logo-size: 2.75rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  :root {
+    --header-height: 80px;
+  }
+}
+
 @layer utilities {
   .text-body {
     color: var(--text-body);
@@ -58,8 +126,7 @@
   body {
     @apply font-sans transition-colors duration-300 ease-in-out text-body bg-light-background dark:bg-dark-background;
     font-family:
-      "Inter", "Didact Gothic", "Nunito Sans", "Inter-Regular", "Inter",
-      sans-serif, ui-sans-serif, system-ui, "Apple Color Emoji",
+      "Inter", sans-serif, ui-sans-serif, system-ui, "Apple Color Emoji",
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     overflow-x: hidden;
     color: var(--text-body);
@@ -68,7 +135,7 @@
   h1,
   h2,
   h3 {
-    font-weight: "bolder";
+    font-weight: bolder;
   }
 }
 
@@ -257,5 +324,19 @@ html {
   .modal-scroll {
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Respect the OS-level motion preference for anything Framer Motion's
+   MotionConfig doesn't cover: Tailwind's animate-* utilities and plain
+   CSS transitions used throughout the site. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

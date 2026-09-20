@@ -17,7 +17,7 @@ const Story: React.FC = () => {
         id="story-chapters"
         className="relative scroll-mt-24 mt-10 sm:mt-12 md:mt-14 pt-8 sm:pt-10 border-t border-light-border/55 dark:border-dark-border/40"
         variants={SECTION_VARIANTS}
-        initial="hidden"
+        initial={false}
         whileInView="visible"
         viewport={SECTION_VIEWPORT}
       >

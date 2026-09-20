@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { P } from "tailwind/components/elements/Typography";
 import { SURFACE_CARD_ICON } from "tailwind/styles/surfaceCard";
 import { TEXT_DETAIL_SECTION_TITLE } from "tailwind/styles/textTokens";
@@ -6,8 +7,11 @@ import { ProjectSectionProps } from "../../types/project-section-props";
 
 export const ProjectImpactResultsSection: React.FC<ProjectSectionProps> = ({
   project,
-}) => (
-  <section className="relative">
+}) => {
+  const { t } = useTranslation();
+
+  return (
+    <section className="relative">
     <div className="flex items-center gap-2 mb-3 sm:mb-4">
       <div className={`w-7 h-7 sm:w-8 sm:h-8 ${SURFACE_CARD_ICON}`}>
         <svg
@@ -25,10 +29,12 @@ export const ProjectImpactResultsSection: React.FC<ProjectSectionProps> = ({
           />
         </svg>
       </div>
-      <h2 className={TEXT_DETAIL_SECTION_TITLE}>Impact & Results</h2>
+      <h2 className={TEXT_DETAIL_SECTION_TITLE}>
+        {t("features.projectDetails.sections.impact.title")}
+      </h2>
     </div>
 
-    <div className="surface-card surface-card--interactive border border-light-border/55 dark:border-dark-border/40 border-l-2 border-l-green-500/40 dark:border-l-green-400/40 rounded-lg p-3 sm:p-4 space-y-3 sm:space-y-4">
+    <div className="surface-card border border-light-border/55 dark:border-dark-border/40 rounded-lg p-3 sm:p-4 space-y-3 sm:space-y-4">
       <P className="text-sm sm:text-base text-body leading-relaxed">
         {project.outcome.impact}
       </P>
@@ -48,5 +54,6 @@ export const ProjectImpactResultsSection: React.FC<ProjectSectionProps> = ({
         ))}
       </ul>
     </div>
-  </section>
-);
+    </section>
+  );
+};

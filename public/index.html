@@ -9,7 +9,7 @@
     <!-- Default meta: keep in sync with src/data/page-seo.ts (home) -->
     <meta
       name="description"
-      content="Senior Software Engineer in Berlin. 15+ years in technology, 8+ years shipping production software across healthcare, civic platforms, and product engineering."
+      content="Senior Software Engineer in Berlin. Eight years shipping production software across healthcare, civic platforms, and product engineering."
     />
     <meta name="author" content="Ansumana Darboe" />
     <meta name="robots" content="index, follow" />
@@ -41,7 +41,7 @@
     />
     <meta
       property="og:description"
-      content="Senior Software Engineer in Berlin. 15+ years in technology, 8+ years shipping production software across healthcare, civic platforms, and product engineering."
+      content="Senior Software Engineer in Berlin. Eight years shipping production software across healthcare, civic platforms, and product engineering."
     />
     <meta
       property="og:image"
@@ -68,7 +68,7 @@
     />
     <meta
       property="twitter:description"
-      content="Senior Software Engineer in Berlin. 15+ years in technology, 8+ years shipping production software across healthcare, civic platforms, and product engineering."
+      content="Senior Software Engineer in Berlin. Eight years shipping production software across healthcare, civic platforms, and product engineering."
     />
     <meta
       property="twitter:image"
@@ -84,6 +84,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    />
 
     <script type="application/ld+json">
       {
@@ -91,8 +95,8 @@
         "@type": "Person",
         "name": "Ansumana Darboe",
         "alternateName": "Ansu",
-        "jobTitle": "Senior Software Engineer",
-        "description": "Senior Software Engineer in Berlin. 15+ years in technology, 8+ years shipping production software across healthcare, civic platforms, and product engineering.",
+        "jobTitle": "Senior Software Engineer · Frontend Lead",
+        "description": "Senior Software Engineer in Berlin. Eight years shipping production software across healthcare, civic platforms, and product engineering.",
         "url": "https://ansumana-darboe.netlify.app/",
         "image": "https://ansumana-darboe.netlify.app/images/ansu.jpg",
         "email": "thisisansumana@gmail.com",
@@ -143,5 +147,14 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <div id="peek-portal" class="relative z-[999]"></div>
+
+    <!-- Static form so Netlify's build-time HTML parser detects it; the real form is rendered by React -->
+    <form name="feedback-form" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="role" />
+      <textarea name="message"></textarea>
+      <input name="bot-field" />
+    </form>
   </body>
 </html>

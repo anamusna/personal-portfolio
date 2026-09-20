@@ -1,7 +1,8 @@
 import { SECTION_VIEWPORT } from "constants/section-motion";
 import { ABOUT_HERO_STYLES } from "data/aboutHeroData";
 import { motion } from "motion/react";
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { mapCareerJourney } from "utils/map-career-journey";
 import SectionHeader from "../../elements/section-header";
 import { CareerTimelineEntry } from "./career-timeline-entry";
@@ -36,10 +37,11 @@ interface CareerTimelineProps {
 const CareerTimeline: React.FC<CareerTimelineProps> = ({
   hideHeader = false,
 }) => {
+  const { t } = useTranslation("ansumana");
   const [openAchievements, setOpenAchievements] = useState<Set<string>>(
     new Set(),
   );
-  const careerJourney = useMemo(() => mapCareerJourney(), []);
+  const careerJourney = mapCareerJourney();
 
   const toggleAchievements = (key: string) => {
     setOpenAchievements((prev) => {
@@ -65,7 +67,7 @@ const CareerTimeline: React.FC<CareerTimelineProps> = ({
         {!hideHeader && (
           <SectionHeader
             badge={{
-              text: "My Career Journey",
+              text: t("pages.career.timeline.badge"),
               icon: (
                 <svg
                   className="w-5 h-5 mr-2"
@@ -83,14 +85,15 @@ const CareerTimeline: React.FC<CareerTimelineProps> = ({
               ),
               iconAnimation: false,
             }}
-            description="From managing networks to building full-stack apps, I've spent 15+ years turning ideas into tools that actually help people. I focus on speed, reliability, and scaling systems that grow with real-world use."
-            highlightText="turning ideas into tools that actually help people"
+            title={t("pages.career.timeline.title")}
+            description={t("pages.career.timeline.description")}
+            highlightText={t("pages.career.timeline.highlightText")}
           />
         )}
 
         <motion.div
           variants={containerVariants}
-          initial="hidden"
+          initial={false}
           whileInView="visible"
           viewport={SECTION_VIEWPORT}
           className="space-y-3 sm:space-y-4 lg:space-y-5 xl:space-y-6"

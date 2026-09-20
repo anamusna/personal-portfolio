@@ -13,6 +13,7 @@ import {
   SPOTLIGHT_CATEGORY_ORDER,
   SPOTLIGHT_ENTRIES,
 } from "../data/about/spotlightData";
+import i18n, { DEFAULT_LANGUAGE } from "../i18n";
 
 export interface SpotlightResult {
   id: string;
@@ -52,7 +53,8 @@ const CHAT_DELAY = 800;
 
 const normalize = (value: string) => value.trim().toLowerCase();
 
-const buildDefaultResults = (): SpotlightResult[] => {
+const buildDefaultResults = (language: string): SpotlightResult[] => {
+  void language;
   const seedIds = [
     "journey-summary",
     "intro-overview",
@@ -72,7 +74,7 @@ const buildDefaultResults = (): SpotlightResult[] => {
   const byCategory: SpotlightEntry[] = SPOTLIGHT_CATEGORY_ORDER.flatMap(
     (cat) => {
       const entries = SPOTLIGHT_ENTRIES.filter((e) => e.category === cat);
-      // Prefer entries that look like overviews/summaries when available
+
       const prioritized = entries.sort((a, b) => {
         const aw = Number(
           /overview|summary|what|how/i.test(a.title) ||
@@ -107,8 +109,6 @@ const buildDefaultResults = (): SpotlightResult[] => {
     response: entry.response,
   }));
 };
-
-const DEFAULT_RESULTS = buildDefaultResults();
 
 const buildResult = (entry: SpotlightEntry): SpotlightResult => ({
   id: entry.id,
@@ -149,13 +149,13 @@ const matchScore = (query: string, entry: SpotlightEntry) => {
 const buildAssistantResponse = (results: SpotlightResult[]): string => {
   if (!results.length) {
     return [
-      "I couldn’t find an exact match. Here’s a quick snapshot:",
+      i18n.t("spotlight.chat.fallback.title"),
       "",
-      "- Senior Full-Stack Engineer from The Gambia, now in Berlin, modernizing healthcare software at Frey ADV.",
-      "- Core stack: React, TypeScript, Node.js, Next.js, AWS, Docker, Kubernetes, MongoDB.",
-      "- Projects include Quincy, ZULA, innn.it, Propstack, and Buildy.",
+      `- ${i18n.t("spotlight.chat.fallback.item1")}`,
+      `- ${i18n.t("spotlight.chat.fallback.item2")}`,
+      `- ${i18n.t("spotlight.chat.fallback.item3")}`,
       "",
-      "Try asking about a specific project, skill, or milestone for more detail.",
+      i18n.t("spotlight.chat.fallback.tryAsking"),
     ].join("\n");
   }
 
@@ -168,8 +168,24 @@ const buildAssistantResponse = (results: SpotlightResult[]): string => {
 export const SpotlightSearchProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
+  const [currentLanguage, setCurrentLanguage] = useState(DEFAULT_LANGUAGE);
+
+  useEffect(() => {
+    const handleLanguageChanged = (lng: string) => setCurrentLanguage(lng);
+    setCurrentLanguage(i18n.language);
+    i18n.on("languageChanged", handleLanguageChanged);
+    return () => {
+      i18n.off("languageChanged", handleLanguageChanged);
+    };
+  }, []);
+
+  const defaultResults = useMemo(
+    () => buildDefaultResults(currentLanguage),
+    [currentLanguage],
+  );
+
   const [searchInput, setSearchInput] = useState("");
-  const [results, setResults] = useState<SpotlightResult[]>(DEFAULT_RESULTS);
+  const [results, setResults] = useState<SpotlightResult[]>(defaultResults);
   const [messages, setMessages] = useState<
     Array<{ role: "user" | "assistant"; content: string }>
   >([]);
@@ -196,9 +212,9 @@ export const SpotlightSearchProvider: React.FC<{
     setIsSearching(false);
     setMessages([]);
     setSearchInput("");
-    setResults(DEFAULT_RESULTS);
+    setResults(defaultResults);
     setSelectedIndex(0);
-  }, []);
+  }, [defaultResults]);
 
   const closeSpotlight = useCallback(() => {
     setShowModal(false);
@@ -208,33 +224,36 @@ export const SpotlightSearchProvider: React.FC<{
     resetChatTimer();
   }, [resetChatTimer]);
 
-  const performSearch = useCallback((query: string) => {
-    const trimmed = query.trim();
-    if (!trimmed) {
-      setResults(DEFAULT_RESULTS);
+  const performSearch = useCallback(
+    (query: string) => {
+      const trimmed = query.trim();
+      if (!trimmed) {
+        setResults(defaultResults);
+        setSelectedIndex(0);
+        return;
+      }
+
+      const ranked = SPOTLIGHT_ENTRIES.map((entry) => ({
+        entry,
+        score: matchScore(trimmed, entry),
+      }))
+        .filter(({ score }) => score >= SCORE_THRESHOLD)
+        .sort((a, b) => {
+          if (b.score === a.score) {
+            return (
+              SPOTLIGHT_CATEGORY_ORDER.indexOf(a.entry.category) -
+              SPOTLIGHT_CATEGORY_ORDER.indexOf(b.entry.category)
+            );
+          }
+          return b.score - a.score;
+        })
+        .map(({ entry }) => buildResult(entry));
+
+      setResults(ranked);
       setSelectedIndex(0);
-      return;
-    }
-
-    const ranked = SPOTLIGHT_ENTRIES.map((entry) => ({
-      entry,
-      score: matchScore(trimmed, entry),
-    }))
-      .filter(({ score }) => score >= SCORE_THRESHOLD)
-      .sort((a, b) => {
-        if (b.score === a.score) {
-          return (
-            SPOTLIGHT_CATEGORY_ORDER.indexOf(a.entry.category) -
-            SPOTLIGHT_CATEGORY_ORDER.indexOf(b.entry.category)
-          );
-        }
-        return b.score - a.score;
-      })
-      .map(({ entry }) => buildResult(entry));
-
-    setResults(ranked);
-    setSelectedIndex(0);
-  }, []);
+    },
+    [defaultResults],
+  );
 
   const updateSearchInput = useCallback(
     (value: string) => {
@@ -255,9 +274,9 @@ export const SpotlightSearchProvider: React.FC<{
       debounceTimer.current = null;
     }
     setSearchInput("");
-    setResults(DEFAULT_RESULTS);
+    setResults(defaultResults);
     setSelectedIndex(0);
-  }, []);
+  }, [defaultResults]);
 
   const appendAssistantResponse = useCallback(
     (prompt: string, matchingResults: SpotlightResult[]) => {
@@ -281,7 +300,7 @@ export const SpotlightSearchProvider: React.FC<{
     (prompt: string, entry?: SpotlightResult) => {
       setIsChatMode(true);
       setSearchInput("");
-      setResults(DEFAULT_RESULTS);
+      setResults(defaultResults);
       setSelectedIndex(0);
 
       setMessages((prev) => [...prev, { role: "user", content: prompt }]);
@@ -300,7 +319,7 @@ export const SpotlightSearchProvider: React.FC<{
         appendAssistantResponse(prompt, ranked);
       }
     },
-    [appendAssistantResponse],
+    [appendAssistantResponse, defaultResults],
   );
 
   const submitCurrentQuery = useCallback(() => {
@@ -366,9 +385,16 @@ export const SpotlightSearchProvider: React.FC<{
     resetChatTimer();
     setMessages([]);
     setIsSearching(false);
-    setResults(DEFAULT_RESULTS);
+    setResults(defaultResults);
     setSelectedIndex(0);
-  }, [resetChatTimer]);
+  }, [defaultResults, resetChatTimer]);
+
+  useEffect(() => {
+    if (!showModal && !showSpotlight) {
+      setResults(defaultResults);
+      setSelectedIndex(0);
+    }
+  }, [defaultResults, showModal, showSpotlight]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -381,7 +407,7 @@ export const SpotlightSearchProvider: React.FC<{
           setIsChatMode(false);
           setMessages([]);
           setIsSearching(false);
-          setResults(DEFAULT_RESULTS);
+          setResults(defaultResults);
           setSearchInput("");
           setSelectedIndex(0);
         } else {
@@ -405,6 +431,7 @@ export const SpotlightSearchProvider: React.FC<{
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [
     closeSpotlight,
+    defaultResults,
     isChatMode,
     messages.length,
     moveSelection,

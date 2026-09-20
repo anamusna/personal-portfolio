@@ -3,6 +3,7 @@ import type { Variants } from "motion/react";
 import { motion } from "motion/react";
 import Contact from "pages/Contact";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { FOOTER_NAV_LINKS } from "../../data/footer-navigation";
 import {
@@ -12,6 +13,7 @@ import {
   CHROME_ORB_WARM_B,
 } from "../../tailwind/styles/chromeBar";
 import SocialLinks from "../elements/social-links";
+import LanguageToggle from "./language-toggle";
 
 const footerVariants: Variants = {
   hidden: { opacity: 1, y: 0 },
@@ -37,6 +39,7 @@ const footerItemVariants: Variants = {
 };
 
 const Footer: React.FC = () => {
+  const { t } = useTranslation();
   const [currentYear] = useState(new Date().getFullYear());
 
   return (
@@ -45,7 +48,7 @@ const Footer: React.FC = () => {
         id="contact"
         className="relative scroll-mt-24 bg-light-background dark:bg-dark-background"
         variants={SECTION_VARIANTS}
-        initial="hidden"
+        initial={false}
         whileInView="visible"
         viewport={SECTION_VIEWPORT}
       >
@@ -88,40 +91,38 @@ const Footer: React.FC = () => {
                 •
               </span>
               <span className="font-medium text-light-text/70 dark:text-dark-text/70">
-                All rights reserved.
+                {t("footer.allRightsReserved")}
               </span>
-              {/*    <span className="text-light-text/30 dark:text-dark-text/30">
-                •
-              </span>
-              <Link
-                to="/privacy"
-                className="font-medium text-light-text/70 dark:text-dark-text/70 hover:text-royal-primary dark:hover:text-royal-primary transition-colors"
-              >
-                Privacy
-              </Link> */}
             </motion.div>
 
             {/* Footer navigation */}
             <motion.nav
               variants={footerItemVariants}
-              aria-label="Footer navigation"
+              aria-label={t("a11y.footer.navigation")}
               className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 order-1 sm:order-none"
             >
               {FOOTER_NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}
                   to={link.href}
-                  className="text-sm font-medium text-light-text/75 dark:text-dark-text/75 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-royal-primary/50 px-1 py-0.5"
+                  className="inline-flex items-center min-h-[44px] text-sm font-medium text-light-text/75 dark:text-dark-text/75 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-royal-primary/50 px-1 py-0.5"
                 >
-                  {link.label}
+                  {link.labelKey ? t(link.labelKey) : link.label}
                 </Link>
               ))}
+              {/* <a
+                href="/ansumana-darboe-cv.pdf"
+                download
+                className="text-sm font-medium text-light-text/75 dark:text-dark-text/75 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-royal-primary/50 px-1 py-0.5"
+              >
+                {t("content.contactPage.cvDownloadLabel")}
+              </a> */}
             </motion.nav>
 
-            {/* Social Links - Center */}
+            {/* Social Links + Language Toggle */}
             <motion.div
               variants={footerItemVariants}
-              className="flex items-center order-2 space-y-2 sm:space-y-0"
+              className="flex items-center gap-3 order-2 space-y-2 sm:space-y-0"
             >
               <SocialLinks
                 variant="footer"
@@ -129,6 +130,11 @@ const Footer: React.FC = () => {
                 layout="horizontal"
                 showLabels={false}
               />
+              <span
+                className="h-5 w-px bg-light-border/50 dark:bg-dark-border/40"
+                aria-hidden="true"
+              />
+              <LanguageToggle variant="footer" />
             </motion.div>
           </div>
         </div>

@@ -1,34 +1,27 @@
 import React from "react";
-import { P } from "tailwind/components/elements/Typography";
+import { useTranslation } from "react-i18next";
 import { SURFACE_CARD_ICON } from "tailwind/styles/surfaceCard";
 import { TEXT_CARD_TITLE, TEXT_DETAIL_SECTION_TITLE } from "tailwind/styles/textTokens";
+import { DetailList } from "../detail-list";
 import { ProjectSectionProps } from "../../types/project-section-props";
 
-const ChallengeList: React.FC<{
-  title: string;
-  items: string[];
-  accentClass: string;
-}> = ({ title, items, accentClass }) => (
+const ChallengeList: React.FC<{ title: string; items: string[] }> = ({
+  title,
+  items,
+}) => (
   <div>
     <h3 className={`${TEXT_CARD_TITLE} mb-3 sm:mb-4`}>{title}</h3>
-    <div className="space-y-3">
-      {items.map((challenge) => (
-        <div
-          key={challenge}
-          className={`surface-card surface-card--interactive border border-light-border/55 dark:border-dark-border/40 border-l-2 ${accentClass} rounded-lg p-3 sm:p-4`}
-        >
-          <P className="text-sm sm:text-base text-body leading-relaxed">
-            {challenge}
-          </P>
-        </div>
-      ))}
-    </div>
+    <DetailList
+      items={items.map((challenge) => ({ key: challenge, content: challenge }))}
+    />
   </div>
 );
 
 export const ProjectTechnicalChallengesSection: React.FC<ProjectSectionProps> = ({
   project,
 }) => {
+  const { t } = useTranslation();
+
   if (
     !project.technicalChallengesOvercome?.length &&
     !project.technicalChallenges?.length
@@ -55,23 +48,27 @@ export const ProjectTechnicalChallengesSection: React.FC<ProjectSectionProps> = 
             />
           </svg>
         </div>
-        <h2 className={TEXT_DETAIL_SECTION_TITLE}>Technical Challenges</h2>
+        <h2 className={TEXT_DETAIL_SECTION_TITLE}>
+          {t("features.projectDetails.sections.technicalChallenges.title")}
+        </h2>
       </div>
 
       <div className="space-y-6 sm:space-y-8">
         {project.technicalChallengesOvercome && (
           <ChallengeList
-            title="Challenges I Overcame"
+            title={t(
+              "features.projectDetails.sections.technicalChallenges.overcameTitle",
+            )}
             items={project.technicalChallengesOvercome}
-            accentClass="border-l-rose-500/40 dark:border-l-rose-400/40"
           />
         )}
 
         {project.technicalChallenges && (
           <ChallengeList
-            title="Ongoing Technical Challenges"
+            title={t(
+              "features.projectDetails.sections.technicalChallenges.ongoingTitle",
+            )}
             items={project.technicalChallenges}
-            accentClass="border-l-purple-500/40 dark:border-l-purple-400/40"
           />
         )}
       </div>

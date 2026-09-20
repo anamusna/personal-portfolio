@@ -1,5 +1,6 @@
 import TypingText from "components/spotlight/typing-text";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 interface ChatHeaderProps {
   onClear: () => void;
@@ -14,6 +15,7 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
   chatInput,
   messages,
 }) => {
+  const { t } = useTranslation("ansumana");
   const showClear =
     messages.length > 0 || chatInput.length > 0;
 
@@ -22,14 +24,14 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
       <div className="flex items-center justify-between gap-3">
         <div className="min-w-0 flex-1">
           <p className="text-xs font-semibold uppercase tracking-[0.15em] text-emerald-600 dark:text-emerald-400">
-            Chat with Assistant
+            {t("spotlight.chat.title")}
           </p>
           {messages.length === 0 ? (
             <TypingText
               text={[
-                "Search or ask about Ansu…",
-                'Try "What are Ansu\'s projects?"',
-                'Ask "Tell me about experience"',
+                t("spotlight.search.prompts.search"),
+                t("spotlight.search.prompts.projects"),
+                t("spotlight.search.prompts.experience"),
               ]}
               typingSpeed={45}
               deletingSpeed={24}
@@ -40,7 +42,7 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
             />
           ) : (
             <h3 className="mt-0.5 truncate text-sm font-semibold text-slate-900 dark:text-slate-100">
-              Ask anything about Ansu...
+              {t("spotlight.chat.askAnything")}
             </h3>
           )}
         </div>
@@ -50,7 +52,7 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
               type="button"
               onClick={onClear}
               className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/10 text-slate-500 transition hover:bg-white/20 hover:text-slate-900 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 dark:border-slate-800/70 dark:bg-slate-800/70 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
-              aria-label="Clear conversation"
+              aria-label={t("spotlight.chat.aria.clearConversation")}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +75,7 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
             onClick={onClose}
             className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/20 text-slate-500 transition hover:bg-white/30 hover:text-slate-900 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 dark:border-slate-800/80 dark:bg-slate-800/70 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
           >
-            <span className="sr-only">Close spotlight</span>
+            <span className="sr-only">{t("spotlight.chat.aria.close")}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"

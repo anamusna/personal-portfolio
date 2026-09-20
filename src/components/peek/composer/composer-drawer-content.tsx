@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { PeekContent } from "../components/peek-content";
 import { PeekClose } from "../components/peek-close";
 import {
@@ -16,6 +17,7 @@ import { useComposer } from "./use-composer";
 /** Inner drawer layout — mirrors PVS `drawer.tsx`. */
 export function ComposerDrawerContent() {
   const { composer } = useComposer();
+  const { t } = useTranslation("ansumana");
 
   const handleClose = () => {
     composer.close();
@@ -29,7 +31,7 @@ export function ComposerDrawerContent() {
             <ComposerPortalTitle className="only:ml-2 sm:whitespace-normal" />
             <PeekClose
               onClick={handleClose}
-              aria-label="Close panel"
+              aria-label={t("common.actions.closePanel")}
               data-cy="composer-closeButton"
             />
           </div>

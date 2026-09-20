@@ -1,12 +1,15 @@
 import React from "react";
-import { P } from "tailwind/components/elements/Typography";
+import { useTranslation } from "react-i18next";
 import { SURFACE_CARD_ICON } from "tailwind/styles/surfaceCard";
 import { TEXT_DETAIL_SECTION_TITLE } from "tailwind/styles/textTokens";
+import { DetailList } from "../detail-list";
 import { ProjectSectionProps } from "../../types/project-section-props";
 
 export const ProjectLessonsLearnedSection: React.FC<ProjectSectionProps> = ({
   project,
 }) => {
+  const { t } = useTranslation();
+
   if (!project.lessonsLearned?.length) {
     return null;
   }
@@ -30,24 +33,24 @@ export const ProjectLessonsLearnedSection: React.FC<ProjectSectionProps> = ({
             />
           </svg>
         </div>
-        <h2 className={TEXT_DETAIL_SECTION_TITLE}>Lessons Learned</h2>
+        <h2 className={TEXT_DETAIL_SECTION_TITLE}>
+          {t("features.projectDetails.sections.lessons.title")}
+        </h2>
       </div>
 
-      <div className="space-y-3 sm:space-y-4">
-        {project.lessonsLearned.map((lesson, index) => (
-          <div
-            key={lesson}
-            className="surface-card surface-card--interactive border border-light-border/55 dark:border-dark-border/40 border-l-2 border-l-cyan-500/40 dark:border-l-cyan-400/40 rounded-lg p-3 sm:p-4"
-          >
-            <P className="text-sm sm:text-base text-body leading-relaxed">
+      <DetailList
+        items={project.lessonsLearned.map((lesson, index) => ({
+          key: lesson,
+          content: (
+            <>
               <span className="font-semibold text-heading mr-2">
                 {index + 1}.
               </span>
               {lesson}
-            </P>
-          </div>
-        ))}
-      </div>
+            </>
+          ),
+        }))}
+      />
     </section>
   );
 };

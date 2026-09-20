@@ -1,6 +1,7 @@
 import { SECTION_VARIANTS, SECTION_VIEWPORT } from "constants/section-motion";
 import { motion } from "motion/react";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import BlogContent from "components/sections/blog/blog-content";
 import { blogs } from "data/blogs";
 import { SURFACE_CARD_PANEL } from "tailwind/styles/surfaceCard";
@@ -13,10 +14,13 @@ type BlogDetailsArticleProps = {
 
 export const BlogDetailsArticle: React.FC<BlogDetailsArticleProps> = ({
   blogPost,
-}) => (
-  <motion.section
+}) => {
+  const { t } = useTranslation();
+
+  return (
+    <motion.section
     variants={SECTION_VARIANTS}
-    initial="hidden"
+    initial={false}
     whileInView="visible"
     viewport={SECTION_VIEWPORT}
     className="relative"
@@ -46,7 +50,7 @@ export const BlogDetailsArticle: React.FC<BlogDetailsArticleProps> = ({
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-4 py-2.5 min-h-[44px] bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors font-medium text-sm"
             >
-              <span>Read Full Article on Hashnode</span>
+              <span>{t("features.blogDetails.article.readFullOnHashnode")}</span>
               <svg
                 className="w-3.5 h-3.5"
                 fill="none"
@@ -66,5 +70,6 @@ export const BlogDetailsArticle: React.FC<BlogDetailsArticleProps> = ({
         </div>
       </div>
     </div>
-  </motion.section>
-);
+    </motion.section>
+  );
+};

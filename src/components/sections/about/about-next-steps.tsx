@@ -31,6 +31,7 @@ const AboutNextSteps: React.FC = () => {
           ),
           iconAnimation: false,
         }}
+        title={nextSteps.title}
         description={nextSteps.description}
         highlightText={nextSteps.highlightText}
       />
@@ -47,7 +48,7 @@ const AboutNextSteps: React.FC = () => {
             key={link.href}
             text={link.text}
             href={link.href}
-            colorScheme={link.colorScheme}
+            colorScheme={link.colorScheme as any}
             size="sm"
             variant={index === 0 ? "default" : "outline"}
             showIcon={true}

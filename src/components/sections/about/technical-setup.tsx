@@ -1,9 +1,9 @@
 import { SECTION_VIEWPORT } from "constants/section-motion";
 import { aboutPageContent } from "data/aboutPage";
-import { typicalStack, typicalStackLabel, workHabits } from "data/technical-setup";
+import { technicalSetupContent } from "data/technical-setup";
 import { motion } from "motion/react";
 import React from "react";
-import { SURFACE_CARD_INTERACTIVE } from "../../../tailwind/styles/surfaceCard";
+import { SURFACE_CARD_BASE } from "../../../tailwind/styles/surfaceCard";
 import {
   TEXT_BODY,
   TEXT_DETAIL_SECTION_TITLE,
@@ -59,6 +59,7 @@ const TechnicalSetup: React.FC = () => {
             ),
             iconAnimation: false,
           }}
+          title={technicalSetup.title}
           description={technicalSetup.description}
           highlightText={technicalSetup.highlightText}
         />
@@ -66,15 +67,15 @@ const TechnicalSetup: React.FC = () => {
         <motion.div
           className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4"
           variants={containerVariants}
-          initial="hidden"
+          initial={false}
           whileInView="visible"
           viewport={SECTION_VIEWPORT}
         >
-          {workHabits.map((group) => (
+          {technicalSetupContent.workHabits.map((group) => (
             <motion.div
               key={group.title}
               variants={cardVariants}
-              className={`${SURFACE_CARD_INTERACTIVE} p-4 sm:p-5 border-indigo-200/30 dark:border-indigo-500/20`}
+              className={`${SURFACE_CARD_BASE} p-4 sm:p-5`}
             >
               <h3 className={`${TEXT_DETAIL_SECTION_TITLE} mb-3`}>
                 {group.title}
@@ -97,8 +98,11 @@ const TechnicalSetup: React.FC = () => {
           ))}
         </motion.div>
 
+        {/* One text child, not three adjacent ones: the prerendered snapshot
+            merges adjacent text nodes into one, so hydration only had the
+            first piece to match against the merged result. */}
         <p className={`${TEXT_MUTED} mt-5 sm:mt-6 text-center`}>
-          {typicalStackLabel}: {typicalStack}
+          {`${technicalSetupContent.typicalStackLabel}: ${technicalSetupContent.typicalStack}`}
         </p>
       </div>
     </section>

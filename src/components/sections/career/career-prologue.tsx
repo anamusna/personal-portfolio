@@ -13,11 +13,11 @@ const CareerPrologue: React.FC = () => {
       id="before-code"
       className="relative scroll-mt-24 bg-light-background-alt dark:bg-dark-background-alt py-6 sm:py-8 md:py-12"
       variants={SECTION_VARIANTS}
-      initial="hidden"
+      initial={false}
       whileInView="visible"
       viewport={SECTION_VIEWPORT}
     >
-      <div className="container max-w-3xl mx-auto px-3 sm:px-4 lg:px-6">
+      <div className="container max-w-3xl mx-auto">
         <SectionHeader
           badge={{
             text: prologue.badge,
@@ -39,7 +39,7 @@ const CareerPrologue: React.FC = () => {
             ),
             iconAnimation: false,
           }}
-          //title={prologue?.title ?? ""}
+          title={prologue.title}
           description={prologue.description}
           highlightText={prologue.highlightText}
         />

@@ -1,6 +1,8 @@
+import clsx from "clsx";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useEnvironmentSettings } from "../../../context/EnvironmentContext";
 
 interface ToastProps {
@@ -42,6 +44,7 @@ const Toast: React.FC<ToastProps> = ({
   onDismiss,
 }) => {
   const { fontSize } = useEnvironmentSettings();
+  const { t } = useTranslation("ansumana");
 
   useEffect(() => {
     if (duration > 0) {
@@ -83,13 +86,13 @@ const Toast: React.FC<ToastProps> = ({
       role="alert"
       aria-live="polite"
       data-testid="toast"
-      className={`
-        fixed z-50 min-w-[300px] max-w-md rounded-lg shadow-lg
-        ${variantClasses[variant || type]}
-        ${positionClasses[position]}
-        ${sizeClasses[fontSize || size]}
-        toast-${position}
-      `}
+      className={clsx(
+        "fixed z-50 min-w-[300px] max-w-md rounded-lg shadow-lg",
+        variantClasses[variant || type],
+        positionClasses[position],
+        sizeClasses[fontSize || size],
+        `toast-${position}`,
+      )}
     >
       <div className="flex items-center justify-between">
         <div className="flex-1">
@@ -107,7 +110,7 @@ const Toast: React.FC<ToastProps> = ({
               if (onDismiss) onDismiss();
             }}
             className="ml-4 text-white opacity-75 hover:opacity-100"
-            aria-label="Close toast"
+            aria-label={t("common.actions.closeToast")}
             data-testid="toast-close-button"
           >
             <FontAwesomeIcon icon={faXmark} />

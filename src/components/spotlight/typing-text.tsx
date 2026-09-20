@@ -244,6 +244,10 @@ export const TypingText = ({
     {
       ref: containerRef,
       className: `inline-block whitespace-pre-wrap tracking-tight ${className}`,
+      style: {
+        ...((props.style as Record<string, unknown> | undefined) ?? {}),
+        color: currentColor,
+      },
       ...props,
     },
     <MarkdownRenderer

@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { Navigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { PageMetadata } from "../../components/seo/page-metadata";
 import { mergePageSeo } from "../../data/page-seo";
 import { buildProjectSchema } from "../../utils/structured-data/build-project-schema";
@@ -7,17 +8,18 @@ import { ProjectDetailsView } from "./components/project-details-view";
 import { useProjectDetails } from "./hooks/use-project-details";
 
 const ProjectDetailsPage: React.FC = () => {
+  const { t } = useTranslation();
   const { project, tabs, activeTabId, redirectPath, handleTabChange } =
     useProjectDetails();
 
   const pageSeo = useMemo(() => {
     if (!project) return null;
     return mergePageSeo({
-      title: `${project.title} Case Study | Ansumana Darboe`,
+      title: `${project.title} ${t("features.projectDetails.hero.caseStudy")} | Ansumana Darboe`,
       description: project.summary,
       path: `/projects/${project.id}`,
     });
-  }, [project]);
+  }, [project, t]);
 
   const jsonLd = useMemo(
     () => (project ? buildProjectSchema(project) : undefined),
