@@ -607,7 +607,7 @@
         "contact": "Kontakt"
       },
       "hero": {
-        "bio": "Frontend Lead bei doctorly in Berlin. Ich mache derzeit eine reine Desktop-Praxissoftware für alle Geräte nutzbar, ein Quartal nach dem anderen.",
+        "bio": "Ich arbeite bei FREY ADV in Berlin an der klinischen Praxisplattform von doctorly und modernisiere ein gewachsenes Frontend Schritt für Schritt, ohne die Produktentwicklung anzuhalten.",
         "cta": {
           "primary": {
             "text": "Karriere-Zeitachse ansehen",
@@ -900,7 +900,7 @@
           "emoji": "🤝",
           "title": "Mentoring & Teamarbeit",
           "description": "Ich unterstütze andere gern beim Wachsen und lerne dabei fast immer selbst dazu.",
-          "details": "Bei FREY ADV begleite ich Junior-Entwickler durch Code Reviews, Pairing und gemeinsame Standards. Das wirkt in beide Richtungen: Wenn ich Entscheidungen laut erkläre, zeigt sich oft die einfachere Lösung.",
+          "details": "Bei FREY ADV begleite ich Engineers durch Code Reviews, Pairing und gemeinsame Standards. Das wirkt in beide Richtungen: Wenn ich Entscheidungen laut erkläre, zeigt sich oft die einfachere Lösung.",
           "relatedSkills": [
             "Code Review",
             "Pair Programming",
@@ -948,14 +948,14 @@
       ]
     },
     "personalInfo": {
-      "role": "Senior Software Engineer · Frontend Lead",
+      "role": "Senior Software Engineer",
       "backgroundHook": [
         "Hey 👋",
         "Ich bin **Ansumana Darboe**, die meisten nennen mich **Ansu**. Ich bin Senior Software Engineer in **Berlin** und baue seit über 8 Jahren Web- und Mobile-Software, auf die Menschen im Alltag wirklich angewiesen sind.",
         "Die Neugier begann mit unserem Familiencomputer. Ich war das Kind, das Dinge auseinandergebaut hat, um zu verstehen, was innen passiert. Heute mache ich dasselbe mit großen Codebasen. Weniger fehlenden Schrauben und mehr späten Abenden.",
         "Vor der Tech-Zeit habe ich über vier Jahre professionell Fußball gespielt und Jugendteams in **Gambia** trainiert. Unser Trainer hatte nach schwachen Einheiten nur einen Satz: „Morgen wieder.“ Ich mochte ihn damals nicht. Heute verstehe ich ihn.",
         "Eine Knieverletzung beendete den Fußballabschnitt. Ich unterrichtete in ländlichen Klassenräumen mit kaputten Tafeln und wenigen Büchern, studierte Software Applications am **Gambia Technical Training Institute**, betreute Netzwerke bei **AccounTax Solutions** und zog 2014 nach **Berlin**, ohne Sprache und ohne Netzwerk. Ich dachte mir: Wenn ich Code lernen kann, kann ich auch Deutsch lernen.",
-        "Danach führte mich die Arbeit durch sehr unterschiedliche Kontexte: React-Native-Rebuild bei **Propstack**, Civic-Plattformen bei **change.org** und **innn.it**, wo langsame Seiten nicht nur unbequem waren, sondern direkte Auswirkungen auf Reichweite und Beteiligung hatten. Später habe ich **ZULA** mitgegründet, eine Storytelling-Plattform für Kinder, die sich in vielen Büchern selten repräsentiert sehen. Bei **FREY ADV** habe ich das Frontend-Rebuild eines Praxisverwaltungssystems geleitet, das über dreißig Jahre auf Desktop-Rechnern lief. Nach der Übernahme von **doctorly** durch Frey bin ich in das doctorly-Team gewechselt. Seit Mitte 2026 übernehme ich dort die Frontend-Lead-Rotation: Ich setze die Prioritäten des Quartals, schreibe die Architekturentscheidungen dahinter und mentoriere die Engineers neben mir.",
+        "Danach führte mich die Arbeit durch sehr unterschiedliche Kontexte: React-Native-Rebuild bei **Propstack**, Civic-Plattformen bei **change.org** und **innn.it**, wo langsame Seiten nicht nur unbequem waren, sondern direkte Auswirkungen auf Reichweite und Beteiligung hatten. Später habe ich **ZULA** mitgegründet, eine Storytelling-Plattform für Kinder, die sich in vielen Büchern selten repräsentiert sehen. Bei **FREY ADV** habe ich das Frontend-Rebuild eines Praxisverwaltungssystems geleitet, das über dreißig Jahre auf Desktop-Rechnern lief. Nach der Übernahme von **doctorly** durch Frey bin ich in das doctorly-Team gewechselt. Im Q3 2026 war ich in der Frontend-Lead-Rotation des Teams an der Reihe, habe die Prioritäten des Quartals gesetzt und die Architekturentscheidungen dahinter geschrieben, bevor ich im Oktober an den nächsten Lead übergeben habe.",
         "Im Alltag arbeite ich viel mit **TypeScript**, **React**, **Node.js** und Cloud-Infrastruktur. Ich optimiere gern Performance, vereinfache komplexe Systeme, unterstütze Junior-Engineers im Wachstum und baue Software, die zuverlässig im Hintergrund ihren Job macht.",
         "Außerhalb der Arbeit verfolge ich Fußball weiterhin intensiv. Mein Knie bevorzugt heute mehr Zuschauen als Mitspielen."
       ],
@@ -968,14 +968,14 @@
         "badge": "Woran ich arbeite",
         "description": "Ich modernisiere Legacy-Web- und Mobile-Systeme in Healthcare, Civic Tech und regulierten Umgebungen, in denen langsame Seiten, fragile Deployments und unsicherer Zugriff echte Zeit kosten.",
         "highlightText": "Healthcare, Civic-Plattformen",
-        "summary": "Ich führe Frontend-Delivery, gestalte Architektur mit dem Team, begleite Engineers im Mentoring und liefere in Inkrementen, wenn die Domäne keinen Stillstand erlaubt.",
+        "summary": "Ich arbeite an Architektur, State-Management und Zuverlässigkeit von Systemen, die bereits im Einsatz sind, verändere sie in Schritten, die das Produkt verkraftet, und arbeite über Reviews und Pairing eng mit den Engineers im Team zusammen.",
         "headline": "Senior Full-Stack Engineer für Software, die nicht still scheitern darf",
         "threadsLabel": "Wo diese Arbeit gelandet ist",
         "threads": [
           {
             "emoji": "🏥",
             "label": "Healthcare bei FREY ADV / doctorly",
-            "detail": "Frontend Lead · Quartalsprioritäten, Architekturentscheidungen, klinische Plattform",
+            "detail": "Legacy-Modernisierung · Architekturgrenzen · Observability",
             "href": "/career#career-leadership"
           },
           {
@@ -1079,7 +1079,7 @@
           "Als ich in ein neues Team wechselte, wurde ich direkt gefragt, ob ich testgetriebene Entwicklung kenne. Ich sagte nein. Sie übertrugen mir trotzdem die Verantwortung für die Tests eines neuen Moduls.",
           "Ich habe außerdem Merge Requests eingereicht, die zu groß waren, um sie richtig zu reviewen, und einmal eine Änderung direkt in den Main-Branch gepusht, statt dafür einen Merge Request zu öffnen. Beides hat das Team ausgebremst, mich eingeschlossen. Reviewer mussten eine ganze Woche an Änderungen auf einmal im Kopf behalten, und ein direkter Push bedeutete, dass niemand die Änderung vor der Veröffentlichung geprüft hatte.",
           "Ich habe die Arbeit in kleinere Teile aufgeteilt und angefangen, Tests ernst zu nehmen, statt sie als lästigen Schritt zu behandeln. Innerhalb weniger Monate schrieb ich Tests, die beschrieben, was eine Nutzerin tut, statt nur, was der Code intern macht, damit sie auch dann noch bestehen, wenn ich die Implementierung später ändere.",
-          "Mitte des Jahres übernahm ich genau die Art von Testarbeit, die ich Monate zuvor abgelehnt hatte, und kurz danach die Frontend-Lead-Rotation für das Team. Diesen Verlauf zuzugeben ist mir lieber, als ihn schönzureden."
+          "Mitte des Jahres übernahm ich genau die Art von Testarbeit, die ich Monate zuvor abgelehnt hatte, und kurz danach war ich in der Frontend-Lead-Rotation des Teams an der Reihe. Diesen Verlauf zuzugeben ist mir lieber, als ihn schönzureden."
         ]
       },
       "nextSteps": {
@@ -1117,7 +1117,7 @@
           {
             "id": "frontend-architecture",
             "title": "Frontend & Architektur",
-            "detail": "Frontend-Lead-Rotation bei FREY ADV / doctorly: Architekturentscheidungen, Konsolidierung des State-Managements und sicherer Zugriff für 1.000+ Mitarbeitende im regulierten Umfeld."
+            "detail": "In der Frontend-Lead-Rotation Q3 2026 habe ich bei FREY ADV / doctorly die Frontend-Prioritäten verantwortet. Wir haben uns darauf geeinigt, wenige Prioritäten richtig abzuschließen, statt alle acht anzufangen. Ich habe die Verantwortung im Team aufgeteilt, State-Management, Observability und Mandantenfähigkeit selbst übernommen und Q4 mit einer schriftlichen Übergabe an den nächsten Lead übergeben: was entschieden war und was noch offen ist."
           },
           {
             "id": "mentoring",
@@ -1177,7 +1177,7 @@
           },
           {
             "metric": "1.000+",
-            "description": "Medizinische Fachkräfte auf der Praxisplattform, die das Team neu aufgebaut hat"
+            "description": "Medizinische Fachkräfte auf Quincy Mobile, der Praxisplattform, die das Team neu aufgebaut hat"
           },
           {
             "metric": "5.000+",
@@ -1213,12 +1213,12 @@
         {
           "id": "doctorly",
           "title": "doctorly",
-          "summary": "Frontend Lead für eine klinische Praxisplattform mit mehr als 1.000 medizinischem Personal: Priorisierung, Architekturentscheidungen und Übergabe von Verantwortung an ein wachsendes Team.",
-          "description": "Nach der Übernahme von doctorly durch FREY ADV bin ich in das Team gewechselt, das die klinische Praxisplattform baut. Seit Mitte 2026 übernehme ich die Frontend-Lead-Rotation: Ich setze die Prioritäten des Quartals, verfasse die Architekturentscheidungen dahinter und delegiere die Verantwortung für einzelne Bereiche, während das Team wächst.",
+          "summary": "Schrittweise Modernisierung der klinischen Praxisplattform von doctorly nach der Übernahme durch FREY ADV. In der Rotation Q3 2026 habe ich die Prioritäten des Frontend-Teams verantwortet und selbst an State-Management, Observability und der Vorarbeit für Mandantenfähigkeit gearbeitet.",
+          "description": "Nach der Übernahme von doctorly durch FREY ADV bin ich in das Team gewechselt, das die klinische Praxisplattform baut. In der Frontend-Lead-Rotation Q3 2026 habe ich die Frontend-Prioritäten des Quartals gesetzt, die Architekturentscheidungen dahinter geschrieben und die Verantwortung im Team aufgeteilt. Im Oktober habe ich die Rolle an den nächsten Lead übergeben und arbeite seitdem als Engineer an derselben Codebasis weiter.",
           "image": "doctorly",
           "profile": "doctorly",
           "metrics": {
-            "primary": "1.000+ medizinische Fachkräfte",
+            "primary": "Architekturregeln in der CI",
             "secondary": "State-Management konsolidiert"
           },
           "role": "Frontend",
@@ -1239,39 +1239,47 @@
             "Observability"
           ],
           "achievements": [
-            "State-Management auf eine klare Aufteilung gebracht: Server-State in React Query, geteilter Client-State in Zustand, und die letzte Redux-Nutzung aus der Plattform entfernt.",
-            "Den ADR für Frontend-Observability geschrieben: Werkzeugwahl, PII-Scrubbing sowie Release- und Sourcemap-Strategie. Die Umsetzung blieb liegen, bis der ADR abgenommen war.",
-            "Die Observability-Umsetzung in einzelne Merge Requests aufgeteilt, für Bootstrap, PII-Scrubbing, technischen Kontext, Fehlererfassung und Fehlerverhalten, damit Datenschutz und Fehlerverhalten getrennt reviewt werden konnten.",
+            "Das State-Management modernisiert: die letzte Redux-Nutzung zugunsten von React Query und Zustand entfernt und die Regeln zur State-Hoheit dokumentiert.",
+            "Sieben Produktbereiche mit jeweils zwei Frontend-Implementierungen zusammengeführt, wodurch rund 1.100 Zeilen doppelter Code entfernt wurden.",
+            "Gestaffelte Architektur-Abhängigkeitsregeln eingeführt, die in der CI durchgesetzt werden.",
+            "Frontend-Fehlererfassung und Web-Vitals-Monitoring umgesetzt und das Frontend-Modell für Mandantenfähigkeit definiert.",
             "Merge Requests des Teams reviewt, mit Feedback zum Verhalten statt zum Stil: ein Request, der bei jedem Tastendruck feuert, wo vergleichbare Flows entprellen, ein unerreichbarer Fallback-Zweig, eine verlorene Fehlermeldung, weil ein Refetch standardmäßig nicht rejected."
           ],
-          "problem": "Die Oberfläche von doctorly war nur für Desktop-Bildschirme gebaut, ohne responsives Layout für die Tablets und Smartphones, die Praxen zunehmend nutzten. Nach der Übernahme durch Frey brauchte das Team Frontend-Richtung: welche Quartalsprioritäten wirklich zählten, wie eine domänenweise Migration gelingt, ohne die Auslieferung einzufrieren, und wie Produktionsfehler handlungsfähig statt nur protokolliert werden.",
+          "problem": "Im Frontend von doctorly hatten sich strukturelle Altlasten angesammelt: verbliebenes Redux neben neueren State-Mustern, sieben Produktbereiche mit jeweils zwei Implementierungen, Schichtgrenzen, die nur in der Dokumentation existierten, eine durchgehend hartkodierte Praxis-ID und keine Sicht auf Frontend-Fehler, sodass Probleme aus der Produktion nur über Support-Tickets bei den Engineers ankamen. Nichts davon ließ sich lösen, indem man das Produkt anhält. Nach der Übernahme brauchte das Team eine klare Frontend-Richtung: was zuerst, in welcher Reihenfolge und wie, ohne die Feature-Entwicklung einzufrieren.",
           "solution": [
-            "Die Frontend-Prioritäten des Quartals in eine Reihenfolge gebracht, statt sie parallel zu starten. Architekturgrenzen, Datenschicht, Observability und Mandantenfähigkeit bedingen einander, deshalb zählte die Reihenfolge mehr als die Anzahl.",
-            "State-Management auf eine einzige Struktur konsolidiert: Server-State in React Query, gemeinsamer Client-State in Zustand, und lokaler State dort, wo er hingehört. Dabei die letzte Redux-Nutzung aus der Plattform entfernt.",
-            "Eine domänenweise Konsolidierung als Serie kleiner Merge Requests durchgeführt, wobei jeder Legacy-Pfad im selben Change gelöscht wurde, der ihn ersetzte, damit die Änderungen überprüfbar blieben.",
-            "Die Frontend-Observability-Entscheidung dokumentiert und die Umsetzung bis zur Freigabe zurückgehalten, weil PII-Bereinigung und Release-Handling die Teile waren, die es sich nicht lohnte, noch einmal zu machen.",
-            "Eine dringende Aufgabe bewusst im Backlog gehalten, weil sie von einer Backend-Entscheidung zur Mandanten-Identifizierung abhing, statt eine reine Frontend-Lösung zu erfinden, die später wieder aufgedröselt werden müsste."
+            "Im Juli mit dem Team vereinbart, einige der acht Frontend-Prioritäten des Quartals richtig abzuschließen, statt alle anzufangen. Die Arbeit nach Abhängigkeiten geordnet und die Verantwortung dreigeteilt; State-Management, Observability, die Konsolidierung doppelter Implementierungen und Mandantenfähigkeit habe ich selbst übernommen.",
+            "Die verbliebene Redux-Nutzung entfernt und festgehalten, wem welcher State gehört: Server-State in React Query, wirklich geteilter Client-State in Zustand, alles andere lokal in der Komponente. Die Regeln wurden bald in Reviews als Referenz genannt, und genau dafür waren sie aufgeschrieben.",
+            "Sieben Produktbereiche, die im Frontend jeweils zweimal implementiert waren, darunter Postfach, LDT, Praxis und Kalender, in sechs fokussierten Merge Requests zusammengeführt. Jeder entfernte den Legacy-Pfad im selben Change, der ihn ersetzte, sodass es nie zwei gültige Versionen gleichzeitig gab.",
+            "Auf dem Entities-Pilot eines Kollegen aufgebaut und die dokumentierten Schichtgrenzen in ESLint-Abhängigkeitsregeln überführt, gestaffelt von Warnungen über eine Allowlist bis zu CI-Fehlern. Das App-Shell-Layout aus der Feature-Schicht herausgelöst, wo es genau die feature-übergreifenden Importe erzeugt hatte, die die Regeln verhindern sollen.",
+            "Das Entscheidungsdokument für Frontend-Observability geschrieben und die Umsetzung zurückgehalten, bis PII-Behandlung und Ingestion-Grenze mit Security und DevOps abgestimmt waren. Danach Fehlererfassung und Web-Vitals-Monitoring in getrennten Merge Requests für Bootstrap, Scrubbing, Fehlererfassung und Fehlerverhalten gebaut, damit der Datenschutzteil für sich reviewt werden konnte. Lokales Setup und Fehlersuche dokumentiert, damit die Integration nicht an einer Person hängt.",
+            "Erfasst, wo das Frontend von einer einzigen Praxis ausgeht, und Runtime-Mandantenkontext, Ressourcen-Ownership und Berechtigungsmodell definiert, bevor Implementierungscode entstand. Die Umsetzung zurückgehalten, bis der Header-Vertrag im Backend feststand; die Runtime-Kontext-API ist inzwischen gemergt, der Rest hängt an Plattformdiensten, die das Backend noch ausrollt."
           ],
           "technicalInsights": [
             {
               "title": "Reihenfolge statt paralleler Migrationen",
-              "description": "Die Quartalsprioritäten waren keine unabhängigen Projekte. Architekturgrenzen, Datenhoheit, Observability und Mandantenfähigkeit beeinflussten sich gegenseitig. Trade-off: Ein Teil blieb sichtbar unbearbeitet, dafür wurde das Begonnene fertig."
+              "description": "Die acht Prioritäten sahen unabhängig aus und waren es nicht. Die Architekturgrenzen hingen davon ab, wohin sich die Datenschicht entwickelt, und Mandantenfähigkeit hing von beidem ab. Parallel gestartet, hätten die späteren Schritte die früheren wieder aufgerissen. Trade-off: Einige Prioritäten blieben im Quartal sichtbar liegen, dafür erreichten die begonnenen einen Stand, auf dem der nächste Lead aufbauen konnte."
             },
             {
-              "title": "Dokumentation als Tooling, nicht als Datei",
-              "description": "Die Frontend-Regeln direkt in das Tooling geschrieben, das Engineers bei Implementierung und Review verwenden. Trade-off: mehr Aufwand im Vorfeld, aber die Hinweise erscheinen genau dann, wenn Entscheidungen getroffen werden, statt ungelesen zu bleiben."
+              "title": "Grenzen schrittweise durchsetzen",
+              "description": "Bis zum Start der Durchsetzung hatten sich 128 Verstöße angesammelt. Sie zuerst zu beheben, hätte die Feature-Arbeit im gemeinsamen Code ausgebremst; ganze Verzeichnisse auszunehmen, hätte sie versteckt. Stattdessen wurden die Regeln gestaffelt eingeführt (warnen, dann Allowlist, dann Fehler) und jeder bestehende Verstoß als explizite, dateibezogene Ausnahme erfasst. Trade-off: Die Altlasten bleiben als Liste sichtbar, die jemand abarbeiten muss, während neue Verstöße vom ersten Tag an die CI scheitern lassen."
             },
             {
-              "title": "Eine Entscheidung bewusst verzögert",
-              "description": "Eine dringende Aufgabe zur Mandanten-Identifizierung im Backlog gehalten, bis die Backend-Entscheidung feststand. Trade-off: Die Aufgabe blieb sichtbar unbearbeitet, aber eine reine Frontend-Lösung hätte später wieder aufgedröselt werden müssen."
+              "title": "Grundlage vor Umsetzung",
+              "description": "Das Frontend hatte eine einzige Praxis-ID an 38 Stellen hartkodiert, während sich das Mandantenkonzept der Plattform noch änderte. Eine Mandanten-Kennung durch alle Stellen zu ziehen, wäre schnell gegangen und hätte vermutlich nicht mehr gepasst, sobald das Backend feststand. Weil Runtime-Kontext, Ownership- und Berechtigungsmodell zuerst definiert wurden, mussten zwei dieser Dokumente überarbeitet werden, als sich das Plattformdesign verschob, und das ist billiger, als Code zu überarbeiten. Trade-off: Bis der Backend-Vertrag stand, gab es bei dieser Priorität keinen für Nutzende sichtbaren Fortschritt."
+            },
+            {
+              "title": "Observability in bestehender Infrastruktur",
+              "description": "Das Entscheidungsdokument wählte Grafana Faro statt Sentry oder eines selbst gebauten OpenTelemetry-Setups, damit die Frontend-Telemetrie in der Infrastruktur bleibt, die DevOps bereits betreibt und der schon patientennahe Daten anvertraut sind. Trade-off: kein fertiges Issue-Management und kein Source-Map-Tooling, deshalb mussten Release-Metadaten und technischer Kontext bewusst mitgegeben werden, und sitzungsbezogene Signale bleiben aus, bis Security sie freigibt."
             }
           ],
           "outcome": {
-            "impact": "Das Team liefert weniger, dafür besser priorisierte Änderungen, und ein Produktionsfehler trägt heute genug Kontext, um sofort handeln zu können, statt die Untersuchung jedes Mal neu zu beginnen.",
+            "impact": "Das Frontend hat jetzt eine State-Management-Konvention, eine Implementierung pro zusammengeführtem Produktbereich, Schichtgrenzen, die die CI durchsetzt, und Fehler- und Performance-Monitoring, das Patientendaten außen vor lässt. Für Mandantenfähigkeit gibt es ein definiertes Modell, und der erste Runtime-Baustein ist gemergt.",
             "businessResults": [
-              "Mehr als 1.000 medizinische Fachkräfte nutzen die neu aufgebaute Plattform.",
-              "Redux ist aus der Plattform verschwunden: Server-State in React Query, geteilter Client-State in Zustand, lokaler State in der Komponente.",
-              "Die Konsolidierung der Bereiche LDT und Praxis hat rund 1.100 Zeilen doppelter Implementierung entfernt."
+              "Redux vollständig entfernt; Regeln zur State-Hoheit dokumentiert und im Review genutzt.",
+              "Sieben doppelt implementierte Produktbereiche zu je einer Implementierung zusammengeführt, rund 1.100 Zeilen doppelter Code entfernt.",
+              "128 bestehende Architekturverstöße als explizite Ausnahmen erfasst; neue Abhängigkeitsverstöße lassen die CI scheitern.",
+              "Frontend-Fehlererfassung und Web-Vitals-Monitoring umgesetzt und gemergt; sitzungsbezogene Signale warten auf die Freigabe durch Security.",
+              "Die Q3-Frontend-Prioritäten schriftlich an den nächsten Lead übergeben: was entschieden ist, was offen ist und die zwei größten Risiken für Q4."
             ]
           },
           "visuals": {
@@ -1282,13 +1290,15 @@
           },
           "lessonsLearned": [
             "Sich bewusst gegen das Ausliefern von etwas Dringendem zu entscheiden und das begründen zu können, ist schwerer, als es einfach auszuliefern.",
-            "Eine Migration in überprüfbare Merge Requests aufzuteilen kostet mehr Planung im Vorfeld als ein großer Change, erspart aber den mehrwöchigen Review, den niemand machen will.",
+            "Kleine Merge Requests halten eine Änderung reviewbar, billig machen sie sie nicht. Die Konsolidierung gemeinsam genutzter Produktbereiche in sechs fokussierten Merge Requests brauchte trotzdem etwa vier Wochen Review, weil jeder davon Code berührte, an dem auch andere arbeiteten.",
+            "Eine Priorität zu delegieren heißt nicht, sie auch im Blick zu haben. Zwei delegierte Prioritäten kamen in Q3 nicht voran, und die Signale, auf die ich mich verlassen habe, reichten nicht, um blockierte von noch nicht begonnener Arbeit zu unterscheiden. Beim nächsten Mal würde ich das bestehende Frontend-Huddle genau dafür als festen Checkpoint nutzen.",
             "Was ich falsch gemacht habe: Ich bin einmal davon ausgegangen, dass ein Teil der Backend-Arbeit schon fertig war, und habe meine Seite einer Feature-Flag-Änderung ausgeliefert, ohne vorher QA oder einen Backend-Engineer einzubeziehen. Zehn Minuten Abstimmung hätten das Problem beim Rollout verhindert."
           ],
           "technicalChallengesOvercome": [
-            "Ein Quartal zusammenhängender Frontend-Prioritäten so sortiert, dass jede die nächste sicherer startbar machte.",
-            "Legacy-State-Management domänenweise migriert, während jeder Zwischenschritt auslieferbar blieb.",
-            "Produktionsfehler handlungsfähig gemacht, indem Route-, Umgebungs- und Release-Kontext angehängt wurden, ohne Patientendaten offenzulegen."
+            "Gemeinsame Grundlagen verändert, während darauf weiter Features entwickelt wurden: Jeder Konsolidierungs- und Migrationsschritt musste für sich auslieferbar sein.",
+            "Architekturregeln in eine Codebasis eingeführt, die sie bereits verletzte, ohne laufende Arbeit zu blockieren.",
+            "Frontend-Telemetrie für ein Gesundheitsprodukt entworfen, bei dem Fehlerkontext nur dann nützt, wenn Patientendaten draußen bleiben.",
+            "Mandantenfähigkeit gegen ein Backend- und Plattformdesign geplant, das sich im Laufe des Quartals noch änderte."
           ],
           "hasDetailLink": true,
           "link": "/projects/doctorly",
@@ -1811,7 +1821,7 @@
         {
           "id": "who-are-you",
           "question": "Wer bist du und was machst du?",
-          "answer": "Ich bin **Ansumana Darboe**. Die meisten Leute nennen mich **Ansu**. Ich bin ein **Senior Software Engineer** und **Frontend Lead** in **Berlin**, der Produktions-Web- und Mobilsysteme im Gesundheitswesen, in der Civic Tech und in regulierten Umgebungen modernisiert.\n\nDie Arbeit umfasst **doctorly** und **Quincy Mobile** bei FREY ADV, Bürgerplattformen bei **change.org** und **innn.it**, Proptech bei **Propstack** und **ZULA**, ein von mir mitbegründetes Startup. Stapelweise: **TypeScript**, **React**, **Node.js**, **AWS**, **MongoDB**. Die ganze Geschichte finden Sie unter [About](/about). Für die Zeitleiste: [Karriere](/career). Für technische Beweise: [Projekte](/projects)."
+          "answer": "Ich bin **Ansumana Darboe**. Die meisten Leute nennen mich **Ansu**. Ich bin ein **Senior Software Engineer** in **Berlin**, der Produktions-Web- und Mobilsysteme im Gesundheitswesen, in der Civic Tech und in regulierten Umgebungen modernisiert.\n\nDie Arbeit umfasst **doctorly** und **Quincy Mobile** bei FREY ADV, Bürgerplattformen bei **change.org** und **innn.it**, Proptech bei **Propstack** und **ZULA**, ein von mir mitbegründetes Startup. Mein Stack: **TypeScript**, **React**, **Node.js**, **AWS**, **MongoDB**. Die ganze Geschichte finden Sie unter [About](/about). Für die Zeitleiste: [Karriere](/career). Für technische Beweise: [Projekte](/projects)."
         },
         {
           "id": "where-from",
@@ -1831,12 +1841,12 @@
         {
           "id": "current-work",
           "question": "Woran arbeiten Sie gerade?",
-          "answer": "Seit **Oktober 2024** bin ich bei **FREY ADV**, wo ich das Frontend-Rebuild eines **30+ Jahre** alten Praxismanagementsystems im regulierten Gesundheitswesen geleitet habe. Nach der Übernahme von **doctorly** durch Frey bin ich in dieses Team gewechselt, und seit Mitte 2026 übernehme ich dort die **Frontend-Lead**-Rotation.\n\nDer Stack: **React**, **TypeScript**, **React Query**, **Zustand**, **Tailwind CSS**, **Node.js**, **Express**. Die Arbeit besteht heute darin, die Frontend-Prioritäten des Quartals zu setzen, die Architekturentscheidungen dahinter zu schreiben und die Merge Requests des Teams zu reviewen. Ärzte können nicht auf langsame Software oder unsicheren Fernzugriff warten.\n\n**Über 1.000 medizinische Mitarbeiter** verfügen über sicheren Fernzugriff mit **offlinefähigen** Arbeitsabläufen. **RBAC**, **Verschlüsselung** und **Audit-Protokollierung** sind DSGVO-konform."
+          "answer": "Seit **Oktober 2024** bin ich bei **FREY ADV**. Eingestiegen bin ich, um das Frontend-Rebuild von **Quincy Mobile** zu leiten, einem über **30 Jahre** alten Praxisverwaltungssystem, über das heute **mehr als 1.000 medizinische Fachkräfte** sicheren Fernzugriff haben. Nach der Übernahme von **doctorly** durch Frey bin ich in das doctorly-Team und zu dessen klinischer Praxisplattform gewechselt.\n\nDort arbeite ich an den Grundlagen des Frontends: State-Management, in der CI durchgesetzte Architekturgrenzen, Fehler- und Performance-Monitoring und die Vorarbeit für Mandantenfähigkeit. In der Frontend-Lead-Rotation **Q3 2026** habe ich die Frontend-Prioritäten des Teams verantwortet und sie im Oktober an den nächsten Lead übergeben. Seitdem arbeite ich als Engineer an denselben Themen weiter.\n\nDer Stack: **React**, **TypeScript**, **React Query**, **Zustand**, **Tailwind CSS**, **Node.js**, **Express**."
         },
         {
           "id": "career-timeline",
           "question": "Wie sieht Ihr beruflicher Werdegang aus?",
-          "answer": "Der Weg führt von Netzwerken in Gambia bis zur regulierten Gesundheitsversorgung in Berlin.\n\n**AccounTax Solutions** (**2011 bis 2013**): IT für ein 50-köpfiges Finanzteam. **Propstack** (**2019**): **React Native**-Neuaufbau für Außendienstmitarbeiter. **change.org e.V.** (**2020 bis 2022**): Stiftungen der Advocacy-Plattform. **innn.it** (**2022 bis 2023**): SEO und MongoDB unter Kampagnenverkehr. **ZULA** (**2023 bis 2024**): technischer Mitbegründer, inklusives Storytelling. **FREY ADV / doctorly** (**2024 bis heute**): **Quincy Mobile**, dann **Frontend Lead** für eine klinische Praxisplattform.\n\nJeder Schritt fügte einen anderen Druck hinzu: Betriebszeit, mobiles Fahrzeug, öffentlicher Maßstab, missionsorientiertes Produkt, klinische Sicherheit. Ausführliche Informationen: [Karriere](/career)."
+          "answer": "Der Weg führt von Netzwerken in Gambia bis zur regulierten Gesundheitsversorgung in Berlin.\n\n**AccounTax Solutions** (**2011 bis 2013**): IT für ein 50-köpfiges Finanzteam. **Propstack** (**2019**): **React Native**-Neuaufbau für Außendienstmitarbeiter. **change.org e.V.** (**2020 bis 2022**): Stiftungen der Advocacy-Plattform. **innn.it** (**2022 bis 2023**): SEO und MongoDB unter Kampagnenverkehr. **ZULA** (**2023 bis 2024**): technischer Mitbegründer, inklusives Storytelling. **FREY ADV / doctorly** (**2024 bis heute**): **Quincy Mobile**, dann die klinische Praxisplattform von doctorly, einschließlich der Frontend-Lead-Rotation in **Q3 2026**.\n\nJeder Schritt fügte einen anderen Druck hinzu: Betriebszeit, mobiles Fahrzeug, öffentlicher Maßstab, missionsorientiertes Produkt, klinische Sicherheit. Ausführliche Informationen: [Karriere](/career)."
         },
         {
           "id": "change-org-experience",
@@ -4266,7 +4276,7 @@
         {
           "company": "FREY ADV / doctorly",
           "id": "doctorly",
-          "role": "Senior Software Engineer → Frontend Lead",
+          "role": "Senior Software Engineer · Frontend Lead (Q3 2026)",
           "period": "Oktober 2024 · heute",
           "location": "Berlin, Deutschland",
           "icon": "🚀",
@@ -4276,21 +4286,20 @@
             "corporate"
           ],
           "achievements": [
-            "Eingestiegen, um das Frontend-Rebuild eines Praxisverwaltungssystems zu leiten, das über dreißig Jahre auf Desktop-Rechnern lief. Nach der Übernahme von doctorly durch Frey bin ich in das doctorly-Team gewechselt, und seit Mitte 2026 übernehme ich dort die Frontend-Lead-Rotation: Ich setze die Frontend-Prioritäten des Quartals, schreibe die Architekturentscheidungen dahinter und übergebe die Verantwortung für einzelne Bereiche an das Team.",
-            "State-Management auf eine einzige Struktur konsolidiert: Server-State in React Query, gemeinsamer Client-State in Zustand, lokaler State dort, wo er hingehört. Dabei die letzte Redux-Nutzung aus der Plattform entfernt. Die Regeln direkt in das Tooling geschrieben, das Engineers bei Implementierung und Review tatsächlich verwenden, statt in ein Dokument, das niemand öffnet.",
-            "Eine domänenweise Konsolidierung als Serie kleiner Merge Requests durchgeführt, wobei jeder Legacy-Pfad im selben Change gelöscht wurde, der ihn ersetzte. Diese Aufteilung hielt die Änderungen überprüfbar; ein einzelner Change für alles hätte wochenlang offen gestanden.",
-            "Die Frontend-Observability-Entscheidung dokumentiert: Tool-Auswahl, PII-Bereinigung, der technische Kontext zu jedem Fehler sowie die Release- und Source-Map-Strategie, die einen Produktionsfehler tatsächlich handlungsfähig statt nur protokolliert macht. Die Umsetzung bis zur Freigabe zurückgehalten, weil Datenschutz und Release-Handling die Teile sind, die es sich nicht lohnt, noch einmal zu machen.",
-            "Die Frontend-Prioritäten des Quartals in eine Reihenfolge gebracht, statt sie parallel zu starten. Architekturgrenzen, Datenschicht, Observability und Mandantenfähigkeit bedingen einander, deshalb zählte die Reihenfolge mehr als die Anzahl.",
-            "Eine dringende Aufgabe bewusst im Backlog gehalten, weil sie von einer Backend-Entscheidung zur Mandanten-Identifizierung abhing. Eine reine Frontend-Lösung zu erfinden hätte bedeutet, sie später wieder aufzudröseln.",
+            "Eingestiegen, um das Frontend-Rebuild von Quincy Mobile zu leiten, einem Praxisverwaltungssystem, das über dreißig Jahre auf Desktop-Rechnern lief. Nach der Übernahme von doctorly durch Frey bin ich in das doctorly-Team und zu dessen klinischer Praxisplattform gewechselt.",
+            "Im Rahmen der quartalsweisen Lead-Rotation die Frontend-Prioritäten des Teams für Q3 2026 verantwortet und die Rolle im Oktober an den nächsten Lead übergeben.",
+            "Das State-Management modernisiert: die letzte Redux-Nutzung zugunsten von React Query und Zustand entfernt und sieben doppelt implementierte Produktbereiche zu je einer Implementierung zusammengeführt, wodurch rund 1.100 Zeilen doppelter Code wegfielen.",
+            "Architektur-Abhängigkeitsregeln eingeführt, die in der CI durchgesetzt werden, gestaffelt, sodass bestehender Code weiter ausgeliefert werden konnte und neue Verstöße blockiert werden.",
+            "Frontend-Fehlererfassung und Performance-Monitoring umgesetzt, ohne Patientendaten in der Telemetrie, und den Frontend-Ansatz für Mandantenfähigkeit passend zu noch laufender Backend-Arbeit definiert.",
             "Merge Requests des Teams reviewt, mit Feedback zum Verhalten statt zum Stil: ein Request, der bei jedem Tastendruck feuert, wo vergleichbare Flows entprellen, ein unerreichbarer Fallback-Zweig, eine verlorene Fehlermeldung, weil ein Refetch standardmäßig nicht rejected."
           ],
           "responsibilities": [
-            "Die Frontend-Lead-Rotation für eine klinische Praxisplattform übernehmen: Quartalsprioritäten setzen, die Architekturentscheidungen dahinter schreiben und die Verantwortung für einzelne Bereiche delegieren.",
-            "State-Management und Delivery-Muster im Frontend konsolidieren und Legacy-Ansätze ablösen, sobald die jeweilige Domäne migriert ist.",
-            "Entscheidungsdokumente für bereichsübergreifende Themen wie Observability verfassen und die Umsetzung zurückhalten, bis Datenschutz- und Release-Fragen geklärt sind.",
+            "Am Frontend der klinischen Praxisplattform von doctorly arbeiten: Architektur, State-Management und Zuverlässigkeit, schrittweise verändert, während die Produktentwicklung weiterläuft.",
+            "In der Rotation Q3 2026 Frontend-Prioritäten und Architekturentscheidungen verantwortet; seit Oktober 2026 liegen die Prioritäten des Teams beim nächsten Lead, und ich arbeite als Engineer mit.",
+            "Entscheidungsdokumente für bereichsübergreifende Themen wie Observability schreiben und die Umsetzung zurückhalten, bis Datenschutz- und Sicherheitsfragen geklärt sind.",
             "Die Merge Requests des Teams mit Feedback reviewen, das auf Verhalten statt auf Stil zielt.",
-            "Die Reihenfolge der Arbeit so planen, dass Backend-abhängige Aufgaben auf die richtige Entscheidung warten, statt eine reine Frontend-Übergangslösung auszuliefern.",
-            "Engineers durch Code-Reviews und Pairing in einer regulierten Umgebung mentorieren, in der Ausfallzeiten kein abstraktes Risiko darstellen."
+            "Backend-abhängige Arbeit so einplanen, dass das Frontend dem abgestimmten Vertrag folgt, statt eine Übergangslösung auszuliefern, die später ersetzt werden muss.",
+            "Engineers durch Code-Reviews und Pairing mentorieren."
           ],
           "technologies": []
         },
@@ -4324,6 +4333,30 @@
           "technologies": []
         },
         {
+          "company": "innn.it",
+          "id": "innnit",
+          "role": "Full-Stack-Entwickler",
+          "period": "Juli 2022 bis Juli 2023",
+          "location": "Berlin, Deutschland",
+          "category": [
+            "startup",
+            "leadership"
+          ],
+          "image": "innnit",
+          "icon": "📣",
+          "achievements": [
+            "Das Deutschland-Team wurde im Juli 2022 von change.org e.V. zu innn.it umbenannt. Gleiche Produktmission, gleicher Druck auf der Codebasis. Ich lieferte über den Übergang hinweg weiter Full-Stack an Petitions- und Kampagnen-Workflows.",
+            "Der organische Traffic stieg in etwa drei Monaten von etwa 50.000 auf über 100.000 monatliche Besuche, nach SEO- und Performance-Arbeit. Petitionen hielten bei mehr als 2.000 Unterschriften pro Woche.",
+            "Die Bindung bei Nutzenden des überarbeiteten Petitions-Flows stieg im folgenden Quartal um etwa 40 %, basierend auf Feedback von mehr als 1.500 Nutzenden."
+          ],
+          "responsibilities": [
+            "Dieselbe Full-Stack-Arbeit an Petitionen und Kampagnen unter der Marke innn.it nach dem Rebranding fortgeführt.",
+            "SEO, Performance und Core Web Vitals auf stark frequentierten Advocacy-Oberflächen.",
+            "Zusammenarbeit mit Design, Marketing und QA an kampagnenorientierten Funktionen."
+          ],
+          "technologies": []
+        },
+        {
           "company": "change.org e.V.",
           "id": "innnit",
           "role": "Full-Stack-Entwickler",
@@ -4346,30 +4379,6 @@
             "Entwicklung und Optimierung von RESTful APIs und MongoDB-Indizierung im großen Maßstab.",
             "Stabilität durch Lastausgleich, Architekturarbeiten und CI/CD mit Docker und Kubernetes gestärkt.",
             "Technische Dokumentation für APIs, Datenbanken und Systemfunktionen erstellt und mehr als 25 Mitarbeitende bei IT-Ausfällen unterstützt."
-          ],
-          "technologies": []
-        },
-        {
-          "company": "innn.it",
-          "id": "innnit",
-          "role": "Full-Stack-Entwickler",
-          "period": "Juli 2022 bis Juli 2023",
-          "location": "Berlin, Deutschland",
-          "category": [
-            "startup",
-            "leadership"
-          ],
-          "image": "innnit",
-          "icon": "📣",
-          "achievements": [
-            "Das Deutschland-Team wurde im Juli 2022 von change.org e.V. zu innn.it umbenannt. Gleiche Produktmission, gleicher Druck auf der Codebasis. Ich lieferte über den Übergang hinweg weiter Full-Stack an Petitions- und Kampagnen-Workflows.",
-            "Der organische Traffic stieg in etwa drei Monaten von etwa 50.000 auf über 100.000 monatliche Besuche, nach SEO- und Performance-Arbeit. Petitionen hielten bei mehr als 2.000 Unterschriften pro Woche.",
-            "Die Bindung bei Nutzenden des überarbeiteten Petitions-Flows stieg im folgenden Quartal um etwa 40 %, basierend auf Feedback von mehr als 1.500 Nutzenden."
-          ],
-          "responsibilities": [
-            "Dieselbe Full-Stack-Arbeit an Petitionen und Kampagnen unter der Marke innn.it nach dem Rebranding fortgeführt.",
-            "SEO, Performance und Core Web Vitals auf stark frequentierten Advocacy-Oberflächen.",
-            "Zusammenarbeit mit Design, Marketing und QA an kampagnenorientierten Funktionen."
           ],
           "technologies": []
         },
@@ -4440,7 +4449,7 @@
         {
           "id": "doctorly-frontend-lead",
           "projectId": "doctorly",
-          "title": "Frontend Lead für eine klinische Praxisplattform",
+          "title": "Modernisierung einer klinischen Praxisplattform",
           "company": "FREY ADV / doctorly",
           "period": "Okt. 2024 · Heute",
           "location": "Berlin, Deutschland",
@@ -4449,12 +4458,12 @@
             "leadership",
             "corporate"
           ],
-          "summary": "Eine klinische Praxisplattform, die nur für Desktop-Bildschirme gebaut war, heute im Einsatz bei mehr als 1.000 Klinikern und jetzt auf dem Weg zu den Tablets und Smartphones, die sie tatsächlich benutzen. Seit Mitte 2026 übernehme ich die Frontend-Lead-Rotation: Ich setze die Prioritäten des Quartals, schreibe die Architekturentscheidungen dahinter und übergebe die Verantwortung für einzelne Bereiche an das Team.",
+          "summary": "Das Frontend der klinischen Praxisplattform von doctorly, schrittweise modernisiert, während das Produkt weiter ausgeliefert wurde: State-Management, Architekturgrenzen, Monitoring und das Modell für Mandantenfähigkeit. Inklusive der Frontend-Lead-Rotation Q3 2026.",
           "keyMetrics": [
-            "Mehr als 1.000 medizinische Fachkräfte mit sicherem Fernzugriff auf der neu aufgebauten Plattform",
-            "Redux entfernt: Server-State in React Query, geteilter Client-State in Zustand",
-            "ADR für Frontend-Observability geschrieben, Umsetzung zurückgehalten, bis Datenschutz und Release-Handling abgenommen waren",
-            "Frontend-Prioritäten des Quartals nach Abhängigkeit sortiert statt parallel gestartet"
+            "Redux vollständig entfernt: Server-State in React Query, geteilter Client-State in Zustand",
+            "Sieben doppelt implementierte Produktbereiche zusammengeführt, rund 1.100 Zeilen doppelter Code entfernt",
+            "Architektur-Abhängigkeitsregeln in der CI durchgesetzt, gestaffelt um den bestehenden Code herum",
+            "Frontend-Fehlererfassung und Web-Vitals-Monitoring umgesetzt, Patientendaten bleiben außerhalb der Telemetrie"
           ],
           "hasDetailLink": true,
           "technologies": []
@@ -4618,8 +4627,8 @@
         },
         {
           "year": "2026",
-          "title": "Frontend Lead bei doctorly",
-          "description": "Nach der Übernahme von doctorly durch Frey wechselte ich in dieses Team, und seit Mitte 2026 übernehme ich dort die Frontend-Lead-Rotation: Ich setze die Prioritäten des Quartals, schreibe die Architekturentscheidungen dahinter und übergebe die Verantwortung für einzelne Bereiche an das Team.",
+          "title": "Frontend-Lead-Rotation bei doctorly",
+          "description": "Nach der Übernahme von doctorly durch Frey wechselte ich in dieses Team. Im Q3 2026 war ich in der Frontend-Lead-Rotation an der Reihe: Ich habe die Prioritäten des Quartals gesetzt, die Architekturentscheidungen dahinter geschrieben und die Verantwortung im Team aufgeteilt. Im Oktober habe ich die Rolle an den nächsten Lead übergeben.",
           "icon": "🚀",
           "category": "leadership"
         }
@@ -4795,7 +4804,7 @@
             "gambia"
           ],
           "icon": "sparkles",
-          "response": "Bevor er Software Engineer wurde, war Ansumana Darboe ein Kind in einem gambischen Dorf, das Radios auseinandernahm, um zu verstehen, was sich darin befand, ein Lehrer, der den Schreibtisch eines Jungen an die Vorderseite des Klassenzimmers schob, weil er nicht lesen konnte, ein Fußballspieler, der lernte, was „morgen wieder“ eigentlich bedeutet, und ein Systemadministrator, der ein Finanzteam mit einer Infrastruktur am Laufen hielt, über die sie nie nachdenken mussten.\n\nEr lebt seit über einem Jahrzehnt in Berlin. Derzeit übernimmt er die Frontend-Lead-Rotation für eine klinische Praxisplattform bei FREY ADV / doctorly, setzt die Prioritäten des Quartals und reviewt die Merge Requests des Teams. Der Weg, der ihn hierher führte, war nicht im Voraus geplant. Er wurde eine Entscheidung nach der anderen aufgebaut, über zwei Kontinente hinweg, von einem Finanzbüro in Banjul bis zu einer klinischen Plattform in Berlin.\n\nWas alles verbindet, sind keine Fähigkeiten oder eine Domäne. Es ist eine Art, in einem Raum zu sein. Er kommt, passt auf, bleibt und erledigt die Arbeit richtig. Das hat sich nicht geändert, ob es sich bei dem Raum um ein Klassenzimmer im ländlichen Gambia handelte, um ein Büro in Banjul, in dem ein Netzwerkausfall dazu führte, dass fünfzig Menschen ihre Arbeit niederlegten, um eine Plattform für Bürgerinitiative während einer viralen Kampagne oder um ein klinisches System, auf das tausend medizinische Mitarbeiter vor ihrem ersten Patienten am Morgen angewiesen sind."
+          "response": "Bevor er Software Engineer wurde, war Ansumana Darboe ein Kind in einem gambischen Dorf, das Radios auseinandernahm, um zu verstehen, was sich darin befand, ein Lehrer, der den Schreibtisch eines Jungen an die Vorderseite des Klassenzimmers schob, weil er nicht lesen konnte, ein Fußballspieler, der lernte, was „morgen wieder“ eigentlich bedeutet, und ein Systemadministrator, der ein Finanzteam mit einer Infrastruktur am Laufen hielt, über die sie nie nachdenken mussten.\n\nEr lebt seit über einem Jahrzehnt in Berlin. Derzeit arbeitet er am Frontend einer klinischen Praxisplattform bei FREY ADV / doctorly, hat dort in der Lead-Rotation Q3 2026 die Frontend-Prioritäten des Teams verantwortet und reviewt die Merge Requests des Teams. Der Weg, der ihn hierher führte, war nicht im Voraus geplant. Er wurde eine Entscheidung nach der anderen aufgebaut, über zwei Kontinente hinweg, von einem Finanzbüro in Banjul bis zu einer klinischen Plattform in Berlin.\n\nWas alles verbindet, sind keine Fähigkeiten oder eine Domäne. Es ist eine Art, in einem Raum zu sein. Er kommt, passt auf, bleibt und erledigt die Arbeit richtig. Das hat sich nicht geändert, ob es sich bei dem Raum um ein Klassenzimmer im ländlichen Gambia handelte, um ein Büro in Banjul, in dem ein Netzwerkausfall dazu führte, dass fünfzig Menschen ihre Arbeit niederlegten, um eine Plattform für Bürgerinitiative während einer viralen Kampagne oder um ein klinisches System, auf das tausend medizinische Mitarbeiter vor ihrem ersten Patienten am Morgen angewiesen sind."
         },
         {
           "id": "intro-value-proposition",
@@ -4892,7 +4901,7 @@
             "propstack"
           ],
           "icon": "briefcase",
-          "response": "In Ansus Karriere ging es eher um Akkumulation als um Design. Seine erste berufliche Tätigkeit im Technologiebereich war die Verwaltung der IT-Infrastruktur für AccounTax Solutions in Banjul: Netzwerke, Dateiserver, Workstations und der stille Druck, die Systeme für fünfzig Personen am Laufen zu halten, deren Arbeit eingestellt wurde, als etwas ausfiel. In dieser Größenordnung hatte er es noch nie zuvor geschafft. Er erwähnte dies nicht.\n\nIm Jahr 2014 zog er nach Berlin. Die folgenden Jahre umfassten das Erlernen der deutschen Sprache, bis er Witze verstehen und klinischen Teambesprechungen folgen konnte, ein Full-Stack-Training am Digital Career Institute, einen React Native-Umbau für ein Immobilienunternehmen und zwei Jahre bei change.org e.V. und sein Nachfolger innn.it, wo bürgerschaftliches Engagement in großem Umfang stattfand, eine mitbegründete Storytelling-Plattform namens ZULA, die Kinder in fünfzehn Ländern erreichte, und jetzt die Frontend-Lead-Rotation für eine klinische Plattform bei FREY ADV / doctorly.\n\nJedes Kapitel fügte etwas Spezifisches hinzu. Das Finanzbüro in Banjul lehrte ihn, dass Infrastruktur nur dann unsichtbar ist, wenn sie funktioniert. Die Bürgerplattformen lehrten ihn, dass es bei der Leistung um Menschen geht: Eine langsame Seite während einer viralen Petitionskampagne bedeutete, dass jemand aufgab, bevor er etwas unterschreiben konnte, das ihm wichtig war. ZULA brachte ihm bei, was es kostet, etwas aufzubauen, an das man glaubt, und dabei zuzusehen, wie die Finanzierung ausgeht. Das Gesundheitswesen lehrt ihn, wie viel Vertrauen erforderlich ist, wenn Software klinische Entscheidungen beeinflusst.\n\nEr tut dies seit Jahren in zwei Ländern und in Bereichen, die technisch fast nichts gemeinsam haben. Gemeinsam ist ihnen, dass in jedem Fall echte Menschen auf die Software angewiesen waren, um ihre eigentliche Arbeit zu erledigen. Diesen Zustand nimmt er am ernstesten.\n\nDen vollständigen Zeitplan für jede Rolle mit Links zu Fallstudien finden Sie auf der Karriereseite unter /career."
+          "response": "In Ansus Karriere ging es eher um Akkumulation als um Design. Seine erste berufliche Tätigkeit im Technologiebereich war die Verwaltung der IT-Infrastruktur für AccounTax Solutions in Banjul: Netzwerke, Dateiserver, Workstations und der stille Druck, die Systeme für fünfzig Personen am Laufen zu halten, deren Arbeit eingestellt wurde, als etwas ausfiel. In dieser Größenordnung hatte er es noch nie zuvor geschafft. Er erwähnte dies nicht.\n\nIm Jahr 2014 zog er nach Berlin. Die folgenden Jahre umfassten das Erlernen der deutschen Sprache, bis er Witze verstehen und klinischen Teambesprechungen folgen konnte, ein Full-Stack-Training am Digital Career Institute, einen React Native-Umbau für ein Immobilienunternehmen und zwei Jahre bei change.org e.V. und sein Nachfolger innn.it, wo bürgerschaftliches Engagement in großem Umfang stattfand, eine mitbegründete Storytelling-Plattform namens ZULA, die Kinder in fünfzehn Ländern erreichte, und jetzt eine klinische Praxisplattform bei FREY ADV / doctorly, wo er ein Quartal lang die Prioritäten des Frontend-Teams verantwortet hat.\n\nJedes Kapitel fügte etwas Spezifisches hinzu. Das Finanzbüro in Banjul lehrte ihn, dass Infrastruktur nur dann unsichtbar ist, wenn sie funktioniert. Die Bürgerplattformen lehrten ihn, dass es bei der Leistung um Menschen geht: Eine langsame Seite während einer viralen Petitionskampagne bedeutete, dass jemand aufgab, bevor er etwas unterschreiben konnte, das ihm wichtig war. ZULA brachte ihm bei, was es kostet, etwas aufzubauen, an das man glaubt, und dabei zuzusehen, wie die Finanzierung ausgeht. Das Gesundheitswesen lehrt ihn, wie viel Vertrauen erforderlich ist, wenn Software klinische Entscheidungen beeinflusst.\n\nEr tut dies seit Jahren in zwei Ländern und in Bereichen, die technisch fast nichts gemeinsam haben. Gemeinsam ist ihnen, dass in jedem Fall echte Menschen auf die Software angewiesen waren, um ihre eigentliche Arbeit zu erledigen. Diesen Zustand nimmt er am ernstesten.\n\nDen vollständigen Zeitplan für jede Rolle mit Links zu Fallstudien finden Sie auf der Karriereseite unter /career."
         },
         {
           "id": "journey-teaching-to-tech",
@@ -5166,7 +5175,7 @@
             "coaching"
           ],
           "icon": "code",
-          "response": "Ansu führt, indem er präsent ist, statt die Verantwortung zu übernehmen. Er arbeitet mit Engineers zusammen, wenn ein Problem wirklich schwierig ist, und überprüft den Code mit der Frage, die ihn wirklich beschäftigt: nicht nur, was falsch ist, sondern auch, was der Code über die Denkweise der Person verrät und welche Konversation ihr beim nächsten Mal helfen würde, anders zu denken.\n\nBei FREY ADV betreut er drei Nachwuchsentwickler. Ihm ist aufgefallen, dass die Engineers, die am schnellsten wachsen, in der Regel nicht diejenigen sind, die die meisten Korrekturen erhalten. Sie sind diejenigen, die anfangen, bessere Fragen zu stellen. Seiner Ansicht nach besteht seine Aufgabe darin, Bedingungen zu schaffen, in denen dieser Wandel stattfinden kann. Er erklärt die Gründe für Entscheidungen, anstatt sie einfach nur zu erlassen, sodass die Person, die damit umgeht, bei einem späteren Auftreten einer ähnlichen Situation etwas hat, auf dem sie aufbauen kann, und nicht etwas, an das sie sich erinnern kann.\n\nZu Beginn seiner Karriere gab es Menschen, die geduldig mit ihm waren. Er erinnert sich noch daran, welche Gespräche seine Denkweise veränderten und was diese Leute lieber erklärten als einfach korrigierten. Er glaubt nicht, dass diese Art von Geduld bei ihm aufhören sollte.\n\nDie teuersten Softwareprobleme sind selten technischer Natur. Sie sind das, was passiert, wenn jemand sich nicht sicher genug fühlt, um zu sagen, dass er etwas nicht verstanden hat. Er hat gesehen, wie sich das abspielt. Er versucht, dies in den Teams, in denen er arbeitet, strukturell unmöglich zu machen."
+          "response": "Ansu führt, indem er präsent ist, statt die Verantwortung zu übernehmen. Er arbeitet mit Engineers zusammen, wenn ein Problem wirklich schwierig ist, und überprüft den Code mit der Frage, die ihn wirklich beschäftigt: nicht nur, was falsch ist, sondern auch, was der Code über die Denkweise der Person verrät und welche Konversation ihr beim nächsten Mal helfen würde, anders zu denken.\n\nBei FREY ADV begleitet er Engineers über Reviews und Pairing. Ihm ist aufgefallen, dass die Engineers, die am schnellsten wachsen, in der Regel nicht diejenigen sind, die die meisten Korrekturen erhalten. Sie sind diejenigen, die anfangen, bessere Fragen zu stellen. Seiner Ansicht nach besteht seine Aufgabe darin, Bedingungen zu schaffen, in denen dieser Wandel stattfinden kann. Er erklärt die Gründe für Entscheidungen, anstatt sie einfach nur zu erlassen, sodass die Person, die damit umgeht, bei einem späteren Auftreten einer ähnlichen Situation etwas hat, auf dem sie aufbauen kann, und nicht etwas, an das sie sich erinnern kann.\n\nZu Beginn seiner Karriere gab es Menschen, die geduldig mit ihm waren. Er erinnert sich noch daran, welche Gespräche seine Denkweise veränderten und was diese Leute lieber erklärten als einfach korrigierten. Er glaubt nicht, dass diese Art von Geduld bei ihm aufhören sollte.\n\nDie teuersten Softwareprobleme sind selten technischer Natur. Sie sind das, was passiert, wenn jemand sich nicht sicher genug fühlt, um zu sagen, dass er etwas nicht verstanden hat. Er hat gesehen, wie sich das abspielt. Er versucht, dies in den Teams, in denen er arbeitet, strukturell unmöglich zu machen."
         },
         {
           "id": "skills-cloud",
@@ -5610,7 +5619,7 @@
             "part-time"
           ],
           "icon": "chat",
-          "response": "Ansu ist derzeit Senior Software Engineer und Frontend Lead bei FREY ADV / doctorly, wo er die Quartalsprioritäten des Frontend-Teams setzt und die Architekturentscheidungen für eine klinische Praxisplattform verantwortet. Er ist offen für punktuelle Beratung, Beratungsgespräche und projektbasierte Engagements neben seiner Hauptaufgabe, insbesondere für Herausforderungen, bei denen seine Erfahrung in den Bereichen Gesundheitssoftware, Leistungsoptimierung, Cloud-Infrastruktur oder mobile Entwicklung wirklich relevant ist.\n\nDie Aufträge, die in der Regel am besten funktionieren, beginnen mit einem konkreten Problem und nicht mit einem offenen Auftrag. Er ist unkompliziert, wenn es um die Passform geht. Wenn er zu der Arbeit keinen sinnvollen Beitrag leisten kann, sagt er das oft schon im ersten Gespräch und weist normalerweise auf jemanden hin, der besser geeignet ist. Er hat festgestellt, dass die meisten Menschen dies zu schätzen wissen, auch wenn es nicht das ist, was sie zu hören gehofft hatten. Eine frühzeitige ehrliche Einstellung zur Eignung schützt die Qualität der Arbeit für alle.\n\nWenn Sie überlegen, ob er die richtige Person für etwas ist, an dem Sie arbeiten, ist eine kurze Nachricht, in der Sie die Herausforderung beschreiben und was Sie erreichen möchten, der beste Ausgangspunkt. Seine E-Mail lautet thisisansumana@gmail.com. Er liest es."
+          "response": "Ansu ist derzeit Senior Software Engineer bei FREY ADV / doctorly und arbeitet an der Frontend-Architektur einer klinischen Praxisplattform. In der Lead-Rotation Q3 2026 hat er die Prioritäten des Frontend-Teams verantwortet. Er ist offen für punktuelle Beratung, Beratungsgespräche und projektbasierte Engagements neben seiner Hauptaufgabe, insbesondere für Herausforderungen, bei denen seine Erfahrung in den Bereichen Gesundheitssoftware, Leistungsoptimierung, Cloud-Infrastruktur oder mobile Entwicklung wirklich relevant ist.\n\nDie Aufträge, die in der Regel am besten funktionieren, beginnen mit einem konkreten Problem und nicht mit einem offenen Auftrag. Er ist unkompliziert, wenn es um die Passform geht. Wenn er zu der Arbeit keinen sinnvollen Beitrag leisten kann, sagt er das oft schon im ersten Gespräch und weist normalerweise auf jemanden hin, der besser geeignet ist. Er hat festgestellt, dass die meisten Menschen dies zu schätzen wissen, auch wenn es nicht das ist, was sie zu hören gehofft hatten. Eine frühzeitige ehrliche Einstellung zur Eignung schützt die Qualität der Arbeit für alle.\n\nWenn Sie überlegen, ob er die richtige Person für etwas ist, an dem Sie arbeiten, ist eine kurze Nachricht, in der Sie die Herausforderung beschreiben und was Sie erreichen möchten, der beste Ausgangspunkt. Seine E-Mail lautet thisisansumana@gmail.com. Er liest es."
         },
         {
           "id": "general-languages",
@@ -5652,7 +5661,7 @@
             "field"
           ],
           "icon": "briefcase",
-          "response": "Ansus berufliche Arbeit erstreckt sich über mehrere unterschiedliche Bereiche. Was sie verbindet, ist keine technische Überschneidung, sondern eine konsistente Grundbedingung: In beiden Fällen war die Software nicht optional. Die Menschen waren darauf angewiesen, ihre eigentliche Arbeit zu erledigen.\n\nSein aktueller Schwerpunkt liegt im Gesundheitswesen. Bei FREY ADV leitet er die Modernisierung eines klinischen Praxismanagementsystems, das von über tausend medizinischen Mitarbeitern genutzt wird. Die Umgebung erfordert Präzision in Bezug auf Sicherheit, Compliance und Workflow-Design, um die kognitive Belastung für Ärzte, die bereits anspruchsvolle Tage bewältigen, zu minimieren.\n\nVor seiner Karriere im Gesundheitswesen war er fast drei Jahre lang auf der bürgerschaftlichen Interessenvertretungsplattform change.org e.V. tätig. und innn.it, wo Petitionssysteme während Kampagnen, die ohne Vorwarnung viral gingen, einer unvorhersehbaren Belastung standhalten mussten. Davor: eine mobile Immobilien-App für Außendienstmitarbeiter, eine mitbegründete Storytelling-Plattform für Kinder, ein während seiner Ausbildung entwickeltes Bau-Workflow-Tool und die Finanz-IT-Infrastruktur, mit der seine Karriere in Banjul begann.\n\nJede Domain hat etwas hinterlassen. Das Gesundheitswesen lehrte ihn, wie wichtig Vertrauen in Software ist. Die Civic Tech lehrte ihn, dass Leistung eine Frage davon ist, wer teilnehmen darf. ZULA lehrte ihn, was es kostet, etwas aufzubauen, an das man glaubt. Das Finanzamt in Banjul lehrte ihn, dass Verlässlichkeit erst dann sichtbar ist, wenn es scheitert."
+          "response": "Ansus berufliche Arbeit erstreckt sich über mehrere unterschiedliche Bereiche. Was sie verbindet, ist keine technische Überschneidung, sondern eine konsistente Grundbedingung: In beiden Fällen war die Software nicht optional. Die Menschen waren darauf angewiesen, ihre eigentliche Arbeit zu erledigen.\n\nSein aktueller Schwerpunkt liegt im Gesundheitswesen. Bei FREY ADV hat er das Frontend-Rebuild von Quincy Mobile geleitet, einem Praxisverwaltungssystem, das von über tausend medizinischen Fachkräften genutzt wird, und arbeitet heute an der klinischen Praxisplattform von doctorly. Die Umgebung erfordert Präzision in Bezug auf Sicherheit, Compliance und Workflow-Design, um die kognitive Belastung für Ärzte, die bereits anspruchsvolle Tage bewältigen, zu minimieren.\n\nVor seiner Karriere im Gesundheitswesen war er fast drei Jahre lang auf der bürgerschaftlichen Interessenvertretungsplattform change.org e.V. tätig. und innn.it, wo Petitionssysteme während Kampagnen, die ohne Vorwarnung viral gingen, einer unvorhersehbaren Belastung standhalten mussten. Davor: eine mobile Immobilien-App für Außendienstmitarbeiter, eine mitbegründete Storytelling-Plattform für Kinder, ein während seiner Ausbildung entwickeltes Bau-Workflow-Tool und die Finanz-IT-Infrastruktur, mit der seine Karriere in Banjul begann.\n\nJede Domain hat etwas hinterlassen. Das Gesundheitswesen lehrte ihn, wie wichtig Vertrauen in Software ist. Die Civic Tech lehrte ihn, dass Leistung eine Frage davon ist, wer teilnehmen darf. ZULA lehrte ihn, was es kostet, etwas aufzubauen, an das man glaubt. Das Finanzamt in Banjul lehrte ihn, dass Verlässlichkeit erst dann sichtbar ist, wenn es scheitert."
         },
         {
           "id": "contact-connect",

@@ -607,7 +607,7 @@
         "contact": "Contact"
       },
       "hero": {
-        "bio": "Frontend Lead at doctorly in Berlin. Currently taking a desktop-only clinical practice platform responsive across devices, one quarter's priorities at a time.",
+        "bio": "I work on doctorly's clinical practice platform at FREY ADV in Berlin, modernizing a legacy frontend in steps so product delivery keeps moving.",
         "cta": {
           "primary": {
             "text": "View career timeline",
@@ -900,7 +900,7 @@
           "emoji": "🤝",
           "title": "Mentorship & Teamwork",
           "description": "I enjoy helping others grow, and I usually learn something in the process too.",
-          "details": "At FREY ADV I mentor three junior developers through code reviews, pairing, and shared engineering standards. It goes both ways. Explaining a decision out loud often reveals a simpler solution.",
+          "details": "At FREY ADV I mentor engineers through code reviews, pairing, and shared engineering standards. It goes both ways. Explaining a decision out loud often reveals a simpler solution.",
           "relatedSkills": [
             "Code review",
             "Pair programming",
@@ -948,14 +948,14 @@
       ]
     },
     "personalInfo": {
-      "role": "Senior Software Engineer · Frontend Lead",
+      "role": "Senior Software Engineer",
       "backgroundHook": [
         "Hey there 👋",
         "I'm **Ansumana Darboe**. Most people call me **Ansu**. I'm a Senior Software Engineer based in **Berlin**, and for the past 8+ years I've been building web and mobile software people actually have to rely on.",
         "The curiosity started with our family computer. I was the kid who took things apart to see what was inside. These days I do the same with large codebases. Fewer missing screws. More late nights.",
         "Before tech, I spent over four years playing professional football and coaching youth teams in **The Gambia**. Our coach had one phrase after any session he considered poor. 'Again tomorrow.' That was it. He picked up his bag and walked off the pitch. I never liked hearing it. I understand it better now.",
         "A knee injury ended the football chapter. I taught in rural classrooms with cracked blackboards and few textbooks. I studied Software Applications at **Gambia Technical Training Institute**, managed networks at **AccounTax Solutions**, and moved to **Berlin** in 2014 without speaking the language or knowing anyone. I believed if I could learn code, I could learn German too.",
-        "Since then the work has taken me through very different worlds. I rebuilt the React Native app for real estate teams at **Propstack** and worked on civic platforms at **change.org** and **innn.it**, where a slow page wasn't just an inconvenience. It affected how quickly people could discover, support, and share campaigns. Later I co-founded **ZULA**, a storytelling platform for children who rarely saw themselves reflected in the books they read. I joined **FREY ADV** to lead the frontend rebuild of a practice management system that had run on desktops for over thirty years, and after Frey acquired **doctorly** I moved onto that team. Since mid-2026 I've held the frontend lead rotation there: setting the quarter's priorities, writing the architecture decisions behind them, and mentoring the engineers shipping beside me.",
+        "Since then the work has taken me through very different worlds. I rebuilt the React Native app for real estate teams at **Propstack** and worked on civic platforms at **change.org** and **innn.it**, where a slow page wasn't just an inconvenience. It affected how quickly people could discover, support, and share campaigns. Later I co-founded **ZULA**, a storytelling platform for children who rarely saw themselves reflected in the books they read. I joined **FREY ADV** to lead the frontend rebuild of a practice management system that had run on desktops for over thirty years, and after Frey acquired **doctorly** I moved onto that team. In Q3 2026 I took my turn in the team's frontend lead rotation, setting the quarter's priorities and writing the architecture decisions behind them, before handing over to the next lead in October.",
         "Most days you'll find me working with **TypeScript**, **React**, **Node.js**, and cloud infrastructure. I enjoy improving performance, simplifying complex systems, mentoring junior developers, and building software that quietly does its job. The stack changes. Building software people can rely on doesn't.",
         "Outside of work I still follow football closely. These days my knee prefers that I watch more matches than I play."
       ],
@@ -968,14 +968,14 @@
         "badge": "What I build",
         "description": "I modernize legacy web and mobile systems in healthcare, civic tech, and regulated environments, where slow pages, fragile deploys, and insecure access cost real time.",
         "highlightText": "healthcare, civic platforms",
-        "summary": "I lead frontend delivery, shape architecture with the team, mentor engineers, and ship in increments when the domain cannot afford a standstill.",
+        "summary": "I work on architecture, state management, and reliability in systems that are already in use, change them in increments the product can absorb, and review and pair with the engineers around me.",
         "headline": "Senior full-stack engineer for software that cannot fail quietly",
         "threadsLabel": "Where the work landed",
         "threads": [
           {
             "emoji": "🏥",
             "label": "Healthcare at FREY ADV / doctorly",
-            "detail": "Frontend Lead · quarterly priorities, architecture decisions, clinical platform",
+            "detail": "Legacy modernization · architecture boundaries · observability",
             "href": "/career#career-leadership"
           },
           {
@@ -1079,7 +1079,7 @@
           "When I moved onto a new team, I was asked directly whether I knew test-driven development. I said no. They handed me the testing lead for a new module anyway.",
           "I also shipped merge requests that were too large to review properly, and once pushed a change straight to the main branch instead of opening a request for it. Both slowed the team down, including me. Reviewers had to hold a week of changes in their heads at once, and a direct push meant nobody had checked the change before it shipped.",
           "I broke the work into smaller pieces and started taking testing seriously instead of treating it as a step to get through. Within a few months I was writing tests that described what a user does, not just what the code does internally, so they would survive me changing the implementation later.",
-          "By the middle of that year I was leading the same kind of testing work I had said no to months earlier, and soon after took on the frontend lead rotation for the team. I would rather admit that arc than polish it away."
+          "By the middle of that year I was leading the same kind of testing work I had said no to months earlier, and soon after took my turn in the team's frontend lead rotation. I would rather admit that arc than polish it away."
         ]
       },
       "nextSteps": {
@@ -1117,7 +1117,7 @@
           {
             "id": "frontend-architecture",
             "title": "Frontend & architecture",
-            "detail": "Hold the frontend lead rotation at FREY ADV / doctorly: architecture decisions, state-management consolidation, and secure access for 1,000+ medical staff in a regulated environment."
+            "detail": "Led frontend priorities at FREY ADV / doctorly during the Q3 2026 lead rotation. We agreed to land a few priorities properly rather than start all eight. I split ownership across the team, kept state management, observability, and multi-tenancy myself, and handed Q4 to the next lead with a written record of what was settled and what was still open."
           },
           {
             "id": "mentoring",
@@ -1177,7 +1177,7 @@
           },
           {
             "metric": "1,000+",
-            "description": "Medical staff on the practice platform the team rebuilt"
+            "description": "Medical staff on Quincy Mobile, the practice platform the team rebuilt"
           },
           {
             "metric": "5,000+",
@@ -1213,12 +1213,12 @@
         {
           "id": "doctorly",
           "title": "doctorly",
-          "summary": "Frontend lead for a clinical practice platform used by 1,000+ medical staff: sequencing priorities, writing the architecture decisions, and handing ownership to the team as it grows.",
-          "description": "After FREY ADV acquired doctorly, I moved onto the team building its clinical practice platform. Since mid-2026 I've held the frontend lead rotation: setting the quarter's priorities, authoring the architecture decisions behind them, and delegating ownership of individual streams as the team grows.",
+          "summary": "Incremental modernization of doctorly's clinical practice platform after FREY ADV acquired the company. I led the frontend team's priorities during the Q3 2026 rotation and worked directly on state management, observability, and the groundwork for multi-tenancy.",
+          "description": "After FREY ADV acquired doctorly, I moved onto the team building its clinical practice platform. During the Q3 2026 frontend lead rotation I set the quarter's frontend priorities, wrote the architecture decisions behind them, and split ownership across the team. In October I handed the role to the next lead and continued as an engineer on the same codebase.",
           "image": "doctorly",
           "profile": "doctorly",
           "metrics": {
-            "primary": "1,000+ Clinicians Served",
+            "primary": "Boundaries Enforced in CI",
             "secondary": "State Management Consolidated"
           },
           "role": "Frontend",
@@ -1239,39 +1239,47 @@
             "Observability"
           ],
           "achievements": [
-            "Consolidated state management to one story: server state in React Query, shared client state in Zustand, and removed the last Redux usage from the platform.",
-            "Authored the frontend observability decision record, covering tool choice, PII scrubbing, and release and source-map strategy, and held implementation until sign-off.",
-            "Split the observability build into separate merge requests for bootstrap, PII scrubbing, technical context, error capture and failure behaviour, so privacy and failure handling could be reviewed on their own.",
+            "Modernized the state-management layer: removed the last Redux usage in favor of React Query and Zustand, and documented the state-ownership rules.",
+            "Consolidated seven product areas that each had two frontend implementations, removing roughly 1,100 lines of duplicate code.",
+            "Introduced staged architecture dependency rules, enforced in CI.",
+            "Implemented frontend error tracking and Web Vitals monitoring, and defined the frontend model for multi-tenancy.",
             "Reviewed the team's merge requests with feedback aimed at behaviour rather than style: a request firing on every keystroke where comparable flows debounce, an unreachable fallback branch, a dropped error notification because a refetch does not reject by default."
           ],
-          "problem": "doctorly's interface had been built for desktop screens only, with no responsive layout for the tablets and phones clinicians increasingly used. After Frey acquired the company, the team needed frontend direction: which of the quarter's priorities actually mattered, how to migrate domain-by-domain without freezing delivery, and how to make production errors actionable instead of merely logged.",
+          "problem": "doctorly's frontend had accumulated structural debt: leftover Redux alongside newer state patterns, seven product areas with two implementations each, layer boundaries that existed only in documentation, a single practice ID hardcoded throughout, and no frontend error visibility, so production problems reached engineering through support tickets. None of it could be fixed by pausing the product. After the acquisition the team needed a frontend direction: what to fix first, in what order, and how to do it without freezing feature delivery.",
           "solution": [
-            "Sequenced the quarter's frontend priorities instead of running them in parallel. Architecture boundaries, the data layer, observability and multi-tenancy each constrained the next, so the order mattered more than the count.",
-            "Consolidated state management to one story: server state in React Query, shared client state in Zustand, and local state where it belongs. Removed the last Redux usage from the platform in the process.",
-            "Ran a domain-by-domain consolidation as a series of small merge requests, deleting each legacy path in the same change that replaced it, so the moves stayed reviewable.",
-            "Authored the frontend observability decision record and held implementation until sign-off, because the PII scrubbing and release handling were the parts worth not redoing.",
-            "Held an urgent piece of work in the backlog because it depended on a backend decision about how a tenant is identified, rather than inventing a frontend-only answer that would need unpicking later."
+            "Agreed with the team in July to land a few of the quarter's eight frontend priorities properly rather than start all of them. Ordered the work by dependency and split ownership three ways, keeping state management, observability, duplicate consolidation, and multi-tenancy myself.",
+            "Removed the remaining Redux usage and wrote down who owns which state: server state in React Query, genuinely shared client state in Zustand, everything else local to the component. The rules were soon being cited in reviews, which was the point of writing them down.",
+            "Consolidated seven product areas that each had two frontend implementations, including Mailbox, LDT, Practice, and Calendar, through six focused merge requests. Each removed the legacy path in the same change that replaced it, so there was never a period with two current versions.",
+            "Built on a teammate's entities pilot to turn the documented layer boundaries into ESLint dependency rules, staged from warnings to an allowlist to CI errors. Moved the app-shell layout out of the feature layer, where it had been creating exactly the cross-feature imports the rules exist to prevent.",
+            "Wrote the decision record for frontend observability and held implementation until PII handling and the ingestion boundary were agreed with Security and DevOps. Then built error tracking and Web Vitals monitoring as separate merge requests for bootstrap, scrubbing, error capture, and failure behaviour, so the privacy work could be reviewed on its own. Documented local setup and troubleshooting so the integration doesn't depend on one person.",
+            "Mapped where the frontend assumed a single practice and defined the runtime tenant context, resource ownership, and permission model before writing implementation code. Held implementation until the backend header contract settled; the runtime context API is now merged, and the remaining work depends on platform services the backend is still rolling out."
           ],
           "technicalInsights": [
             {
               "title": "Sequencing, Not Parallel Migrations",
-              "description": "The quarter's priorities were not independent projects. Architecture boundaries, data ownership, observability and multi-tenancy each affected the others. Trade-off: some work stayed visibly unstarted, and the work that did start got finished."
+              "description": "The eight priorities looked independent and weren't. The architecture boundaries depended on where the data layer was heading, and multi-tenancy depended on both. Started in parallel, the later pieces would have reopened the earlier ones. Trade-off: some priorities stayed visibly unstarted for the quarter, and the ones that did start reached a state the next lead could build on."
             },
             {
-              "title": "Documentation as Tooling, Not a File",
-              "description": "Wrote the frontend rules into the tooling engineers use during implementation and review. Trade-off: more setup cost upfront, but the guidance surfaces exactly when decisions get made instead of sitting unread."
+              "title": "Enforcing Boundaries Incrementally",
+              "description": "By the time enforcement started, 128 violations had accumulated. Fixing them first would have stalled feature work in shared code; excluding whole directories would have hidden them. Instead the rules were staged (warn, then allowlist, then error) and every existing violation became an explicit, file-level exemption. Trade-off: the legacy debt stays visible as a list someone has to work down, while new violations fail CI from day one."
             },
             {
-              "title": "Deferring a Decision Deliberately",
-              "description": "Held an urgent tenant-identification feature in the backlog pending a backend decision. Trade-off: the work stayed visibly unstarted, but a frontend-only answer would have needed unpicking once the backend direction landed."
+              "title": "Foundation Before Implementation",
+              "description": "The frontend hardcoded a single practice ID across 38 call sites while the platform's tenancy design was still changing. Threading a tenant identifier through all of them would have been quick, and probably wrong once the backend settled. Defining the runtime context, ownership, and permission model first meant revising two of those documents as the platform design moved, which is cheaper than revising code. Trade-off: the priority showed no user-visible progress until the backend contract was ready."
+            },
+            {
+              "title": "Observability Inside Existing Infrastructure",
+              "description": "The decision record chose Grafana Faro over Sentry or a hand-built OpenTelemetry setup, so frontend telemetry stays within infrastructure DevOps already runs and already trusts with patient-adjacent data. Trade-off: no packaged issue management or source-map tooling, so release metadata and technical context had to be attached deliberately, and session-level signals stay off until Security signs them off."
             }
           ],
           "outcome": {
-            "impact": "The team ships fewer, better-sequenced changes, and a production error now carries enough context to act on without redoing the investigation each time.",
+            "impact": "The frontend now has one state-management convention, one implementation per consolidated product area, layer boundaries that CI enforces, and error and performance monitoring built to keep patient data out. Multi-tenancy has a defined model and its first runtime piece merged.",
             "businessResults": [
-              "1,000+ medical staff use the rebuilt platform.",
-              "Redux is gone from the platform: server state in React Query, shared client state in Zustand, local state in the component.",
-              "Consolidating the LDT and Practice areas removed roughly 1,100 lines of duplicate implementation."
+              "Redux fully removed; state-ownership rules documented and used in review.",
+              "Seven duplicated product areas consolidated into one implementation each, removing roughly 1,100 lines of duplicate code.",
+              "128 existing architecture violations tracked as explicit exemptions; new dependency violations fail CI.",
+              "Frontend error tracking and Web Vitals monitoring implemented and merged, with session-level signals held for Security sign-off.",
+              "Q3 frontend priorities handed to the next lead in writing: what was settled, what was open, and the two main risks for Q4."
             ]
           },
           "visuals": {
@@ -1282,13 +1290,15 @@
           },
           "lessonsLearned": [
             "Choosing not to ship something urgent, and being able to say why, is harder than shipping it.",
-            "Splitting a migration into reviewable merge requests costs more upfront planning than one big change, and saves the multi-week review nobody wants to do.",
+            "Small merge requests keep a change reviewable; they don't make it cheap. Consolidating shared product areas in six focused merge requests still took about four weeks of review, because each one touched code other people were changing.",
+            "Delegating a priority is not the same as being able to see it. Two delegated priorities didn't move in Q3, and the signals I relied on weren't enough to tell blocked work from work that hadn't started. Next time I'd use the existing frontend huddle as an explicit checkpoint for exactly that.",
             "What I got wrong: I once assumed a piece of backend work was already finished and shipped my side of a feature flag change without looping in QA or a backend engineer first. It caused a rollout hiccup that ten minutes of coordination would have caught."
           ],
           "technicalChallengesOvercome": [
-            "Ordered a quarter of connected frontend priorities so each one made the next safer to start.",
-            "Migrated legacy state management domain-by-domain while keeping every intermediate step shippable.",
-            "Made production errors actionable by attaching route, environment, and release context without exposing patient data."
+            "Changed shared foundations while feature delivery continued on top of them: every consolidation and migration step had to be shippable on its own.",
+            "Introduced architecture enforcement into a codebase that already broke the rules, without blocking work in flight.",
+            "Designed frontend telemetry for a healthcare product, where error context is only useful if patient data stays out of it.",
+            "Planned multi-tenancy against a backend and platform design that was still changing during the quarter."
           ],
           "hasDetailLink": true,
           "link": "/projects/doctorly",
@@ -1811,7 +1821,7 @@
         {
           "id": "who-are-you",
           "question": "Who are you and what do you do?",
-          "answer": "I'm **Ansumana Darboe**. Most people call me **Ansu**. I'm a **Senior Software Engineer** and **Frontend Lead** in **Berlin** who modernizes production web and mobile systems in healthcare, civic tech, and regulated environments.\n\nThe work spans **doctorly** and **Quincy Mobile** at FREY ADV, civic platforms at **change.org** and **innn.it**, proptech at **Propstack**, and **ZULA**, a startup I co-founded. Stack-wise: **TypeScript**, **React**, **Node.js**, **AWS**, **MongoDB**. For the full story, see [About](/about). For the timeline, [Career](/career). For technical proof, [Projects](/projects)."
+          "answer": "I'm **Ansumana Darboe**. Most people call me **Ansu**. I'm a **Senior Software Engineer** in **Berlin** who modernizes production web and mobile systems in healthcare, civic tech, and regulated environments.\n\nThe work spans **doctorly** and **Quincy Mobile** at FREY ADV, civic platforms at **change.org** and **innn.it**, proptech at **Propstack**, and **ZULA**, a startup I co-founded. Stack-wise: **TypeScript**, **React**, **Node.js**, **AWS**, **MongoDB**. For the full story, see [About](/about). For the timeline, [Career](/career). For technical proof, [Projects](/projects)."
         },
         {
           "id": "where-from",
@@ -1831,12 +1841,12 @@
         {
           "id": "current-work",
           "question": "What are you working on currently?",
-          "answer": "Since **October 2024** I've been at **FREY ADV**, where I led the frontend rebuild of a **30+ year** practice management system in regulated healthcare. After Frey acquired **doctorly** I moved onto that team, and since mid-2026 I've held the **frontend lead** rotation.\n\nThe stack: **React**, **TypeScript**, **React Query**, **Zustand**, **Tailwind CSS**, **Node.js**, **Express**. The work now is setting the quarter's frontend priorities, writing the architecture decisions behind them, and reviewing the team's merge requests. Clinicians cannot wait on slow software or insecure remote access.\n\n**1,000+ medical staff** have secure remote access with **offline-capable** workflows. **RBAC**, **encryption**, and **audit logging** are GDPR-aligned."
+          "answer": "Since **October 2024** I've been at **FREY ADV**. I joined to lead the frontend rebuild of **Quincy Mobile**, a **30+ year** practice management system that now gives **1,000+ medical staff** secure remote access. After Frey acquired **doctorly** I moved onto the doctorly team and its clinical practice platform.\n\nThere I work on the frontend foundations: state management, architecture boundaries enforced in CI, error and performance monitoring, and the groundwork for multi-tenancy. I led the team's frontend priorities during the **Q3 2026** lead rotation and handed them to the next lead in October. Since then I've continued on the same work as an engineer.\n\nThe stack: **React**, **TypeScript**, **React Query**, **Zustand**, **Tailwind CSS**, **Node.js**, **Express**."
         },
         {
           "id": "career-timeline",
           "question": "What does your career path look like?",
-          "answer": "The path runs from networks in The Gambia to regulated healthcare in Berlin.\n\n**AccounTax Solutions** (**2011 to 2013**): IT for a 50-person finance team. **Propstack** (**2019**): **React Native** rebuild for field agents. **change.org e.V.** (**2020 to 2022**): advocacy platform foundations. **innn.it** (**2022 to 2023**): SEO and MongoDB under campaign traffic. **ZULA** (**2023 to 2024**): technical co-founder, inclusive storytelling. **FREY ADV / doctorly** (**2024 to present**): **Quincy Mobile**, then **Frontend Lead** for a clinical practice platform.\n\nEach step added a different kind of pressure: uptime, mobile craft, public scale, mission-driven product, clinical security. Full detail: [Career](/career)."
+          "answer": "The path runs from networks in The Gambia to regulated healthcare in Berlin.\n\n**AccounTax Solutions** (**2011 to 2013**): IT for a 50-person finance team. **Propstack** (**2019**): **React Native** rebuild for field agents. **change.org e.V.** (**2020 to 2022**): advocacy platform foundations. **innn.it** (**2022 to 2023**): SEO and MongoDB under campaign traffic. **ZULA** (**2023 to 2024**): technical co-founder, inclusive storytelling. **FREY ADV / doctorly** (**2024 to present**): **Quincy Mobile**, then doctorly's clinical practice platform, including the **Q3 2026** frontend lead rotation.\n\nEach step added a different kind of pressure: uptime, mobile craft, public scale, mission-driven product, clinical security. Full detail: [Career](/career)."
         },
         {
           "id": "change-org-experience",
@@ -4266,7 +4276,7 @@
         {
           "company": "FREY ADV / doctorly",
           "id": "doctorly",
-          "role": "Senior Software Engineer → Frontend Lead",
+          "role": "Senior Software Engineer · Frontend Lead (Q3 2026)",
           "period": "October 2024 · Present",
           "location": "Berlin, Germany",
           "icon": "🚀",
@@ -4276,21 +4286,20 @@
             "corporate"
           ],
           "achievements": [
-            "Joined to lead the frontend rebuild of a practice management system that had run on desktops for over thirty years. After Frey acquired doctorly I moved onto the doctorly team, and since mid-2026 I've held the frontend lead rotation, setting the quarter's frontend priorities, writing the architecture decisions behind them, and handing ownership of individual streams to the team.",
-            "Consolidated state management to one story. Server state in React Query, shared client state in Zustand, local state where it belongs, and removed the last Redux usage from the platform. Wrote the rules into the tooling engineers actually use during implementation and review, rather than a document nobody opens.",
-            "Ran a domain-by-domain consolidation as a series of small merge requests, deleting each legacy path in the same change that replaced it. Splitting the moves this way kept them reviewable; a single change touching all of it would have sat open for weeks.",
-            "Authored the frontend observability decision record: tool choice, PII scrubbing, the technical context attached to each error, and the release and source-map strategy that makes a production error actionable rather than merely recorded. Held implementation until sign-off, because the privacy and release handling are the parts worth not redoing.",
-            "Sequenced the quarter's frontend priorities instead of running them in parallel. Architecture boundaries, the data layer, observability and multi-tenancy each constrained the next, so the order mattered more than the count.",
-            "Held an urgent piece of work in the backlog because it depended on a backend decision about how a tenant is identified. Inventing a frontend-only answer would have meant unpicking it later.",
+            "Joined to lead the frontend rebuild of Quincy Mobile, a practice management system that had run on desktops for over thirty years. After Frey acquired doctorly I moved onto the doctorly team and its clinical practice platform.",
+            "Led the team's frontend priorities for Q3 2026 under a quarterly lead rotation, then handed the role to the next lead in October.",
+            "Modernized the state-management layer, removing the last Redux usage in favor of React Query and Zustand, and consolidated seven duplicated product areas into one implementation each, removing roughly 1,100 lines of duplicate code.",
+            "Introduced architecture dependency rules enforced in CI, staged so existing code kept shipping while new violations were blocked.",
+            "Implemented frontend error tracking and performance monitoring with patient data kept out of the telemetry, and defined the frontend approach to multi-tenancy around backend work that was still in progress.",
             "Reviewed the team's merge requests with feedback aimed at behaviour rather than style: a request firing on every keystroke where comparable flows debounce, an unreachable fallback branch, a dropped error notification because a refetch doesn't reject by default."
           ],
           "responsibilities": [
-            "Hold the frontend lead rotation for a clinical practice platform: set the quarter's priorities, write the architecture decisions behind them, and delegate ownership of individual streams.",
-            "Consolidate state management and delivery patterns across the frontend, retiring legacy approaches as each domain migrates.",
-            "Author decision records for cross-cutting concerns like observability, and hold implementation until the privacy and release questions are settled.",
+            "Work on the frontend of doctorly's clinical practice platform: architecture, state management, and reliability, changed in steps while product delivery continues.",
+            "Led frontend priorities and architecture decisions during the Q3 2026 rotation; since October 2026 the next lead owns the team's priorities and I contribute as an engineer.",
+            "Write decision records for cross-cutting concerns such as observability, and hold implementation until the privacy and security questions are settled.",
             "Review the team's merge requests with feedback aimed at behaviour, not style.",
-            "Sequence delivery so backend-dependent work waits for the right decision instead of shipping a frontend-only stopgap.",
-            "Mentor engineers through code review and pairing in a regulated environment where downtime is not abstract."
+            "Sequence backend-dependent work so the frontend follows the agreed contract instead of shipping a stopgap that has to be replaced.",
+            "Mentor engineers through code review and pairing."
           ],
           "technologies": []
         },
@@ -4324,6 +4333,30 @@
           "technologies": []
         },
         {
+          "company": "innn.it",
+          "id": "innnit",
+          "role": "Full-stack Developer",
+          "period": "July 2022 to July 2023",
+          "location": "Berlin, Germany",
+          "category": [
+            "startup",
+            "leadership"
+          ],
+          "image": "innnit",
+          "icon": "📣",
+          "achievements": [
+            "The Germany team rebranded from change.org e.V. to innn.it in July 2022. Same product mission, same codebase pressure. I kept shipping full-stack on petition and campaign workflows through the transition.",
+            "Organic traffic moved from about 50,000 to 100,000+ monthly visitors in roughly three months after SEO and performance work. Petitions held at 2,000+ signatures per week.",
+            "Retention among users on the redesigned petition flow rose about 40% over the following quarter, based on feedback from 1,500+ users."
+          ],
+          "responsibilities": [
+            "Continued the same full-stack petition and campaign work under the innn.it brand after the rebrand.",
+            "SEO, performance, and Core Web Vitals work on high-traffic advocacy surfaces.",
+            "Collaborated with design, marketing, and QA on campaign-aligned features."
+          ],
+          "technologies": []
+        },
+        {
           "company": "change.org e.V.",
           "id": "innnit",
           "role": "Full-stack Developer",
@@ -4346,30 +4379,6 @@
             "Developed and optimized RESTful APIs and MongoDB indexing at scale.",
             "Strengthened stability through load balancing, architecture work, and CI/CD with Docker and Kubernetes.",
             "Created technical documentation for APIs, databases, and system features, and supported 25+ staff with IT when tools or workstations failed."
-          ],
-          "technologies": []
-        },
-        {
-          "company": "innn.it",
-          "id": "innnit",
-          "role": "Full-stack Developer",
-          "period": "July 2022 to July 2023",
-          "location": "Berlin, Germany",
-          "category": [
-            "startup",
-            "leadership"
-          ],
-          "image": "innnit",
-          "icon": "📣",
-          "achievements": [
-            "The Germany team rebranded from change.org e.V. to innn.it in July 2022. Same product mission, same codebase pressure. I kept shipping full-stack on petition and campaign workflows through the transition.",
-            "Organic traffic moved from about 50,000 to 100,000+ monthly visitors in roughly three months after SEO and performance work. Petitions held at 2,000+ signatures per week.",
-            "Retention among users on the redesigned petition flow rose about 40% over the following quarter, based on feedback from 1,500+ users."
-          ],
-          "responsibilities": [
-            "Continued the same full-stack petition and campaign work under the innn.it brand after the rebrand.",
-            "SEO, performance, and Core Web Vitals work on high-traffic advocacy surfaces.",
-            "Collaborated with design, marketing, and QA on campaign-aligned features."
           ],
           "technologies": []
         },
@@ -4440,7 +4449,7 @@
         {
           "id": "doctorly-frontend-lead",
           "projectId": "doctorly",
-          "title": "Frontend Lead for a Clinical Practice Platform",
+          "title": "Modernizing a Clinical Practice Platform",
           "company": "FREY ADV / doctorly",
           "period": "Oct 2024 - Present",
           "location": "Berlin, Germany",
@@ -4449,12 +4458,12 @@
             "leadership",
             "corporate"
           ],
-          "summary": "A clinical practice platform built for desktop screens only, used by 1,000+ clinicians and now being made to work across the tablets and phones they actually carry. Since mid-2026 I've held the frontend lead rotation: setting the quarter's priorities, writing the architecture decisions behind them, and handing ownership of individual streams to the team.",
+          "summary": "The frontend of doctorly's clinical practice platform, modernized in steps while the product kept shipping: state management, architecture boundaries, monitoring, and the model for multi-tenancy. Includes the Q3 2026 frontend lead rotation.",
           "keyMetrics": [
-            "1,000+ medical staff with secure remote access on the rebuilt platform",
-            "Redux removed: server state in React Query, shared client state in Zustand",
-            "Frontend observability decision record authored, implementation held until privacy and release handling were signed off",
-            "Quarterly frontend priorities ordered by dependency rather than run in parallel"
+            "Redux fully removed: server state in React Query, shared client state in Zustand",
+            "Seven duplicated product areas consolidated, roughly 1,100 lines of duplicate code removed",
+            "Architecture dependency rules enforced in CI, staged around existing code",
+            "Frontend error tracking and Web Vitals monitoring implemented, patient data kept out of telemetry"
           ],
           "hasDetailLink": true,
           "technologies": []
@@ -4618,8 +4627,8 @@
         },
         {
           "year": "2026",
-          "title": "Frontend Lead at doctorly",
-          "description": "After Frey acquired doctorly I moved onto that team, and since mid-2026 I've held the frontend lead rotation: setting the quarter's priorities, writing the architecture decisions behind them, and handing ownership of individual streams to the team.",
+          "title": "Frontend Lead Rotation at doctorly",
+          "description": "After Frey acquired doctorly I moved onto that team. In Q3 2026 it was my turn in the frontend lead rotation: I set the quarter's priorities, wrote the architecture decisions behind them, and split ownership across the team, then handed the role to the next lead in October.",
           "icon": "🚀",
           "category": "leadership"
         }
@@ -4795,7 +4804,7 @@
             "gambia"
           ],
           "icon": "sparkles",
-          "response": "Before he was a software engineer, Ansumana Darboe was a child in a Gambian village who took apart radios to understand what was inside them, a teacher who moved a boy's desk to the front of the classroom because he could not read, a footballer who learned what \"again tomorrow\" actually means, and a system administrator who kept a finance team running on infrastructure they never had to think about.\n\nHe has been in Berlin for over a decade. He currently holds the frontend lead rotation for a clinical practice platform at FREY ADV / doctorly, setting the quarter's priorities and reviewing the team's merge requests. The path that brought him here was not designed in advance. It was built, one decision at a time, across two continents, from a finance office in Banjul to a clinical platform in Berlin.\n\nWhat connects all of it is not a skill set or a domain. It is a way of being in a room. He arrives, pays attention, stays, and does the work properly. That has not changed whether the room was a classroom in rural Gambia, an office in Banjul where a network going down meant fifty people stopped working, a civic advocacy platform during a viral campaign, or a clinical system that a thousand medical staff depend on before their first patient of the morning."
+          "response": "Before he was a software engineer, Ansumana Darboe was a child in a Gambian village who took apart radios to understand what was inside them, a teacher who moved a boy's desk to the front of the classroom because he could not read, a footballer who learned what \"again tomorrow\" actually means, and a system administrator who kept a finance team running on infrastructure they never had to think about.\n\nHe has been in Berlin for over a decade. He currently works on the frontend of a clinical practice platform at FREY ADV / doctorly, where he led the team's frontend priorities during the Q3 2026 lead rotation and reviews the team's merge requests. The path that brought him here was not designed in advance. It was built, one decision at a time, across two continents, from a finance office in Banjul to a clinical platform in Berlin.\n\nWhat connects all of it is not a skill set or a domain. It is a way of being in a room. He arrives, pays attention, stays, and does the work properly. That has not changed whether the room was a classroom in rural Gambia, an office in Banjul where a network going down meant fifty people stopped working, a civic advocacy platform during a viral campaign, or a clinical system that a thousand medical staff depend on before their first patient of the morning."
         },
         {
           "id": "intro-value-proposition",
@@ -4892,7 +4901,7 @@
             "propstack"
           ],
           "icon": "briefcase",
-          "response": "Ansu's career has moved by accumulation rather than design. His first professional role in technology was managing IT infrastructure for AccounTax Solutions in Banjul: networks, file servers, workstations, and the quiet pressure of keeping systems running for fifty people whose work stopped when anything went down. He had never done it at that scale before. He did not mention this.\n\nHe moved to Berlin in 2014. The years that followed included learning German until he could understand jokes and follow clinical team meetings, full-stack training at the Digital Career Institute, a React Native rebuild for a real estate company, two years across change.org e.V. and its successor innn.it where civic advocacy happened at scale, a co-founded storytelling platform called ZULA that reached children across fifteen countries, and now the frontend lead rotation for a clinical platform at FREY ADV / doctorly.\n\nEach chapter added something specific. The finance office in Banjul taught him that infrastructure is only invisible when it works. The civic platforms taught him that performance has human stakes: a slow page during a viral petition campaign was someone giving up before they could sign something that mattered to them. ZULA taught him what it costs to build something you believe in and watch the funding run out. Healthcare is teaching him how much trust is involved when software touches clinical decisions.\n\nHe has been doing this for years, in two countries, across domains that share almost nothing technically. What they have in common is that in each one, real people depended on the software to do their actual work. That condition is the one he takes most seriously.\n\nFor the full role-by-role timeline with case study links, see the career page at /career."
+          "response": "Ansu's career has moved by accumulation rather than design. His first professional role in technology was managing IT infrastructure for AccounTax Solutions in Banjul: networks, file servers, workstations, and the quiet pressure of keeping systems running for fifty people whose work stopped when anything went down. He had never done it at that scale before. He did not mention this.\n\nHe moved to Berlin in 2014. The years that followed included learning German until he could understand jokes and follow clinical team meetings, full-stack training at the Digital Career Institute, a React Native rebuild for a real estate company, two years across change.org e.V. and its successor innn.it where civic advocacy happened at scale, a co-founded storytelling platform called ZULA that reached children across fifteen countries, and now a clinical practice platform at FREY ADV / doctorly, where he led the frontend team's priorities for a quarter.\n\nEach chapter added something specific. The finance office in Banjul taught him that infrastructure is only invisible when it works. The civic platforms taught him that performance has human stakes: a slow page during a viral petition campaign was someone giving up before they could sign something that mattered to them. ZULA taught him what it costs to build something you believe in and watch the funding run out. Healthcare is teaching him how much trust is involved when software touches clinical decisions.\n\nHe has been doing this for years, in two countries, across domains that share almost nothing technically. What they have in common is that in each one, real people depended on the software to do their actual work. That condition is the one he takes most seriously.\n\nFor the full role-by-role timeline with case study links, see the career page at /career."
         },
         {
           "id": "journey-teaching-to-tech",
@@ -5166,7 +5175,7 @@
             "coaching"
           ],
           "icon": "code",
-          "response": "Ansu leads by being present rather than by being in charge. He pairs with engineers when a problem is genuinely hard, and reviews code with the question he actually cares about: not just what is wrong, but what the code reveals about how the person is thinking, and what conversation would help them think differently next time.\n\nAt FREY ADV, he mentors three junior developers. He has noticed that the engineers who grow fastest are usually not the ones who receive the most corrections. They are the ones who start asking better questions. His job, as he sees it, is to create conditions where that shift happens. He explains the reasoning behind decisions rather than just issuing them, so that when a similar situation appears later, the person handling it has something to work from rather than something to remember.\n\nThere were people who were patient with him when he was early in his career. He still remembers which conversations changed how he thought, and what those people chose to explain rather than simply correct. He does not think that kind of patience should stop with him.\n\nThe most expensive problems in software are rarely technical. They are what happens when someone did not feel safe enough to say they did not understand something. He has seen that play out. He tries to make it structurally impossible in the teams he works in."
+          "response": "Ansu leads by being present rather than by being in charge. He pairs with engineers when a problem is genuinely hard, and reviews code with the question he actually cares about: not just what is wrong, but what the code reveals about how the person is thinking, and what conversation would help them think differently next time.\n\nAt FREY ADV, he mentors engineers through review and pairing. He has noticed that the engineers who grow fastest are usually not the ones who receive the most corrections. They are the ones who start asking better questions. His job, as he sees it, is to create conditions where that shift happens. He explains the reasoning behind decisions rather than just issuing them, so that when a similar situation appears later, the person handling it has something to work from rather than something to remember.\n\nThere were people who were patient with him when he was early in his career. He still remembers which conversations changed how he thought, and what those people chose to explain rather than simply correct. He does not think that kind of patience should stop with him.\n\nThe most expensive problems in software are rarely technical. They are what happens when someone did not feel safe enough to say they did not understand something. He has seen that play out. He tries to make it structurally impossible in the teams he works in."
         },
         {
           "id": "skills-cloud",
@@ -5610,7 +5619,7 @@
             "part-time"
           ],
           "icon": "chat",
-          "response": "Ansu is currently a Senior Software Engineer and Frontend Lead at FREY ADV / doctorly, where he sets the frontend team's quarterly priorities and leads the architecture decisions for a clinical practice platform. He is open to selective consulting, advisory conversations, and project-based engagements alongside his primary role, particularly for challenges where his experience in healthcare software, performance optimisation, cloud infrastructure, or mobile development is genuinely relevant.\n\nThe engagements that tend to work best start with a concrete problem rather than an open brief. He is straightforward about fit. If the work is not something he can contribute to meaningfully, he says so, often in the first conversation, and usually points toward someone better suited. He has found that most people appreciate this, even when it is not what they were hoping to hear. Being honest about fit early protects the quality of the work for everyone.\n\nIf you are exploring whether he might be the right person for something you are working on, a short message describing the challenge and what you are hoping to achieve is the best place to start. His email is thisisansumana@gmail.com. He reads it."
+          "response": "Ansu is currently a Senior Software Engineer at FREY ADV / doctorly, working on the frontend architecture of a clinical practice platform. He led the frontend team's priorities during the Q3 2026 lead rotation. He is open to selective consulting, advisory conversations, and project-based engagements alongside his primary role, particularly for challenges where his experience in healthcare software, performance optimisation, cloud infrastructure, or mobile development is genuinely relevant.\n\nThe engagements that tend to work best start with a concrete problem rather than an open brief. He is straightforward about fit. If the work is not something he can contribute to meaningfully, he says so, often in the first conversation, and usually points toward someone better suited. He has found that most people appreciate this, even when it is not what they were hoping to hear. Being honest about fit early protects the quality of the work for everyone.\n\nIf you are exploring whether he might be the right person for something you are working on, a short message describing the challenge and what you are hoping to achieve is the best place to start. His email is thisisansumana@gmail.com. He reads it."
         },
         {
           "id": "general-languages",
@@ -5652,7 +5661,7 @@
             "field"
           ],
           "icon": "briefcase",
-          "response": "Ansu's professional work spans several distinct domains. What connects them is not technical overlap but a consistent underlying condition: in each one, the software was not optional. People depended on it to do their actual work.\n\nHis current focus is healthcare. At FREY ADV, he leads the modernisation of a clinical practice management system used by over a thousand medical staff. The environment demands precision in security, compliance, and workflow design that minimises cognitive load on clinicians already managing demanding days.\n\nBefore healthcare, he spent nearly three years on civic advocacy platforms at change.org e.V. and innn.it, where petition systems had to hold under unpredictable load during campaigns that went viral without warning. Before that: a real estate mobile app for field agents, a co-founded storytelling platform for children, a construction workflow tool built during his training, and the finance IT infrastructure that started his career in Banjul.\n\nEach domain left something behind. Healthcare taught him the weight of trust in software. Civic technology taught him that performance is a question of who gets to participate. ZULA taught him what it costs to build something you believe in. The finance office in Banjul taught him that reliability is only visible when it fails."
+          "response": "Ansu's professional work spans several distinct domains. What connects them is not technical overlap but a consistent underlying condition: in each one, the software was not optional. People depended on it to do their actual work.\n\nHis current focus is healthcare. At FREY ADV, he led the frontend rebuild of Quincy Mobile, a practice management system used by over a thousand medical staff, and now works on doctorly's clinical practice platform. The environment demands precision in security, compliance, and workflow design that minimises cognitive load on clinicians already managing demanding days.\n\nBefore healthcare, he spent nearly three years on civic advocacy platforms at change.org e.V. and innn.it, where petition systems had to hold under unpredictable load during campaigns that went viral without warning. Before that: a real estate mobile app for field agents, a co-founded storytelling platform for children, a construction workflow tool built during his training, and the finance IT infrastructure that started his career in Banjul.\n\nEach domain left something behind. Healthcare taught him the weight of trust in software. Civic technology taught him that performance is a question of who gets to participate. ZULA taught him what it costs to build something you believe in. The finance office in Banjul taught him that reliability is only visible when it fails."
         },
         {
           "id": "contact-connect",
