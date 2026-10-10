@@ -1,9 +1,18 @@
 import { interests, interestsSection } from "data/about/interests";
 import { AnimatePresence, motion } from "motion/react";
+import { faFutbol, faSeedling, faUtensils } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { SURFACE_CARD_ICON, SURFACE_CARD_INTERACTIVE } from "../../../tailwind/styles/surfaceCard";
 import { TEXT_CARD_TITLE } from "../../../tailwind/styles/textTokens";
 import SectionHeader from "../../elements/section-header";
+
+const INTEREST_ICONS = {
+  purpose: faSeedling,
+  football: faFutbol,
+  cooking: faUtensils,
+};
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -29,6 +38,7 @@ const cardVariants = {
 };
 
 const PersonalInterests: React.FC = () => {
+  const { t } = useTranslation();
   const [expandedInterest, setExpandedInterest] = useState<string | null>(null);
 
   const getCategoryBorder = (category: string = "personal") => {
@@ -97,34 +107,17 @@ const PersonalInterests: React.FC = () => {
                 variants={cardVariants}
                 className={`${SURFACE_CARD_INTERACTIVE} relative flex flex-col ${getCategoryBorder(
                   interest.category,
-                )} ${hasExpandedContent ? "cursor-pointer" : ""}`}
-                onClick={
-                  hasExpandedContent
-                    ? () => toggleExpansion(interest.title)
-                    : undefined
-                }
-                role={hasExpandedContent ? "button" : undefined}
-                tabIndex={hasExpandedContent ? 0 : undefined}
-                aria-expanded={hasExpandedContent ? isExpanded : undefined}
-                onKeyDown={
-                  hasExpandedContent
-                    ? (event) => {
-                        if (event.key === "Enter" || event.key === " ") {
-                          event.preventDefault();
-                          toggleExpansion(interest.title);
-                        }
-                      }
-                    : undefined
-                }
+                )}`}
               >
                 <div className="flex items-start gap-2.5 sm:gap-3 lg:gap-4 mb-2.5 sm:mb-3 lg:mb-4 p-3 sm:p-4 lg:p-5 pb-0">
                   <div
                     className={`${SURFACE_CARD_ICON} w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 flex items-center justify-center flex-shrink-0`}
-                    style={{ minHeight: "40px", minWidth: "40px" }}
                   >
-                    <span className="text-base sm:text-lg lg:text-xl" aria-hidden="true">
-                      {interest.emoji}
-                    </span>
+                    <FontAwesomeIcon
+                      icon={INTEREST_ICONS[interest.icon]}
+                      className="h-4 w-4 sm:h-5 sm:w-5 text-indigo-700 dark:text-indigo-300"
+                      aria-hidden="true"
+                    />
                   </div>
 
                   <div className="flex-1 flex justify-between items-start gap-1.5 sm:gap-2 min-w-0">
@@ -134,11 +127,13 @@ const PersonalInterests: React.FC = () => {
                     {hasExpandedContent ? (
                       <button
                         type="button"
-                        aria-label={
+                        aria-expanded={isExpanded}
+                        aria-label={t(
                           isExpanded
-                            ? `Collapse ${interest.title}`
-                            : `Expand ${interest.title}`
-                        }
+                            ? "common.actions.collapseItem"
+                            : "common.actions.expandItem",
+                          { title: interest.title },
+                        )}
                         className="flex-shrink-0 w-11 h-11 flex items-center justify-center rounded-lg surface-card border border-light-border/55 dark:border-dark-border/40 hover:text-heading transition-colors"
                         onClick={(e) => {
                           e.stopPropagation();

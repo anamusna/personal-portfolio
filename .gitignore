@@ -47,10 +47,20 @@ storybook-static/
 # Netlify local CLI folder
 .netlify/
 
-# Internal docs and drafts (not used by the site build)
+# Internal docs and drafts (not used by the site build). Contain private
+# feedback notes and internal tracker links.
 docs/
 
-# Private site content and assets (kept local; not published to GitHub)
-src/data/
-src/images/
+# Personal content for the unlisted /story and /prayer pages: text, photos and
+# videos. Loaded on demand from here (see src/data/private-content.ts); a build
+# without these files still works and those pages say they are not part of
+# the build.
+src/content/private/*
+!src/content/private/.gitkeep
+
+# Local archive of retired assets and drafts (originals the site no longer
+# uses). Kept on disk for reference; never published.
+local-archive/
 src/locales/
+
+

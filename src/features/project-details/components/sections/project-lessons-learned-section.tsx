@@ -44,7 +44,7 @@ export const ProjectLessonsLearnedSection: React.FC<ProjectSectionProps> = ({
           content: (
             <>
               <span className="font-semibold text-heading mr-2">
-                {index + 1}.
+                {`${index + 1}.`}
               </span>
               {lesson}
             </>

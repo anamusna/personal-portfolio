@@ -31,11 +31,12 @@ const BackButton: React.FC<BackButtonProps> = ({
   };
 
   const handleBack = () => {
-    // Check if there's a previous page in history
-    if (window.history.length > 1) {
+    // `location.key` is "default" on the first page of a visit. Going back
+    // from there would leave the site (history.length also counts other
+    // sites), so use the fallback instead.
+    if (location.key !== "default") {
       navigate(-1);
     } else {
-      // Fallback to home or specified URL
       navigate(fallbackUrl);
     }
   };
@@ -45,7 +46,10 @@ const BackButton: React.FC<BackButtonProps> = ({
   return (
     <div
       className={clsx(
-        "fixed z-[55] group transition-all duration-500 ease-out translate-y-0 opacity-100",
+        // Only where there is margin outside the content column. Narrower,
+        // a fixed button covers the start of text lines, and the browser's
+        // own back control does the same job.
+        "fixed z-[55] group transition-all duration-500 ease-out translate-y-0 opacity-100 back-button-wide",
         positionClasses[position],
         className,
       )}
@@ -55,6 +59,7 @@ const BackButton: React.FC<BackButtonProps> = ({
 
       {/* Minimal button container */}
       <button
+        type="button"
         onClick={handleBack}
         className="relative flex items-center justify-center w-10 h-10 backdrop-blur-sm bg-white/60 dark:bg-gray-800/60 border border-gray-200/30 dark:border-gray-700/30 rounded-full shadow-sm hover:shadow-md transition-all duration-300 hover:scale-110 active:scale-95"
         aria-label={t("common.actions.goBack")}
@@ -67,6 +72,7 @@ const BackButton: React.FC<BackButtonProps> = ({
           stroke="currentColor"
           viewBox="0 0 24 24"
           strokeWidth={2.5}
+          aria-hidden="true"
         >
           <path
             strokeLinecap="round"

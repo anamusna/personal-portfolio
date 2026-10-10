@@ -13,23 +13,20 @@ export type ProjectDetailsViewProps = {
   project: Project;
   tabs: ProjectDetailTab[];
   activeTabId: string;
-  onTabChange: (tabId: string) => void;
 };
 
 export const ProjectDetailsView: React.FC<ProjectDetailsViewProps> = ({
   project,
   tabs,
   activeTabId,
-  onTabChange,
 }) => (
   <div className={LAYOUT_STYLES.PAGE_ROOT_MIN_HEIGHT}>
-    <main className="relative z-10">
+    <div className="relative z-10">
       <ProjectDetailsHero key={`${project.id}-hero`} project={project} />
 
       <ProjectDetailsTabBar
         tabs={tabs}
         activeTabId={activeTabId}
-        onTabChange={onTabChange}
       />
 
       <ProjectTechStackBar project={project} />
@@ -50,7 +47,7 @@ export const ProjectDetailsView: React.FC<ProjectDetailsViewProps> = ({
           </div>
         </div>
       </div>
-    </main>
+    </div>
 
     <ProjectDetailsAmbientGlow />
   </div>

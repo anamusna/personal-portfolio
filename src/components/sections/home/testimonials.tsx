@@ -8,8 +8,7 @@ import { testimonials } from "data/testimonials";
 import { motion } from "motion/react";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { testimonialImages } from "../../../data/testimonialImages";
-import daphneImg from "../../../images/testimony/daphne.jpeg";
+import { TestimonialAvatar } from "../testimonial/testimonial-avatar";
 import Carousel from "../../../tailwind/components/layout/Carousel";
 import { SURFACE_CARD_BASE } from "../../../tailwind/styles/surfaceCard";
 import AnimatedCTAButton from "../../elements/animated-cta-button";
@@ -82,22 +81,15 @@ const TestimonialCard: React.FC<{
   return (
     <div className="flex flex-col items-center justify-center mx-auto">
       <motion.div
-        className={`${SURFACE_CARD_BASE} dark:bg-dark-background rounded-2xl p-4 sm:p-6 md:p-8`}
+        className={`${SURFACE_CARD_BASE} dark:bg-dark-background rounded-2xl py-4 px-12 sm:py-6 sm:px-16 md:py-8 md:px-20`}
         transition={springTransition}
       >
         <div className="relative mb-4 sm:mb-6">
-          <img
-            src={
-              testimonial.image
-                ? testimonialImages[testimonial.image]
-                : daphneImg
-            }
-            alt={testimonial.name}
-            width={96}
-            height={96}
-            loading="lazy"
-            decoding="async"
-            className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mx-auto rounded-full object-cover border-2 border-light-border/55 dark:border-dark-border/40"
+          <TestimonialAvatar
+            name={testimonial.name}
+            image={testimonial.image}
+            size={96}
+            className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mx-auto rounded-full border-2 border-light-border/55 dark:border-dark-border/40"
           />
         </div>
 
@@ -112,7 +104,7 @@ const TestimonialCard: React.FC<{
             <svg
               className={`${
                 !isExpanded ? "top-0 left-0" : "-top-3 -left-3"
-              } absolute transform h-5 w-5 sm:h-6 sm:w-6 text-primary-light/25 dark:text-primary-dark/25 transition-all duration-300`}
+              } absolute transform h-5 w-5 sm:h-6 sm:w-6 text-primary-light/25 dark:text-indigo-400/25 transition-all duration-300`}
               fill="currentColor"
               viewBox="0 0 32 32"
               aria-hidden="true"
@@ -123,19 +115,21 @@ const TestimonialCard: React.FC<{
               {testimonial.testimony}
             </p>
           </div>
-          {isOverflowing && (
-            <button
-              onClick={() => handleExpand(!isExpanded)}
-              className="text-center mt-3 px-4 py-2 min-h-[44px] text-primary-light dark:text-primary-dark
-                       hover:text-primary-light/80 dark:hover:text-primary-dark/80
+          {/* Always present, hidden until measured: the overflow check runs in an
+              effect, so conditionally mounting this button made the client's
+              first render differ from the prerendered HTML. */}
+          <button
+            hidden={!isOverflowing}
+            onClick={() => handleExpand(!isExpanded)}
+            className={`text-center mt-3 px-4 py-2 min-h-[44px] text-primary-light dark:text-indigo-400
+                       hover:text-primary-light/80 dark:hover:text-indigo-400/80
                        focus:outline-none transition-colors surface-card rounded-lg border border-light-border/55 dark:border-dark-border/40
-                       font-medium text-sm"
-            >
-              {isExpanded
-                ? t("common.actions.readLess")
-                : t("common.actions.readMore")}
-            </button>
-          )}
+                       font-medium text-sm ${isOverflowing ? "" : "hidden"}`}
+          >
+            {isExpanded
+              ? t("common.actions.readLess")
+              : t("common.actions.readMore")}
+          </button>
         </div>
 
         <div className="flex flex-col items-center space-y-1">
@@ -175,11 +169,6 @@ const Testimonials: React.FC = () => {
           activeIndex={activeIndex}
         />
       ),
-      tagImage: testimonial.featured
-        ? {
-            carouselTag: "/images/featured-icon.svg",
-          }
-        : undefined,
     }),
   );
 

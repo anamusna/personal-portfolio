@@ -23,7 +23,11 @@ const BlogContent: React.FC<BlogContentProps> = ({ content }) => {
         <div className="absolute top-0 right-0 bg-gray-800 dark:bg-gray-700 text-gray-300 text-sm px-2 py-1 rounded-bl-lg rounded-tr-lg">
           {language || "code"}
         </div>
-        <pre className="bg-gray-900 dark:bg-gray-800 text-gray-100 p-3 sm:p-4 rounded-lg overflow-x-auto text-sm sm:text-sm leading-relaxed border border-gray-700 dark:border-gray-600 shadow-md">
+        {/* Focusable so keyboard users can scroll long lines sideways. */}
+        <pre
+          tabIndex={0}
+          className="bg-gray-900 dark:bg-gray-800 text-gray-100 p-3 sm:p-4 rounded-lg overflow-x-auto text-sm leading-relaxed border border-gray-700 dark:border-gray-600 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+        >
           <code className="font-mono">{code}</code>
         </pre>
       </div>
@@ -76,7 +80,7 @@ const BlogContent: React.FC<BlogContentProps> = ({ content }) => {
           "{content}"
         </P>
         {author && (
-          <cite className="text-sm text-emerald-600 dark:text-emerald-400 font-semibold">
+          <cite className="text-sm text-emerald-700 dark:text-emerald-400 font-semibold">
             {author}
           </cite>
         )}

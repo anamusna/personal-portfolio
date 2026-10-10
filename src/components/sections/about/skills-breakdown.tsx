@@ -17,7 +17,7 @@ const capabilityColors: Record<
     chip: "bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-200/40 dark:border-blue-500/30",
   },
   "backend-data": {
-    accent: "text-emerald-600 dark:text-emerald-400",
+    accent: "text-emerald-700 dark:text-emerald-400",
     border: "border-emerald-200/40 dark:border-emerald-500/25",
     chip: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-200/40 dark:border-emerald-500/30",
   },
@@ -27,7 +27,7 @@ const capabilityColors: Record<
     chip: "bg-purple-500/10 text-purple-700 dark:text-purple-300 border-purple-200/40 dark:border-purple-500/30",
   },
   "quality-delivery": {
-    accent: "text-amber-600 dark:text-amber-400",
+    accent: "text-amber-700 dark:text-amber-400",
     border: "border-amber-200/40 dark:border-amber-500/25",
     chip: "bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-200/40 dark:border-amber-500/30",
   },

@@ -5,11 +5,12 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon-32.png" sizes="32x32" />
     <link rel="icon" href="%PUBLIC_URL%/favicon-192.png" sizes="192x192" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#6366f1" />
+    <meta name="theme-color" content="#f6f2ee" />
+    <script src="%PUBLIC_URL%/theme-init.js"></script>
     <!-- Default meta: keep in sync with src/data/page-seo.ts (home) -->
     <meta
       name="description"
-      content="Senior Software Engineer in Berlin. Eight years shipping production software across healthcare, civic platforms, and product engineering."
+      content="Senior Software Engineer in Berlin specializing in frontend architecture and the safe modernization of production systems. Eight years across healthcare, civic platforms, and a startup I co-founded."
     />
     <meta name="author" content="Ansumana Darboe" />
     <meta name="robots" content="index, follow" />
@@ -26,22 +27,18 @@
 
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
-    <title>Ansumana Darboe | Senior Software Engineer Berlin</title>
-    <meta
-      name="title"
-      content="Ansumana Darboe | Senior Software Engineer Berlin"
-    />
+    <title>Ansumana Darboe | Senior Software Engineer, Frontend Architecture, Berlin</title>
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://ansumana-darboe.netlify.app/" />
     <meta property="og:site_name" content="Ansumana Darboe" />
     <meta
       property="og:title"
-      content="Ansumana Darboe | Senior Software Engineer Berlin"
+      content="Ansumana Darboe | Senior Software Engineer, Frontend Architecture, Berlin"
     />
     <meta
       property="og:description"
-      content="Senior Software Engineer in Berlin. Eight years shipping production software across healthcare, civic platforms, and product engineering."
+      content="Senior Software Engineer in Berlin specializing in frontend architecture and the safe modernization of production systems. Eight years across healthcare, civic platforms, and a startup I co-founded."
     />
     <meta
       property="og:image"
@@ -55,38 +52,66 @@
     />
     <meta property="og:locale" content="en_US" />
 
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:site" content="@ansumana_darboe" />
-    <meta property="twitter:creator" content="@ansumana_darboe" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta
-      property="twitter:url"
-      content="https://ansumana-darboe.netlify.app/"
+      name="twitter:title"
+      content="Ansumana Darboe | Senior Software Engineer, Frontend Architecture, Berlin"
     />
     <meta
-      property="twitter:title"
-      content="Ansumana Darboe | Senior Software Engineer Berlin"
+      name="twitter:description"
+      content="Senior Software Engineer in Berlin specializing in frontend architecture and the safe modernization of production systems. Eight years across healthcare, civic platforms, and a startup I co-founded."
     />
     <meta
-      property="twitter:description"
-      content="Senior Software Engineer in Berlin. Eight years shipping production software across healthcare, civic platforms, and product engineering."
-    />
-    <meta
-      property="twitter:image"
+      name="twitter:image"
       content="https://ansumana-darboe.netlify.app/images/ansu.jpg"
     />
     <meta
-      property="twitter:image:alt"
+      name="twitter:image:alt"
       content="Ansumana Darboe, Senior Software Engineer"
     />
 
     <meta name="geo.region" content="DE-BE" />
     <meta name="geo.placename" content="Berlin, Germany" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Inter is self-hosted. Loading it from Google Fonts cost a render-blocking
+         third-party stylesheet on every page and sent each visitor's IP address
+         to Google, which is a GDPR problem for a Berlin site. Only the subsets
+         a page needs are downloaded (unicode-range); the latin subset covers
+         English and German, so only that file is preloaded. -->
+    <style>
+      @font-face {
+        font-family: "Inter";
+        font-style: italic;
+        font-weight: 100 900;
+        font-display: swap;
+        src: url("/fonts/inter-latin-italic.woff2") format("woff2");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      @font-face {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: swap;
+        src: url("/fonts/inter-latin-ext.woff2") format("woff2");
+        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      @font-face {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: swap;
+        src: url("/fonts/inter-latin.woff2") format("woff2");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+    </style>
     <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="preload"
+      href="/fonts/inter-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
 
     <script type="application/ld+json">
@@ -95,8 +120,8 @@
         "@type": "Person",
         "name": "Ansumana Darboe",
         "alternateName": "Ansu",
-        "jobTitle": "Senior Software Engineer · Frontend Lead",
-        "description": "Senior Software Engineer in Berlin. Eight years shipping production software across healthcare, civic platforms, and product engineering.",
+        "jobTitle": "Senior Software Engineer",
+        "description": "Senior Software Engineer in Berlin specializing in frontend architecture and the safe modernization of production systems. Works on doctorly's clinical practice platform at FREY ADV; earlier work on civic platforms at change.org and innn.it, and co-founder of ZULA.",
         "url": "https://ansumana-darboe.netlify.app/",
         "image": "https://ansumana-darboe.netlify.app/images/ansu.jpg",
         "email": "thisisansumana@gmail.com",
@@ -108,22 +133,22 @@
         },
         "sameAs": [
           "https://www.linkedin.com/in/ansumana-darboe/",
-          "https://github.com/anamusna"
+          "https://github.com/anamusna",
+          "https://ansumana.hashnode.dev/"
         ],
         "worksFor": {
           "@type": "Organization",
           "name": "FREY ADV GmbH"
         },
         "knowsAbout": [
-          "Healthcare software",
-          "Civic technology",
-          "Product engineering",
+          "Frontend architecture",
+          "Incremental modernization of production systems",
           "React",
           "TypeScript",
-          "Node.js",
-          "React Native",
-          "AWS",
-          "MongoDB"
+          "React Query",
+          "Zustand",
+          "Healthcare software",
+          "Node.js"
         ]
       }
     </script>
@@ -144,9 +169,8 @@
   </head>
 
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>Menus, search, the theme and language switches and the feedback form need JavaScript.</noscript>
     <div id="root"></div>
-    <div id="peek-portal" class="relative z-[999]"></div>
 
     <!-- Static form so Netlify's build-time HTML parser detects it; the real form is rendered by React -->
     <form name="feedback-form" data-netlify="true" data-netlify-honeypot="bot-field" hidden>

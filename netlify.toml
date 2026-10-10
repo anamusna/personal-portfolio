@@ -1,28 +1,3 @@
-[[redirects]]
- from = "/about"
- to = "/index.html"
- status = 200
-
-[[redirects]]
- from = "/projects/*"
- to = "/index.html"
- status = 200
-
-[[redirects]]
- from = "/blog"
- to = "/index.html"
- status = 200
-
-[[redirects]]
- from = "/contact"
- to = "/index.html"
- status = 200
-
-[[redirects]]
- from = "/testimonials"
- to = "/index.html"
- status = 200
-
 # Retired services catalogue and retired working-together page -> contact
 [[redirects]]
  from = "/services"
@@ -50,11 +25,27 @@
  to = "/testimonials"
  status = 302
 
-# Handle all other routes (catch-all)
+# Client-routed pages that react-snap does not prerender (private, unlisted).
+# They rewrite to the empty react-snap shell (200.html), not to index.html:
+# index.html is the prerendered homepage, and hydrating that markup on another
+# route throws away the whole tree. Every public page and every project and
+# blog detail page is prerendered as a file, so nothing else needs a rewrite.
 [[redirects]]
-from = "/*"
-to = "/index.html"
-status = 200
+ from = "/story"
+ to = "/200.html"
+ status = 200
+
+[[redirects]]
+ from = "/prayer"
+ to = "/200.html"
+ status = 200
+
+# Anything else is a real 404. Prerendered routes exist as files and win over
+# this rule, so only genuinely unknown paths reach it.
+[[redirects]]
+ from = "/*"
+ to = "/404.html"
+ status = 404
 
 [[headers]]
   for = "/*"
@@ -64,14 +55,28 @@ status = 200
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-    Content-Security-Policy = "default-src 'self'; base-uri 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://analytics.google.com; frame-src https://calendly.com; object-src 'none'; upgrade-insecure-requests"
+    Content-Security-Policy = "default-src 'self'; base-uri 'self'; form-action 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self'; frame-src 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests"
+
+# Private, unlisted pages. They are kept out of search with a header rather
+# than a robots.txt Disallow: a Disallow line would advertise the paths to
+# anyone reading robots.txt, and it would stop crawlers from fetching the page
+# and seeing that it must not be indexed.
+[[headers]]
+  for = "/story"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/prayer"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
   for = "/static/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
-
-[forms]
- [forms."feedback-form"]
-   name = "Feedback Form"
-   success_url = "/testimonials/success"

@@ -1,5 +1,5 @@
 import HeroHeader from "components/elements/hero-header";
-import { storyPageContent } from "data/storyPage";
+import { buildStoryPageContent, StoryPageMetadata } from "data/storyPage";
 import ansuImage from "images/ansu5-bg.webp";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -27,10 +27,10 @@ const storyHeroIcon = (
   </svg>
 );
 
-const StoryHero: React.FC = () => {
+const StoryHero: React.FC<{ metadata: StoryPageMetadata }> = ({ metadata }) => {
   const { t } = useTranslation();
   const { eyebrow, title, subtitle, orientationLines, chapterNote } =
-    storyPageContent;
+    buildStoryPageContent(metadata);
 
   return (
     <div className="max-w-4xl mx-auto text-center">

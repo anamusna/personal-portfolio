@@ -34,4 +34,4 @@ export const TEXT_SECTION_EYEBROW =
   "text-sm sm:text-base font-semibold text-orange-800/85 dark:text-orange-300/90";
 
 export const TEXT_SECTION_CAPTION =
-  "text-xs sm:text-sm font-light text-orange-800/85 dark:text-orange-300/90 underline";
+  "text-xs sm:text-sm text-muted";

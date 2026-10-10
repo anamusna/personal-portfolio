@@ -2,9 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Inter is loaded via a <link> in public/index.html, not @import, so it
-   doesn't block on CSS parsing. Didact Gothic and Nunito Sans were never
-   reached in the font-family stack below and have been dropped. */
+/* Inter is self-hosted: its @font-face rules are inlined in public/index.html
+   (the bundler cannot resolve absolute /fonts URLs from CSS). */
 /* background-color: rgb(242, 242, 242); */
 
 :root {
@@ -338,5 +337,19 @@ html {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* The floating back button only appears where there is margin outside the
+   1280px content column; narrower, it covers the start of text lines.
+   Plain CSS because this Tailwind config (it has a non-pixel `fw` screen)
+   does not generate arbitrary min-[...] variants. */
+.back-button-wide {
+  display: none;
+}
+
+@media (min-width: 1440px) {
+  .back-button-wide {
+    display: block;
   }
 }

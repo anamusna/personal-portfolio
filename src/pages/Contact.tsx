@@ -2,10 +2,8 @@ import SectionHeader from "components/elements/section-header";
 import ContactDestination from "components/sections/contact/contact-destination";
 import PageSection from "components/sections/page-section";
 import { contact } from "data/contact";
-import ansuImage from "images/background.webp";
 import React from "react";
 import ContactLinks from "../components/elements/contact-links";
-import { TEXT_MUTED } from "../tailwind/styles/textTokens";
 
 interface ContactProps {
   embedded?: boolean;
@@ -28,12 +26,9 @@ const contactBadgeIcon = (
   </svg>
 );
 
-export const ContactConversionSurface: React.FC<{
-  showSectionHeader?: boolean;
-  leadText?: string;
-}> = ({ showSectionHeader = false, leadText }) => (
-  <div className="max-w-4xl mx-auto">
-    {showSectionHeader && (
+const EmbeddedContactBand: React.FC = () => (
+  <div className="dark text-body border-y border-transparent bg-dark-background dark:border-dark-border/60 dark:bg-dark-background-alt">
+    <div className="container mx-auto max-w-4xl px-4 py-14 text-center sm:px-6 sm:py-16 md:py-20">
       <SectionHeader
         badge={{
           text: contact.title,
@@ -42,28 +37,9 @@ export const ContactConversionSurface: React.FC<{
         }}
         title={contact.heading}
         description={contact.subText}
-        descriptionClassName="text-white"
+        className="mb-8 md:mb-10"
       />
-    )}
-    {leadText && (
-      <p className={`${TEXT_MUTED} text-center mb-5 sm:mb-6`}>{leadText}</p>
-    )}
-    <ContactLinks />
-  </div>
-);
-
-const EmbeddedContactBand: React.FC = () => (
-  <div
-    className="relative"
-    style={{
-      backgroundImage: `url(${ansuImage})`,
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      backgroundRepeat: "no-repeat",
-    }}
-  >
-    <div className="container max-w-4xl relative z-10 mx-auto px-3 sm:px-4 lg:px-6 py-8 sm:py-10 md:py-12 text-center">
-      <ContactConversionSurface showSectionHeader />
+      <ContactLinks />
     </div>
   </div>
 );

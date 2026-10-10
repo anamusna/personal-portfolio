@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import Accordion from "tailwind/components/elements/Accordion";
 import {
   PAGE_HEADER_HERO_TITLE,
-  PAGE_HEADER_SECTION_EYEBROW,
 } from "tailwind/styles/pageHeader";
 import { SURFACE_CARD_PANEL } from "tailwind/styles/surfaceCard";
 import {
@@ -49,8 +48,6 @@ const ContactDestination: React.FC = () => {
     faqSubtitle,
     faqLinkLabel,
     faqLinkHref,
-    // cvDownloadLabel, cvDownloadHref: CV link hidden below (still wired
-    // up in data/contact-page.ts if it needs to come back).
   } = contactPageContent;
 
   return (
@@ -62,7 +59,6 @@ const ContactDestination: React.FC = () => {
         alignment="center"
         subtitleClassName="max-w-2xl mx-auto"
         titleClassName={`${PAGE_HEADER_HERO_TITLE} text-heading`}
-        greetingClassName={PAGE_HEADER_SECTION_EYEBROW}
         icon={contactHeroIcon}
       />
 

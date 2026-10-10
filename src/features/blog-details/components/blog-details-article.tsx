@@ -31,7 +31,7 @@ export const BlogDetailsArticle: React.FC<BlogDetailsArticleProps> = ({
           {blogPost.tags.map((tag) => (
             <span
               key={tag}
-              className="px-2.5 py-1 sm:px-3 sm:py-1.5 text-sm font-medium surface-card text-emerald-600 dark:text-emerald-400 rounded-lg border border-light-border/55 dark:border-dark-border/40"
+              className="px-2.5 py-1 sm:px-3 sm:py-1.5 text-sm font-medium surface-card text-emerald-700 dark:text-emerald-400 rounded-lg border border-light-border/55 dark:border-dark-border/40"
             >
               {tag}
             </span>
@@ -48,7 +48,7 @@ export const BlogDetailsArticle: React.FC<BlogDetailsArticleProps> = ({
               href={blogPost.slug}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 min-h-[44px] bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors font-medium text-sm"
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 min-h-[44px] bg-emerald-700 hover:bg-emerald-800 text-white rounded-lg transition-colors font-medium text-sm"
             >
               <span>{t("features.blogDetails.article.readFullOnHashnode")}</span>
               <svg

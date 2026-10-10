@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "motion/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
@@ -9,6 +10,7 @@ import {
   TEXT_DETAIL_SECTION_TITLE,
   TEXT_MUTED,
 } from "tailwind/styles/textTokens";
+import { ROLE_ICON } from "./timeline-icons";
 import MarkdownRenderer from "components/elements/markdown-renderer";
 import type { CareerJourneyEntry } from "utils/map-career-journey";
 
@@ -51,11 +53,12 @@ export const CareerTimelineEntry: React.FC<CareerTimelineEntryProps> = ({
     <div className="absolute left-0 transform -translate-x-1/2">
       <div
         className="relative z-10 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-white dark:bg-dark-surface rounded-full border border-light-border/60 dark:border-dark-border/50 flex items-center justify-center shadow-sm"
-        style={{ minHeight: "40px", minWidth: "40px" }}
       >
-        <span className="text-lg sm:text-xl md:text-2xl" aria-hidden="true">
-          {experience.icon}
-        </span>
+        <FontAwesomeIcon
+          icon={ROLE_ICON}
+          className="h-4 w-4 md:h-5 md:w-5 text-indigo-700 dark:text-indigo-300"
+          aria-hidden="true"
+        />
       </div>
     </div>
 
@@ -80,7 +83,7 @@ export const CareerTimelineEntry: React.FC<CareerTimelineEntryProps> = ({
         </div>
         <div className="flex-shrink-0">
           <span
-            className="inline-flex items-center justify-center text-sm xs:text-base sm:text-base font-semibold px-2 xs:px-2.5 sm:px-3 lg:px-4 py-1 xs:py-1.5 sm:py-2 rounded-lg surface-card border border-light-border/55 dark:border-dark-border/40 text-heading"
+            className="inline-flex max-w-full items-center justify-center text-center text-sm xs:text-base sm:text-base font-semibold px-2 xs:px-2.5 sm:px-3 lg:px-4 py-1 xs:py-1.5 sm:py-2 rounded-lg surface-card border border-light-border/55 dark:border-dark-border/40 text-heading"
             style={{ minHeight: "32px", minWidth: "70px" }}
           >
             <svg
@@ -108,9 +111,6 @@ export const CareerTimelineEntry: React.FC<CareerTimelineEntryProps> = ({
           className="w-full flex items-center justify-between gap-2 px-3 py-2 min-h-[44px] rounded-xl surface-card border border-light-border/55 dark:border-dark-border/40 group/toggle cursor-pointer transition-colors hover:text-heading"
         >
           <div className="flex items-center gap-2 min-w-0">
-            <span className="flex-shrink-0 text-sm" aria-hidden="true">
-              🏆
-            </span>
             <span className="text-xs sm:text-sm font-semibold text-heading truncate">
               {t("components.careerTimeline.keyAchievements")}
             </span>
@@ -198,7 +198,7 @@ export const CareerTimelineEntry: React.FC<CareerTimelineEntryProps> = ({
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                d="M9 5l7 7-7 7"
               />
             </svg>
           </Link>

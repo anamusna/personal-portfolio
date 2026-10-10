@@ -81,7 +81,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
               "group flex flex-none items-center gap-2 rounded-full border px-3 py-1.5",
               "text-sm font-medium whitespace-nowrap transition-colors duration-150 ease-out",
               isActive &&
-                "border-emerald-400 bg-emerald-500 text-white shadow-lg shadow-emerald-500/30 scale-105",
+                "border-emerald-700 bg-emerald-700 text-white shadow-lg shadow-emerald-700/30 scale-105",
               !isActive && [
                 "border-slate-200 bg-white text-slate-700",
                 "hover:border-emerald-400 hover:bg-emerald-50 hover:text-emerald-700",

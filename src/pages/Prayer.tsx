@@ -1,12 +1,17 @@
 import HeroHeader from "components/elements/hero-header";
 import PageSection from "components/sections/page-section";
-import { prayerContent } from "data/personal/prayer-content";
+import { loadPrayerContent, PrayerData } from "data/private-content";
 import { motion } from "motion/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { PAGE_HEADER_HERO_TITLE } from "tailwind/styles/pageHeader";
 import { TEXT_BODY } from "tailwind/styles/textTokens";
 
-const prayerLines = prayerContent.split("\n\n");
+type PrayerState =
+  | { status: "loading" }
+  | { status: "unavailable" }
+  | { status: "failed"; error: unknown }
+  | { status: "ready"; prayer: PrayerData };
 
 const prayerHeroIcon = (
   <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
@@ -20,25 +25,56 @@ const prayerHeroIcon = (
 );
 
 const Prayer: React.FC = () => {
+  const { t } = useTranslation();
+  const [state, setState] = useState<PrayerState>({ status: "loading" });
+
+  useEffect(() => {
+    let cancelled = false;
+    loadPrayerContent()
+      .then((prayer) => {
+        if (cancelled) return;
+        setState(prayer ? { status: "ready", prayer } : { status: "unavailable" });
+      })
+      // A load failure goes to the route error element, which offers a reload.
+      .catch((error) => {
+        if (!cancelled) setState({ status: "failed", error });
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  if (state.status === "failed") {
+    throw state.error;
+  }
+
+  if (state.status !== "ready") {
+    return (
+      <PageSection>
+        <p role="status" className="mx-auto max-w-xl text-center text-muted">
+          {state.status === "loading"
+            ? t("pages.prayer.loading")
+            : t("pages.prayer.unavailable")}
+        </p>
+      </PageSection>
+    );
+  }
+
+  const { prayer } = state;
+  const prayerLines = prayer.content.split("\n\n");
+
   return (
     <PageSection>
       <div className="mx-auto flex w-full max-w-4xl flex-col">
         <HeroHeader
-          greeting="Personal reflection"
-          title="Prayer for the road"
-          // subtitle="A quiet continuation of the life story"
+          greeting={prayer.greeting}
+          title={prayer.title}
           alignment="center"
           subtitleClassName="mx-auto max-w-3xl"
           titleClassName={`${PAGE_HEADER_HERO_TITLE} text-heading`}
           icon={prayerHeroIcon}
         />
 
-        {/*   <p
-          className={`${TEXT_MUTED} mt-8 max-w-3xl leading-relaxed italic sm:mt-10`}
-        >
-          {prayerBridge}
-        </p>
- */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}

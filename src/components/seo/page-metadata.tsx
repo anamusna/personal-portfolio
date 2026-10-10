@@ -1,10 +1,16 @@
 import { PageSeoConfig, resolveCanonicalUrl } from "data/page-seo";
-import { SITE_NAME } from "data/site-config";
+import {
+  DEFAULT_OG_IMAGE,
+  DEFAULT_OG_IMAGE_ALT,
+  SITE_NAME,
+} from "data/site-config";
 import React, { useEffect, useMemo } from "react";
 
 type PageMetadataProps = Omit<PageSeoConfig, "titleKey" | "descriptionKey"> & {
   title: string;
   description: string;
+  /** Describes `image` for social previews; required with a custom image. */
+  imageAlt?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 };
 
@@ -24,6 +30,10 @@ const upsertMeta = (
   }
 
   element.setAttribute("content", content);
+};
+
+const removeLink = (rel: string) => {
+  document.head.querySelector(`link[rel="${rel}"]`)?.remove();
 };
 
 const upsertLink = (rel: string, href: string) => {
@@ -66,6 +76,7 @@ export const PageMetadata: React.FC<PageMetadataProps> = ({
   description,
   path,
   image,
+  imageAlt,
   type = "website",
   noindex = false,
   jsonLd,
@@ -77,12 +88,12 @@ export const PageMetadata: React.FC<PageMetadataProps> = ({
 
   useEffect(() => {
     const canonical = resolveCanonicalUrl(path);
-    const ogImage = image ?? resolveCanonicalUrl("/images/ansu.jpg");
+    const ogImage = image ?? DEFAULT_OG_IMAGE;
+    const customImage = ogImage !== DEFAULT_OG_IMAGE;
 
     document.title = title;
 
     upsertMeta("name", "description", description);
-    upsertMeta("name", "title", title);
     upsertMeta("name", "robots", noindex ? "noindex, nofollow" : "index, follow");
 
     upsertMeta("property", "og:type", type);
@@ -90,14 +101,21 @@ export const PageMetadata: React.FC<PageMetadataProps> = ({
     upsertMeta("property", "og:title", title);
     upsertMeta("property", "og:description", description);
     upsertMeta("property", "og:image", ogImage);
+    upsertMeta("property", "og:image:alt", customImage ? imageAlt ?? title : DEFAULT_OG_IMAGE_ALT);
     upsertMeta("property", "og:site_name", SITE_NAME);
 
-    upsertMeta("property", "twitter:card", "summary_large_image");
-    upsertMeta("property", "twitter:title", title);
-    upsertMeta("property", "twitter:description", description);
-    upsertMeta("property", "twitter:image", ogImage);
+    upsertMeta("name", "twitter:card", "summary_large_image");
+    upsertMeta("name", "twitter:title", title);
+    upsertMeta("name", "twitter:description", description);
+    upsertMeta("name", "twitter:image", ogImage);
+    upsertMeta("name", "twitter:image:alt", customImage ? imageAlt ?? title : DEFAULT_OG_IMAGE_ALT);
 
-    upsertLink("canonical", canonical);
+    // A page that asks not to be indexed has no canonical version to point at.
+    if (noindex) {
+      removeLink("canonical");
+    } else {
+      upsertLink("canonical", canonical);
+    }
 
     jsonLdItems.forEach((item, index) => {
       upsertJsonLd(`page-json-ld-${index}`, item);
@@ -118,6 +136,7 @@ export const PageMetadata: React.FC<PageMetadataProps> = ({
     description,
     path,
     image,
+    imageAlt,
     type,
     noindex,
     jsonLdItems,

@@ -2,6 +2,7 @@ import { SECTION_VIEWPORT } from "constants/section-motion";
 import { values } from "data/values";
 import { motion } from "motion/react";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import Icon from "../../../tailwind/components/elements/Icon";
 import { SURFACE_CARD_BASE, SURFACE_CARD_ICON } from "../../../tailwind/styles/surfaceCard";
 import { TEXT_CARD_TITLE } from "../../../tailwind/styles/textTokens";
@@ -31,6 +32,7 @@ const cardVariants = {
 };
 
 const Values: React.FC = () => {
+  const { t } = useTranslation("ansumana");
   const getCategoryIconColor = (category: string = "foundation") => {
     const colors = {
       foundation:
@@ -53,12 +55,12 @@ const Values: React.FC = () => {
       <div className="container max-w-7xl relative z-10 mx-auto px-3 sm:px-4 lg:px-6">
         <SectionHeader
           badge={{
-            text: "Philosophy",
+            text: t("content.aboutPage.values.badge"),
             iconAnimation: true,
           }}
-          title="Four principles I return to"
-          description="Four principles I return to when choosing tools, designing interfaces, and working with a team."
-          highlightText="working with a team"
+          title={t("content.aboutPage.values.title")}
+          description={t("content.aboutPage.values.description")}
+          highlightText={t("content.aboutPage.values.highlightText")}
         />
 
         <motion.div

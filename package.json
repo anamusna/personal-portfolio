@@ -7,41 +7,27 @@
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@tailwindcss/forms": "^0.5.7",
-    "@tailwindcss/typography": "^0.5.10",
-    "@testing-library/jest-dom": "^6.1.0",
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/user-event": "^14.0.0",
-    "@types/jest": "^29.5.0",
-    "@types/node": "^20.0.0",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
-    "autoprefixer": "^10.4.16",
     "clsx": "^1.2.1",
-    "date-fns": "^2.30.0",
     "i18next": "^23.0.1",
     "i18next-browser-languagedetector": "^7.2.1",
-    "i18next-xhr-backend": "^3.2.2",
-    "intl-pluralrules": "^2.0.1",
     "motion": "^12.38.0",
-    "postcss": "^8.4.32",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "13.0.0",
     "react-router-dom": "^6.15.0",
-    "react-scripts": "5.0.1",
-    "tailwindcss": "^3.3.6",
-    "typescript": "^4.9.5",
-    "web-vitals": "^3.4.0"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "generate:sitemap": "node scripts/generate-sitemap.mjs",
     "prebuild": "npm run generate:sitemap",
     "build": "react-scripts build",
+    "build:without-private": "REACT_APP_PRIVATE_PAGES=exclude npm run build",
     "postbuild": "node scripts/prerender.mjs",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "verify:build": "node scripts/verify-build.mjs",
+    "verify:release": "node scripts/verify-build.mjs --release"
   },
   "reactSnap": {
     "puppeteerArgs": [
@@ -84,8 +70,20 @@
     ]
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.10",
+    "@testing-library/jest-dom": "^6.1.0",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.0.0",
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
     "prettier": "^3.9.4",
     "puppeteer": "^25.10.0",
-    "react-snap": "^1.23.0"
+    "react-snap": "^1.23.0",
+    "tailwindcss": "^3.3.6",
+    "typescript": "^4.9.5"
   }
 }

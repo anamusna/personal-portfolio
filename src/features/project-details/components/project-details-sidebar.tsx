@@ -7,7 +7,25 @@ import {
   SURFACE_CARD_INTERACTIVE,
 } from "tailwind/styles/surfaceCard";
 import { TEXT_DETAIL_SECTION_TITLE } from "tailwind/styles/textTokens";
-import { Project } from "types/project";
+import { Project, ProjectMetricKind } from "types/project";
+
+const KIND_STYLES: Record<ProjectMetricKind, { icon: string; path: string }> = {
+  // Bar chart: a number was measured.
+  measured: {
+    icon: "bg-emerald-50 text-emerald-700 dark:bg-emerald-400/10 dark:text-emerald-300",
+    path: "M4 20h16M7 16v-4m5 4V8m5 8v-6",
+  },
+  // Branching path: the system was changed.
+  change: {
+    icon: "bg-indigo-50 text-indigo-700 dark:bg-indigo-400/10 dark:text-indigo-300",
+    path: "M6 4v8a4 4 0 004 4h8m0 0l-3-3m3 3l-3 3M6 4a2 2 0 100 4 2 2 0 000-4z",
+  },
+  // Info: background to the work.
+  context: {
+    icon: "bg-light-elevated text-muted dark:bg-dark-surface",
+    path: "M12 16v-4m0-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+  },
+};
 
 type ProjectDetailsSidebarProps = {
   project: Project;
@@ -30,154 +48,138 @@ export const ProjectDetailsSidebar: React.FC<ProjectDetailsSidebarProps> = ({
 }) => {
   const { t } = useTranslation();
   const websiteUrl = getWebsiteUrl(project.websiteUrl);
+  const glanceItems = project.metrics
+    ? [
+        { text: project.metrics.primary, kind: project.metrics.primaryKind },
+        {
+          text: project.metrics.secondary,
+          kind: project.metrics.secondaryKind,
+        },
+      ].filter((item) => item.text)
+    : [];
 
   return (
     <div className="sticky top-20 space-y-3 sm:space-y-4">
-    {websiteUrl && (
-      <div
-        className={`${SURFACE_CARD_INTERACTIVE} p-3 sm:p-4 border border-light-border/55 dark:border-dark-border/40 rounded-xl`}
-      >
-        <div className="flex items-center gap-2 mb-2 sm:mb-3">
-          <div className={`w-7 h-7 sm:w-8 sm:h-8 ${SURFACE_CARD_ICON}`}>
-            <svg
-              className="w-4 h-4 text-green-600 dark:text-green-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-              />
-            </svg>
+      {websiteUrl && (
+        <div
+          className={`${SURFACE_CARD_INTERACTIVE} p-3 sm:p-4 border border-light-border/55 dark:border-dark-border/40 rounded-xl`}
+        >
+          <div className="flex items-center gap-2 mb-2 sm:mb-3">
+            <div className={`w-7 h-7 sm:w-8 sm:h-8 ${SURFACE_CARD_ICON}`}>
+              <svg
+                className="w-4 h-4 text-green-600 dark:text-green-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+            </div>
+            <h2 className={`${TEXT_DETAIL_SECTION_TITLE} text-base sm:text-lg`}>
+              {t("features.projectDetails.sidebar.liveWebsite")}
+            </h2>
           </div>
-          <h2 className={`${TEXT_DETAIL_SECTION_TITLE} text-base sm:text-lg`}>
-            {t("features.projectDetails.sidebar.liveWebsite")}
-          </h2>
-        </div>
 
-        <div className="space-y-3 sm:space-y-4">
-          <div className="p-3 sm:p-4 surface-card rounded-xl border border-light-border/55 dark:border-dark-border/40">
-            <P className="text-sm text-muted font-mono break-all">
-              {websiteUrl.hostname}
+          <div className="space-y-3 sm:space-y-4">
+            <div className="p-3 sm:p-4 surface-card rounded-xl border border-light-border/55 dark:border-dark-border/40">
+              <P className="text-sm text-muted font-mono break-all">
+                {websiteUrl.hostname}
+              </P>
+            </div>
+
+            <a
+              href={websiteUrl.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex w-full items-center justify-center gap-2 min-h-[44px] px-4 py-3 rounded-xl bg-green-700 hover:bg-green-800 dark:bg-green-700 dark:hover:bg-green-800 text-white font-semibold text-sm sm:text-base transition-colors"
+            >
+              {t("features.projectDetails.sidebar.visitLiveSite")}
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+            </a>
+
+            <P className="text-sm text-muted text-center italic">
+              {t("features.projectDetails.sidebar.opensInNewTab")}
             </P>
           </div>
+        </div>
+      )}
 
-          <a
-            href={websiteUrl.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex w-full items-center justify-center gap-2 min-h-[44px] px-4 py-3 rounded-xl bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white font-semibold text-sm sm:text-base transition-colors"
+      {glanceItems.length > 0 && (
+        <section
+          aria-labelledby="project-at-a-glance"
+          className={`${SURFACE_CARD_BASE} p-5 sm:p-6 border border-light-border/55 dark:border-dark-border/40 rounded-xl`}
+        >
+          <h2
+            id="project-at-a-glance"
+            className={`${TEXT_DETAIL_SECTION_TITLE} text-base sm:text-lg mb-3 sm:mb-4`}
           >
-            {t("features.projectDetails.sidebar.visitLiveSite")}
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-              />
-            </svg>
-          </a>
-
-          <P className="text-sm text-muted text-center italic">
-            {t("features.projectDetails.sidebar.opensInNewTab")}
-          </P>
-        </div>
-      </div>
-    )}
-
-    <div
-      className={`${SURFACE_CARD_BASE} p-5 sm:p-6 border border-light-border/55 dark:border-dark-border/40 rounded-xl`}
-    >
-      <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-        <div className={`w-8 h-8 sm:w-10 sm:h-10 ${SURFACE_CARD_ICON}`}>
-          <svg
-            className="w-5 h-5 text-primary-light dark:text-primary-dark"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"
-            />
-          </svg>
-        </div>
-        <h2 className={`${TEXT_DETAIL_SECTION_TITLE} text-lg md:text-xl`}>
-          {t("features.projectDetails.sidebar.keyMetrics")}
-        </h2>
-      </div>
-
-      <div className="space-y-3 sm:space-y-4">
-        <div className="p-4 surface-card rounded-xl border border-light-border/55 dark:border-dark-border/40 text-center">
-          <p className="text-3xl md:text-4xl font-bold text-heading mb-2">
-            {project.metrics?.primary || t("features.projectDetails.sidebar.na")}
-          </p>
-          <P className="text-sm text-muted font-medium">
-            {t("features.projectDetails.sidebar.primaryImpact")}
-          </P>
-        </div>
-
-        <div className="p-4 surface-card rounded-xl border border-light-border/55 dark:border-dark-border/40 text-center">
-          <p className="text-3xl sm:text-4xl font-bold text-heading mb-2">
-            {project.metrics?.secondary || t("features.projectDetails.sidebar.na")}
-          </p>
-          <P className="text-sm text-muted font-medium">
-            {t("features.projectDetails.sidebar.secondaryImpact")}
-          </P>
-        </div>
-      </div>
-    </div>
-
-    <div
-      className={`${SURFACE_CARD_BASE} p-5 sm:p-6 border border-light-border/55 dark:border-dark-border/40 rounded-xl`}
-    >
-      <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-        <div className={`w-8 h-8 sm:w-10 sm:h-10 ${SURFACE_CARD_ICON}`}>
-          <svg
-            className="w-5 h-5 text-royal-primary dark:text-royal-darker"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-            />
-          </svg>
-        </div>
-        <h2 className={`${TEXT_DETAIL_SECTION_TITLE} text-lg sm:text-xl`}>
-          {t("features.projectDetails.sidebar.techStack")}
-        </h2>
-      </div>
-
-      <div className="flex flex-wrap gap-2 sm:gap-3">
-        {project.techStack.map((tech) => (
-          <span
-            key={tech}
-            className="inline-flex items-center min-h-[44px] px-3 sm:px-4 py-2 surface-card rounded-lg text-sm sm:text-base font-medium border border-light-border/55 dark:border-dark-border/40 text-body"
-          >
-            {tech}
-          </span>
-        ))}
-      </div>
-    </div>
+            {t("features.projectDetails.sidebar.atAGlance")}
+          </h2>
+          {/* Each item says what kind of evidence it is, in words: a measured
+            result, an architectural change, or context. Only measured
+            results get numeric emphasis. */}
+          <ul className="divide-y divide-light-border/50 dark:divide-dark-border/40">
+            {glanceItems.map((item) => (
+              <li
+                key={item.text}
+                className="flex gap-3 py-3 first:pt-0 last:pb-0"
+              >
+                <span
+                  className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${KIND_STYLES[item.kind].icon}`}
+                  aria-hidden="true"
+                >
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d={KIND_STYLES[item.kind].path}
+                    />
+                  </svg>
+                </span>
+                <div className="min-w-0">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-muted">
+                    {t(`features.projectDetails.sidebar.kinds.${item.kind}`)}
+                  </p>
+                  <p
+                    className={
+                      item.kind === "measured"
+                        ? "mt-0.5 text-lg font-bold tabular-nums text-heading"
+                        : "mt-0.5 text-base font-semibold text-heading"
+                    }
+                  >
+                    {item.text}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </div>
   );
 };

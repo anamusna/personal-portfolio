@@ -17,7 +17,7 @@ interface ProjectCardProps {
 }
 
 const METRIC_BADGE =
-  "px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm border border-white/15 bg-black/45 text-white/95";
+  "px-3 py-1 rounded-lg leading-snug text-sm font-medium backdrop-blur-sm border border-white/15 bg-black/45 text-white/95";
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, className }) => {
   const { t } = useTranslation();
@@ -65,7 +65,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className }) => {
         )}
       </div>
 
-      <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 flex justify-between gap-2 text-white">
+      {/* Wraps onto separate rows when both do not fit on one line; as two
+          fixed halves they wrapped internally and overlapped each other. */}
+      <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 flex flex-wrap items-end gap-2 text-white">
         <span className={METRIC_BADGE}>
           {project.metrics?.primary || t("common.status.notAvailable")}
         </span>
@@ -104,7 +106,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className }) => {
         {caseStudyLink && (
           <RouterLink
             to={caseStudyLink.href}
-            className="mt-auto inline-flex items-center gap-2 min-h-[44px] text-primary-light dark:text-primary-dark group-hover:gap-3 transition-all duration-300"
+            className="mt-auto inline-flex items-center gap-2 min-h-[44px] text-primary-light dark:text-indigo-400 group-hover:gap-3 transition-all duration-300"
           >
             {caseStudyLink.label}
             <span

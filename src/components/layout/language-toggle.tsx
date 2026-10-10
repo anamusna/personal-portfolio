@@ -2,6 +2,7 @@ import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { switchLanguage } from "../../i18n";
 import Icon from "../../tailwind/components/elements/Icon";
 
 export interface LanguageToggleProps {
@@ -26,7 +27,7 @@ const LanguageToggle: React.FC<LanguageToggleProps> = ({
   const isFooter = variant === "footer";
 
   const handleToggleLanguage = () => {
-    void i18n.changeLanguage(nextLanguage);
+    void switchLanguage(nextLanguage);
   };
 
   return (
@@ -80,7 +81,7 @@ const LanguageToggle: React.FC<LanguageToggleProps> = ({
             isFooter ? "h-7 w-8 text-[10px]" : "h-8 w-9 text-[11px]",
             !isDe
               ? "text-white"
-              : "text-light-text/55 dark:text-dark-text/55 group-hover:text-light-text/80 dark:group-hover:text-dark-text/80",
+              : "text-light-text/75 dark:text-dark-text/75 group-hover:text-light-text dark:group-hover:text-dark-text",
           )}
         >
           EN
@@ -91,7 +92,7 @@ const LanguageToggle: React.FC<LanguageToggleProps> = ({
             isFooter ? "h-7 w-8 text-[10px]" : "h-8 w-9 text-[11px]",
             isDe
               ? "text-white"
-              : "text-light-text/55 dark:text-dark-text/55 group-hover:text-light-text/80 dark:group-hover:text-dark-text/80",
+              : "text-light-text/75 dark:text-dark-text/75 group-hover:text-light-text dark:group-hover:text-dark-text",
           )}
         >
           DE

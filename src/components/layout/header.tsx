@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import SocialLinks from "components/elements/social-links";
+import ChatLauncher from "components/layout/chat-launcher";
 import MobileNavMenu from "components/layout/mobile-nav-menu";
 import ThemeToggle from "components/layout/theme-toggle";
 import React, { useEffect, useState } from "react";
@@ -28,12 +29,15 @@ import {
 // produced something else. React aborted hydration on that mismatch and
 // re-rendered every route from scratch. Keep this markup viewport
 // independent.
-const HeaderContent: React.FC = () => {
+interface HeaderProps {
+  launcherRef: React.RefObject<HTMLButtonElement>;
+}
+
+const HeaderContent: React.FC<HeaderProps> = ({ launcherRef }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const location = useLocation();
   const { t } = useTranslation();
-  // const {  openSpotlight} = useSpotlightSearch();
 
   const navigation = PRIMARY_HEADER_NAV.map((item) => ({
     name: t(item.labelKey),
@@ -119,45 +123,22 @@ const HeaderContent: React.FC = () => {
               to="/"
               className="group relative flex items-center gap-2 sm:gap-3 flex-shrink-0 min-w-0 max-w-[min(100%,10.5rem)] xs:max-w-none"
             >
+              {/* The dark-theme variant lifts the navy strokes, which
+                  disappeared against the dark header. Only one is shown. */}
               <img
-                src="/logo.png"
+                src="/logo.webp"
                 alt={t("a11y.header.logoAlt")}
-                className="relative object-cover w-[var(--header-logo-size)] h-[var(--header-logo-size)]"
+                width={160}
+                height={160}
+                className="relative object-cover w-[var(--header-logo-size)] h-[var(--header-logo-size)] dark:hidden"
               />
-
-              {/* Enhanced Name and Title with responsive display */}
-              {/*   <div className="relative min-w-0 flex-1">
-                <h3 className={clsx("font-bold truncate", getNameTextSize())}>
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 dark:from-indigo-400 dark:via-violet-400 dark:to-purple-400 animate-crystalline-shimmer bg-[length:200%_100%]">
-                    {getDisplayName()}
-                  </span>
-                </h3>
-
-                {shouldShowSubtitle() && (
-                  <span
-                    className={clsx(
-                      "text-light-text/50 dark:text-dark-text/50 group-hover:text-light-text dark:group-hover:text-dark-text transition-colors duration-500 block truncate",
-                      deviceType === "mobile" || deviceType === "mobile-large"
-                        ? "text-xs"
-                        : deviceType === "tablet"
-                          ? "text-xs"
-                          : deviceType === "tablet-landscape"
-                            ? "text-xs"
-                            : "text-xs",
-                    )}
-                  >
-                    {language === "en"
-                      ? deviceType === "tablet" ||
-                        deviceType === "tablet-landscape"
-                        ? "Software Engineer"
-                        : "Senior Software Engineer"
-                      : deviceType === "tablet" ||
-                          deviceType === "tablet-landscape"
-                        ? "Software Entwickler"
-                        : "Senior Software Entwickler"}
-                  </span>
-                )}
-              </div> */}
+              <img
+                src="/logo-dark.webp"
+                alt={t("a11y.header.logoAlt")}
+                width={160}
+                height={160}
+                className="relative hidden object-cover w-[var(--header-logo-size)] h-[var(--header-logo-size)] dark:block"
+              />
             </Link>
 
             {/* Equal flex spacers center SocialLinks between logo and nav+theme (desktop only) */}
@@ -173,6 +154,10 @@ const HeaderContent: React.FC = () => {
             </div>
 
             <div className="flex-1 basis-0 min-w-0 shrink" aria-hidden="true" />
+
+            <div className="shrink-0 z-20">
+              <ChatLauncher launcherRef={launcherRef} />
+            </div>
 
             {/* Career and Projects are the two pages a visitor coming from a CV
                 or LinkedIn needs, so they stay in the header rather than only
@@ -201,6 +186,6 @@ const HeaderContent: React.FC = () => {
   );
 };
 
-const Header: React.FC = () => <HeaderContent />;
+const Header: React.FC<HeaderProps> = (props) => <HeaderContent {...props} />;
 
 export default Header;

@@ -1,5 +1,6 @@
 import MarkdownRenderer from "components/elements/markdown-renderer";
-import SectionHeader from "components/elements/section-header";
+import HeroHeader from "components/elements/hero-header";
+import { legalPageIcon } from "components/elements/page-icons";
 import { LAYOUT_STYLES } from "data/heroData";
 import { motion } from "motion/react";
 import React from "react";
@@ -30,16 +31,17 @@ const Privacy: React.FC = () => {
           initial={false}
           animate="visible"
         >
-          <SectionHeader
-            badge={{ text: t("pages.privacy.badge"), iconAnimation: false }}
+          <HeroHeader
+            greeting={t("pages.privacy.badge")}
             title={privacyMeta.title}
-            titleAs="h1"
-            caption={t("pages.privacy.lastUpdated", {
-              date: privacyMeta.lastUpdated,
-            })}
-            description={privacyMeta.subtitle}
-            className="mb-10 sm:mb-12"
+            subtitle={privacyMeta.subtitle}
+            alignment="center"
+            subtitleClassName="max-w-2xl"
+            icon={legalPageIcon}
           />
+          <p className="mt-3 mb-10 sm:mb-12 text-center text-xs sm:text-sm text-muted">
+            {t("pages.privacy.lastUpdated", { date: privacyMeta.lastUpdated })}
+          </p>
 
           <div className="surface-card rounded-2xl border border-light-border/55 dark:border-dark-border/40 divide-y divide-light-border/50 dark:divide-dark-border/40">
             {privacySections.map((section) => (

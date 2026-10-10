@@ -1,6 +1,7 @@
 import { LAYOUT_STYLES } from "data/heroData";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import { SURFACE_CARD_HEADER } from "tailwind/styles/surfaceCard";
 import { ProjectDetailTab } from "../hooks/use-project-details";
 import {
@@ -11,13 +12,13 @@ import {
 type ProjectDetailsTabBarProps = {
   tabs: ProjectDetailTab[];
   activeTabId: string;
-  onTabChange: (tabId: string) => void;
 };
+
+const projectPath = (id: string) => `/projects/${id}`;
 
 export const ProjectDetailsTabBar: React.FC<ProjectDetailsTabBarProps> = ({
   tabs,
   activeTabId,
-  onTabChange,
 }) => {
   const { t } = useTranslation();
   const activeIndex = tabs.findIndex((tab) => tab.id === activeTabId);
@@ -37,10 +38,9 @@ export const ProjectDetailsTabBar: React.FC<ProjectDetailsTabBarProps> = ({
                 const isActive = tab.id === activeTabId;
 
                 return (
-                  <button
+                  <Link
                     key={tab.id}
-                    type="button"
-                    onClick={() => onTabChange(tab.id)}
+                    to={projectPath(tab.id)}
                     className={`group relative flex-shrink-0 px-2 sm:px-3 py-1.5 sm:py-2 text-sm font-medium transition-all duration-300 whitespace-nowrap min-h-[32px] sm:min-h-[36px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:ring-offset-1 rounded-lg sm:rounded-xl ${
                       isActive
                         ? "text-white font-semibold"
@@ -71,7 +71,7 @@ export const ProjectDetailsTabBar: React.FC<ProjectDetailsTabBarProps> = ({
                             : "bg-gray-400 dark:bg-gray-500 group-hover:bg-gray-600 dark:group-hover:bg-gray-400"
                         }`}
                       />
-                      <span className="font-medium truncate max-w-[70px] sm:max-w-[90px] lg:max-w-[110px]">
+                      <span className="font-medium">
                         {tab.label}
                       </span>
                     </span>
@@ -79,7 +79,7 @@ export const ProjectDetailsTabBar: React.FC<ProjectDetailsTabBarProps> = ({
                     {isActive && (
                       <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-gradient-to-r from-indigo-500 via-violet-500 to-purple-500 rounded-full" />
                     )}
-                  </button>
+                  </Link>
                 );
               })}
             </div>
@@ -92,14 +92,11 @@ export const ProjectDetailsTabBar: React.FC<ProjectDetailsTabBarProps> = ({
               </div>
 
               <div className="flex items-center gap-1">
-                <button
-                  type="button"
-                  onClick={() =>
-                    onTabChange(
-                      getAdjacentProjectTabId(tabs, activeTabId, "previous"),
-                    )
-                  }
-                  className="p-1 sm:p-1.5 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200"
+                <Link
+                  to={projectPath(
+                    getAdjacentProjectTabId(tabs, activeTabId, "previous"),
+                  )}
+                  className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200"
                   aria-label={t("features.projectDetails.tabBar.previousAria")}
                 >
                   <svg
@@ -116,16 +113,13 @@ export const ProjectDetailsTabBar: React.FC<ProjectDetailsTabBarProps> = ({
                       d="M15 19l-7-7 7-7"
                     />
                   </svg>
-                </button>
+                </Link>
 
-                <button
-                  type="button"
-                  onClick={() =>
-                    onTabChange(
-                      getAdjacentProjectTabId(tabs, activeTabId, "next"),
-                    )
-                  }
-                  className="p-1 sm:p-1.5 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200"
+                <Link
+                  to={projectPath(
+                    getAdjacentProjectTabId(tabs, activeTabId, "next"),
+                  )}
+                  className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200"
                   aria-label={t("features.projectDetails.tabBar.nextAria")}
                 >
                   <svg
@@ -142,7 +136,7 @@ export const ProjectDetailsTabBar: React.FC<ProjectDetailsTabBarProps> = ({
                       d="M9 5l7 7-7 7"
                     />
                   </svg>
-                </button>
+                </Link>
               </div>
             </div>
           </div>

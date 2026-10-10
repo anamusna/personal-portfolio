@@ -1,4 +1,5 @@
 import TypingText from "components/spotlight/typing-text";
+import type { SpotlightSearchState } from "hooks/useSpotlightSearch";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
@@ -6,7 +7,7 @@ interface ChatHeaderProps {
   onClear: () => void;
   onClose: () => void;
   chatInput: string;
-  messages: any[];
+  messages: SpotlightSearchState["messages"];
 }
 
 const ChatHeader: React.FC<ChatHeaderProps> = ({
@@ -23,7 +24,7 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
     <div className="flex-shrink-0 border-b border-slate-200/60 px-3 py-2.5 sm:px-4 sm:py-3 dark:border-slate-700/60">
       <div className="flex items-center justify-between gap-3">
         <div className="min-w-0 flex-1">
-          <p className="text-xs font-semibold uppercase tracking-[0.15em] text-emerald-600 dark:text-emerald-400">
+          <p className="text-xs font-semibold uppercase tracking-[0.15em] text-emerald-700 dark:text-emerald-400">
             {t("spotlight.chat.title")}
           </p>
           {messages.length === 0 ? (
@@ -45,6 +46,9 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
               {t("spotlight.chat.askAnything")}
             </h3>
           )}
+          <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">
+            {t("spotlight.chat.disclosure")}
+          </p>
         </div>
         <div className="flex items-center gap-1.5">
           {showClear && (
@@ -82,6 +86,7 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
               fill="none"
               stroke="currentColor"
               strokeWidth={1.8}
+              aria-hidden="true"
               className="h-4 w-4"
             >
               <path

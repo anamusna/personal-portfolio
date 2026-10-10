@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import Contact from "pages/Contact";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FOOTER_NAV_LINKS } from "../../data/footer-navigation";
 import {
   CHROME_BAR_BORDER_TOP,
@@ -41,21 +41,24 @@ const footerItemVariants: Variants = {
 const Footer: React.FC = () => {
   const { t } = useTranslation();
   const [currentYear] = useState(new Date().getFullYear());
+  const showContactBand = useLocation().pathname !== "/contact";
 
   return (
     <>
-      <motion.section
-        id="contact"
-        className="relative scroll-mt-24 bg-light-background dark:bg-dark-background"
-        variants={SECTION_VARIANTS}
-        initial={false}
-        whileInView="visible"
-        viewport={SECTION_VIEWPORT}
-      >
-        <Contact embedded />
-      </motion.section>
-      <motion.div
-        data-cy="composer-dock-root"
+      {showContactBand && (
+        <motion.section
+          id="contact"
+          aria-label={t("content.contactLinks.title")}
+          className="relative scroll-mt-24 bg-light-background dark:bg-dark-background"
+          variants={SECTION_VARIANTS}
+          initial={false}
+          whileInView="visible"
+          viewport={SECTION_VIEWPORT}
+        >
+          <Contact embedded />
+        </motion.section>
+      )}
+      <motion.footer
         variants={footerVariants}
         initial={false}
         animate="visible"
@@ -74,20 +77,28 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="relative container max-w-7xl mx-auto px-4 py-4 sm:py-6">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-4 lg:gap-6">
             {/* Copyright */}
             <motion.div
               variants={footerItemVariants}
-              className="text-sm text-light-text/70 dark:text-dark-text/70 flex items-center gap-2"
+              className="text-sm text-light-text/70 dark:text-dark-text/70 flex flex-wrap items-center justify-center gap-x-2 [&>span]:whitespace-nowrap"
             >
-              <span>© {currentYear}</span>
-              <span className="text-light-text/30 dark:text-dark-text/30">
+              <span>{`© ${currentYear}`}</span>
+              <span
+                className="hidden sm:inline text-light-text/30 dark:text-dark-text/30"
+                aria-hidden="true"
+              >
                 •
               </span>
               <span className="font-medium text-light-text/70 dark:text-dark-text/70">
-                <Link to="/">Ansumana Darboe</Link>
+                <Link to="/" className="inline-block py-2">
+                  Ansumana Darboe
+                </Link>
               </span>
-              <span className="text-light-text/30 dark:text-dark-text/30">
+              <span
+                className="hidden sm:inline text-light-text/30 dark:text-dark-text/30"
+                aria-hidden="true"
+              >
                 •
               </span>
               <span className="font-medium text-light-text/70 dark:text-dark-text/70">
@@ -99,7 +110,7 @@ const Footer: React.FC = () => {
             <motion.nav
               variants={footerItemVariants}
               aria-label={t("a11y.footer.navigation")}
-              className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 order-1 sm:order-none"
+              className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 order-1 lg:order-none"
             >
               {FOOTER_NAV_LINKS.map((link) => (
                 <Link
@@ -110,19 +121,12 @@ const Footer: React.FC = () => {
                   {link.labelKey ? t(link.labelKey) : link.label}
                 </Link>
               ))}
-              {/* <a
-                href="/ansumana-darboe-cv.pdf"
-                download
-                className="text-sm font-medium text-light-text/75 dark:text-dark-text/75 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-royal-primary/50 px-1 py-0.5"
-              >
-                {t("content.contactPage.cvDownloadLabel")}
-              </a> */}
             </motion.nav>
 
             {/* Social Links + Language Toggle */}
             <motion.div
               variants={footerItemVariants}
-              className="flex items-center gap-3 order-2 space-y-2 sm:space-y-0"
+              className="flex items-center gap-3 order-2"
             >
               <SocialLinks
                 variant="footer"
@@ -140,7 +144,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-light-border/60 dark:via-dark-border/50 to-transparent" />
-      </motion.div>
+      </motion.footer>
     </>
   );
 };

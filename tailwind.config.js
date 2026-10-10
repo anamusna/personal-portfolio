@@ -924,9 +924,6 @@ module.exports = {
     container: false,
   },
   plugins: [
-    require("@tailwindcss/forms")({
-      strategy: 'class',
-    }),
     require("@tailwindcss/typography"),
     function ({ addUtilities }) {
       const newUtilities = {

@@ -2,9 +2,10 @@ import { SECTION_VARIANTS, SECTION_VIEWPORT } from "constants/section-motion";
 import { motion } from "motion/react";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import { P } from "tailwind/components/elements/Typography";
 import { TEXT_DETAIL_SECTION_TITLE } from "tailwind/styles/textTokens";
-import { SURFACE_CARD_ICON, SURFACE_CARD_INTERACTIVE } from "tailwind/styles/surfaceCard";
+import { SURFACE_CARD_INTERACTIVE } from "tailwind/styles/surfaceCard";
 import { blogImages } from "data/blogImages";
 import { blogs } from "data/blogs";
 
@@ -12,12 +13,10 @@ type BlogPost = (typeof blogs)[number];
 
 type BlogSimilarPostsProps = {
   similarBlogs: BlogPost[];
-  onSimilarBlogClick: (blog: BlogPost) => void;
 };
 
 export const BlogSimilarPosts: React.FC<BlogSimilarPostsProps> = ({
   similarBlogs,
-  onSimilarBlogClick,
 }) => {
   const { t } = useTranslation();
 
@@ -35,11 +34,6 @@ export const BlogSimilarPosts: React.FC<BlogSimilarPostsProps> = ({
     >
       <div className="container relative z-10 mx-auto px-4">
         <div className="text-center mb-8 sm:mb-12">
-          <div className={`${SURFACE_CARD_ICON} w-12 h-12 sm:w-16 sm:h-16 rounded-full mx-auto mb-4`}>
-            <span className="text-2xl sm:text-3xl" aria-hidden="true">
-              📚
-            </span>
-          </div>
           <h2 className={`${TEXT_DETAIL_SECTION_TITLE} mb-3`}>
             {t("features.blogDetails.similar.title")}
           </h2>
@@ -54,15 +48,14 @@ export const BlogSimilarPosts: React.FC<BlogSimilarPostsProps> = ({
               key={blog.id}
               className={`${SURFACE_CARD_INTERACTIVE} rounded-2xl overflow-hidden min-h-[360px] sm:min-h-[380px] flex flex-col`}
             >
-              <button
-                type="button"
-                onClick={() => onSimilarBlogClick(blog)}
+              <Link
+                to={`/blog/${blog.titleSlug}`}
                 className="flex-1 flex flex-col min-h-[44px] w-full text-left"
               >
-                <div className="relative aspect-video overflow-hidden bg-light-elevated dark:bg-dark-surface">
+                <div className="relative aspect-[1200/630] overflow-hidden bg-[#0f172a]">
                   <img
                     src={blogImages[blog.coverImage]}
-                    alt={blog.title}
+                    alt=""
                     className="w-full h-full object-cover"
                     loading="lazy"
                   />
@@ -77,7 +70,7 @@ export const BlogSimilarPosts: React.FC<BlogSimilarPostsProps> = ({
                     {blog.tags?.slice(0, 2).map((tag) => (
                       <span
                         key={tag}
-                        className="px-2.5 py-1 text-sm font-medium surface-card text-emerald-600 dark:text-emerald-400 rounded-lg border border-light-border/55 dark:border-dark-border/40 min-h-[28px]"
+                        className="px-2.5 py-1 text-sm font-medium surface-card text-emerald-700 dark:text-emerald-400 rounded-lg border border-light-border/55 dark:border-dark-border/40 min-h-[28px]"
                       >
                         {tag}
                       </span>
@@ -129,7 +122,7 @@ export const BlogSimilarPosts: React.FC<BlogSimilarPostsProps> = ({
                     </div>
                   </div>
                 </div>
-              </button>
+              </Link>
             </article>
           ))}
         </div>

@@ -56,7 +56,7 @@ const HeroHeader: React.FC<HeroHeaderProps> = memo(
   }) => {
     const alignmentClasses =
       alignment === "center"
-        ? "text-left sm:text-center items-start sm:items-center"
+        ? "text-center items-center"
         : alignment === "right"
           ? "text-left sm:text-right items-start sm:items-end"
           : "text-left items-start";
@@ -76,7 +76,7 @@ const HeroHeader: React.FC<HeroHeaderProps> = memo(
 
     const greetingWrapperClasses =
       alignment === "center"
-        ? "justify-start sm:justify-center"
+        ? "justify-center"
         : alignment === "right"
           ? "justify-start sm:justify-end"
           : "justify-start";
@@ -127,7 +127,7 @@ const HeroHeader: React.FC<HeroHeaderProps> = memo(
             className={clsx(
               "relative max-w-4xl",
               PAGE_HEADER_HERO_SUBTITLE,
-              alignment === "center" && "sm:mx-auto",
+              alignment === "center" && "mx-auto",
               subtitleClassName,
             )}
           >
@@ -138,7 +138,7 @@ const HeroHeader: React.FC<HeroHeaderProps> = memo(
         <div
           className={clsx(
             "mt-4 sm:mt-5 h-px w-12 sm:w-20",
-            alignment === "center" && "sm:mx-auto",
+            alignment === "center" && "mx-auto",
             PAGE_HEADER_ACCENT_LINE,
           )}
           aria-hidden

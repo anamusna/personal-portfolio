@@ -33,7 +33,12 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
   }
 
   return (
-    <motion.div className="space-y-4" initial={false}>
+    <motion.div
+      className="space-y-4"
+      initial={false}
+      role="log"
+      aria-live="polite"
+    >
       <AnimatePresence initial={false}>
         {messages.map((message, index) => {
           const isUser = message.role === "user";
@@ -60,22 +65,33 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
                 className={clsx(
                   "rounded-3xl px-4 py-3 text-sm leading-relaxed shadow-lg",
                   isUser
-                    ? "bg-emerald-500 text-white"
+                    ? "bg-emerald-700 text-white"
                     : "bg-slate-800/80 text-slate-100 dark:bg-slate-800/90",
                 )}
               >
                 {!isUser ? (
-                  <TypingText
-                    text={content}
-                    typingSpeed={20}
-                    pauseDuration={1600}
-                    deletingSpeed={30}
-                    loop={false}
-                    className="block text-sm leading-relaxed text-inherit"
-                    showCursor={false}
-                    hideCursorWhileTyping
-                    cursorClassName="ml-1 h-[1.1em] w-px bg-current inline-block align-bottom"
-                  />
+                  <>
+                    {/* Screen readers get the whole answer at once; the
+                      typed-out copy would be announced in fragments. */}
+                    <span className="sr-only">
+                      {content
+                        .replace(/\*\*|`|_/g, "")
+                        .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")}
+                    </span>
+                    <span aria-hidden="true">
+                      <TypingText
+                        text={content}
+                        typingSpeed={20}
+                        pauseDuration={1600}
+                        deletingSpeed={30}
+                        loop={false}
+                        className="block text-sm leading-relaxed text-inherit"
+                        showCursor={false}
+                        hideCursorWhileTyping
+                        cursorClassName="ml-1 h-[1.1em] w-px bg-current inline-block align-bottom"
+                      />
+                    </span>
+                  </>
                 ) : (
                   <MarkdownRenderer
                     content={content}

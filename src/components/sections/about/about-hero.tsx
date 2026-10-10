@@ -75,10 +75,8 @@ const HeroImageContent: React.FC = memo(() => {
   return (
     <motion.div
       className={ABOUT_HERO_STYLES.IMAGE_COLUMN}
-      initial={{ opacity: 0, x: 30 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ type: "spring", stiffness: 300, damping: 28, delay: 0.15 }}
+      // Above the fold: render visible so the prerendered page shows it.
+      initial={false}
     >
       <div className="relative w-full max-w-lg rounded-2xl sm:rounded-3xl overflow-hidden">
         <Image
@@ -86,7 +84,8 @@ const HeroImageContent: React.FC = memo(() => {
           alt={t("a11y.about.heroImageAlt")}
           objectFit="cover"
           aspectRatio="portrait"
-          className="rounded-2xl sm:rounded-3xl"
+          glow
+          priority
         />
       </div>
     </motion.div>

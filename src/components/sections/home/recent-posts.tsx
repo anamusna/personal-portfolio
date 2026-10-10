@@ -163,10 +163,10 @@ const RecentPosts: React.FC = () => {
                   to={`/blog/${blog.titleSlug}`}
                   className="flex-1 flex flex-col w-full text-left min-h-[44px]"
                 >
-                  <div className="relative aspect-video overflow-hidden bg-light-elevated dark:bg-dark-surface">
+                  <div className="relative aspect-[1200/630] overflow-hidden bg-[#0f172a]">
                     <img
                       src={blogImages[blog.coverImage]}
-                      alt={blog.title}
+                      alt=""
                       className="w-full h-full object-cover"
                       loading="lazy"
                     />

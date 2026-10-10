@@ -76,6 +76,19 @@ const SpotlightChatbot: React.FC<SpotlightChatbotProps> = ({
     };
   }, [showSpotlight, closeSpotlight, launcherRef]);
 
+  // Move focus into the dialog when it opens and back to the launcher when it
+  // closes, so keyboard users are not left behind the panel.
+  const wasOpen = useRef(false);
+  useEffect(() => {
+    if (showSpotlight) {
+      wasOpen.current = true;
+      panelRef.current?.focus({ preventScroll: true });
+    } else if (wasOpen.current) {
+      wasOpen.current = false;
+      launcherRef?.current?.focus({ preventScroll: true });
+    }
+  }, [showSpotlight, launcherRef]);
+
   const groupedResults = useMemo(() => {
     return results.reduce<Record<SpotlightCategory, SpotlightResult[]>>(
       (acc, result) => {
@@ -145,6 +158,7 @@ const SpotlightChatbot: React.FC<SpotlightChatbotProps> = ({
             className="fixed bottom-0 md:bottom-20 right-0 z-[70] w-[100vw] max-w-md origin-bottom-right"
             role="dialog"
             aria-modal="true"
+            aria-label={t("spotlight.aria.chatbot")}
             onKeyDown={(e) => {
               if (e.key === "Escape") closeSpotlight();
             }}

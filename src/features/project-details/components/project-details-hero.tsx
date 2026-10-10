@@ -40,15 +40,22 @@ export const ProjectDetailsHero: React.FC<ProjectDetailsHeroProps> = ({
           </div>
 
           <div className="order-1 lg:order-2 relative">
-            <div className="relative aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden shadow-lg border border-light-border/55 dark:border-dark-border/40">
+            {/* A diagram of the engineering work the case study describes
+                (scripts/generate-covers.mjs), not a photo: it explains the
+                project, where a portrait only repeated the home page. */}
+            <figure className="relative aspect-[1200/630] rounded-xl sm:rounded-2xl overflow-hidden shadow-lg border border-light-border/55 dark:border-dark-border/40 bg-[#0f172a]">
               <img
                 src={heroImageSrc}
-                alt={project.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                alt={t("features.projectDetails.hero.diagramAlt", {
+                  project: project.title,
+                })}
+                width={1200}
+                height={630}
+                decoding="async"
+                className="w-full h-full object-contain"
                 onError={() => setHasHeroImageError(true)}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
-            </div>
+            </figure>
           </div>
         </div>
       </div>

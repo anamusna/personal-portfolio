@@ -1,5 +1,5 @@
-import { useCallback, useMemo } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useMemo } from "react";
+import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Project } from "types/project";
 import { getVisibleProjects } from "../utils/get-visible-projects";
@@ -13,13 +13,12 @@ type UseProjectDetailsResult = {
   project: Project | null;
   tabs: ProjectDetailTab[];
   activeTabId: string;
-  redirectPath: string | null;
-  handleTabChange: (tabId: string) => void;
+  /** True when the URL names a project that does not exist. */
+  notFound: boolean;
 };
 
 export function useProjectDetails(): UseProjectDetailsResult {
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
   const { i18n } = useTranslation();
   const visibleProjects = useMemo(
     () => getVisibleProjects(),
@@ -32,13 +31,7 @@ export function useProjectDetails(): UseProjectDetailsResult {
     [id, visibleProjects],
   );
 
-  const redirectPath = useMemo(() => {
-    if (project || !id) {
-      return null;
-    }
-
-    return "/projects";
-  }, [project, id]);
+  const notFound = Boolean(id) && !project;
 
   const tabs = useMemo(
     () =>
@@ -49,20 +42,10 @@ export function useProjectDetails(): UseProjectDetailsResult {
     [visibleProjects],
   );
 
-  const handleTabChange = useCallback(
-    (tabId: string) => {
-      if (tabId !== id) {
-        navigate(`/projects/${tabId}`);
-      }
-    },
-    [id, navigate],
-  );
-
   return {
     project,
     tabs,
     activeTabId: id ?? "",
-    redirectPath,
-    handleTabChange,
+    notFound,
   };
 }

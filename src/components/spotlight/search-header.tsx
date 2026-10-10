@@ -67,6 +67,7 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({
             <input
               ref={inputRef}
               type="text"
+              data-spotlight-input=""
               value={searchInput}
               aria-label={t("spotlight.search.aria.input")}
               onChange={(event) => onSearchInputChange(event.target.value)}

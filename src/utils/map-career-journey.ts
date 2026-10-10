@@ -8,7 +8,6 @@ export type CareerJourneyEntry = {
   role: string;
   company: string;
   location: string;
-  icon: string;
   description: string;
   achievements: string[];
   category: string;
@@ -28,11 +27,12 @@ export function mapCareerJourney(): CareerJourneyEntry[] {
         role: experience.role ?? "",
         company: experience.company,
         location: experience.location,
-        icon: experience.icon,
         description: experience.responsibilities[0] || "",
         achievements: experience.achievements,
         category: experience.category?.[0] || "leadership",
-        caseStudyLink: linkedProject
+        // Only real case studies. The fallback link for roles without one
+        // points at the career page, which is where this timeline lives.
+        caseStudyLink: linkedProject?.hasDetailLink
           ? getCaseStudyLink(linkedProject)
           : null,
       };

@@ -1,6 +1,4 @@
 import clsx from "clsx";
-import { SECTION_VIEWPORT } from "constants/section-motion";
-import { motion } from "motion/react";
 import React from "react";
 import { P } from "../../tailwind/components/elements/Typography";
 import {
@@ -40,7 +38,6 @@ interface SectionHeaderProps {
   titleClassName?: string;
   descriptionClassName?: string;
   orientationClassName?: string;
-  animationDelay?: number;
   icon?: React.ReactNode;
 }
 
@@ -65,7 +62,7 @@ const defaultBadgeIcon = (
 const SectionHeader: React.FC<SectionHeaderProps> = ({
   badge,
   title,
-  titleAs = "h3",
+  titleAs = "h2",
   subtitle,
   caption,
   description,
@@ -76,28 +73,19 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   titleClassName = "",
   descriptionClassName = "",
   orientationClassName = "",
-  animationDelay = 40,
   icon,
 }) => {
-  const TitleTag = motion[titleAs];
+  const TitleTag = titleAs;
 
   const resolvedBadgeIcon =
     badge?.icon ?? (badge?.iconAnimation !== false ? defaultBadgeIcon : null);
 
   return (
-    <motion.header
+    <header
       className={clsx(
         "relative max-w-4xl mx-auto text-center mb-6 md:mb-8",
         className,
       )}
-      initial={{ opacity: 0, y: 24, scale: 0.98 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={SECTION_VIEWPORT}
-      transition={{
-        duration: 0.85,
-        ease: [0.16, 1, 0.3, 1],
-        delay: animationDelay / 1000,
-      }}
     >
       {icon && !badge && (
         <div className="flex justify-center mb-3 text-orange-600 dark:text-orange-400">
@@ -106,15 +94,12 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       )}
 
       {badge && (
-        <motion.div
+        <div
           className={clsx(PAGE_HEADER_BADGE, "mb-3 sm:mb-4", badgeClassName)}
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
         >
           {resolvedBadgeIcon}
           <span>{badge.text}</span>
-        </motion.div>
+        </div>
       )}
 
       {subtitle && (
@@ -131,14 +116,6 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
             "text-heading",
             titleClassName,
           )}
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{
-            duration: 0.75,
-            ease: [0.16, 1, 0.3, 1],
-            delay: (animationDelay + 80) / 1000,
-          }}
         >
           {title}
         </TitleTag>
@@ -194,7 +171,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
         className="mx-auto mt-4 sm:mt-5 h-px w-16 sm:w-24 bg-light-border/60 dark:bg-dark-border/50"
         aria-hidden
       />
-    </motion.header>
+    </header>
   );
 };
 

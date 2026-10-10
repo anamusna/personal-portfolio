@@ -1,20 +1,22 @@
 {
   "short_name": "Ansu",
-  "name": "Ansumana",
+  "name": "Ansumana Darboe",
   "title": "Ansumana Darboe",
-  "description": "Senior Software Engineer in Berlin. Healthcare, civic technology, and product engineering.",
+  "description": "Senior Software Engineer in Berlin specializing in frontend architecture and the safe modernization of production systems.",
   "icons": [
     {
       "src": "/favicon-192.png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "type": "image/png"
     },
     {
       "src": "/favicon-32.png",
-      "sizes": "32x32"
+      "sizes": "32x32",
+      "type": "image/png"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#f6f2ee",
+  "background_color": "#f6f2ee"
 }

@@ -1,103 +1,85 @@
 import React, {
   createContext,
-  Dispatch,
-  SetStateAction,
   useCallback,
   useContext,
   useEffect,
+  useState,
 } from "react";
-import { useLocalStorage } from "../hooks/useLocalStorage";
+import { STORAGE_KEYS } from "../shared/constants/storage";
 
 export type Theme = "light" | "dark";
 export type FontSize = "sm" | "md" | "lg";
-export type Language = "de" | "en";
-export type Contrast = "normal" | "high";
-
-export interface AccessibilitySettings {
-  fontSize: FontSize;
-  language: Language;
-  theme: Theme;
-}
 
 interface EnvironmentContextType {
   theme: Theme;
+  /**
+   * Fixed at "md". The site has no font-size control; text size follows the
+   * visitor's browser setting through rem units.
+   */
   fontSize: FontSize;
-  language: Language;
-
-  setTheme: Dispatch<SetStateAction<Theme>>;
   toggleTheme: () => void;
-  setFontSize: Dispatch<SetStateAction<FontSize>>;
-  setLanguage: Dispatch<SetStateAction<Language>>;
-  themeClasses?: string;
 }
-
-const defaultAccessibilitySettings: AccessibilitySettings = {
-  fontSize: "md",
-  language: "de",
-  theme: "light",
-};
 
 const EnvironmentContext = createContext<EnvironmentContextType | undefined>(
   undefined,
 );
 
+const readStoredTheme = (): Theme | null => {
+  try {
+    const stored = JSON.parse(
+      window.localStorage.getItem(STORAGE_KEYS.THEME) ?? "null",
+    );
+    return stored === "dark" || stored === "light" ? stored : null;
+  } catch {
+    return null;
+  }
+};
+
+const applyTheme = (theme: Theme) => {
+  const root = document.documentElement;
+  root.setAttribute("data-theme", theme);
+  root.classList.toggle("dark", theme === "dark");
+  document
+    .querySelector('meta[name="theme-color"]')
+    ?.setAttribute("content", theme === "dark" ? "#0f172a" : "#f6f2ee");
+};
+
 export const EnvironmentProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [theme, setTheme] = useLocalStorage<Theme>(
-    "THEME",
-    defaultAccessibilitySettings.theme,
-  );
-  const [fontSize, setFontSize] = useLocalStorage<FontSize>(
-    "DISPLAY_SETTINGS",
-    defaultAccessibilitySettings.fontSize,
-  );
-
-  const toggleTheme = useCallback(() => {
-    setTheme((current) => (current === "dark" ? "light" : "dark"));
-  }, [setTheme]);
+  // The prerendered HTML is always light, so the first client render must be
+  // light too or hydration fails. public/theme-init.js has already painted the
+  // stored theme before React loads; the state catches up right after.
+  const [theme, setTheme] = useState<Theme>("light");
+  const [hasReadStorage, setHasReadStorage] = useState(false);
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    document.documentElement.classList.toggle("dark", theme === "dark");
+    const stored = readStoredTheme();
+    if (stored) setTheme(stored);
+    setHasReadStorage(true);
+  }, []);
 
-    document.documentElement.style.fontSize = {
-      sm: "14px",
-      md: "16px",
-      lg: "18px",
-    }[fontSize];
+  useEffect(() => {
+    // Until the stored value is known, leave the class theme-init.js set.
+    if (!hasReadStorage) return;
+    applyTheme(theme);
+  }, [theme, hasReadStorage]);
 
-    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-    if (metaThemeColor) {
-      metaThemeColor.setAttribute(
-        "content",
-        theme === "dark" ? "#1a1a1a" : "#f6f2ee",
-      );
-    }
-  }, [theme, fontSize]);
-
-  const themeClasses = `${theme === "dark" ? "dark" : ""}`;
-
-  const value: EnvironmentContextType = {
-    theme,
-    fontSize,
-    language: "en",
-    setTheme,
-    toggleTheme,
-    setFontSize,
-    themeClasses,
-    setLanguage: function (value: React.SetStateAction<Language>): void {
-      throw new Error("Function not implemented.");
-    },
-  };
+  const toggleTheme = useCallback(() => {
+    setTheme((current) => {
+      const next = current === "dark" ? "light" : "dark";
+      try {
+        window.localStorage.setItem(STORAGE_KEYS.THEME, JSON.stringify(next));
+      } catch {
+        // Storage can be blocked; the choice then lasts for this visit only.
+      }
+      return next;
+    });
+  }, []);
 
   return (
-    <EnvironmentContext.Provider value={value}>
-      {/* No `lang` here: it would claim German content is English. The
-          document language is kept in step with i18n in src/i18n.ts. */}
-      <div className={`font-${fontSize}`} dir="ltr">
-        {children}
-      </div>
+    <EnvironmentContext.Provider value={{ theme, fontSize: "md", toggleTheme }}>
+      {children}
     </EnvironmentContext.Provider>
   );
 };
@@ -111,48 +93,5 @@ export const useEnvironmentSettings = () => {
   }
   return context;
 };
-
-// CSS utility classes for accessibility
-const accessibilityStyles = `
-  .high-contrast {
-    --text-primary: #ffffff;
-    --text-secondary: #ffffff;
-    --bg-primary: #000000;
-    --bg-secondary: #1a1a1a;
-  }
-
-  .keyboard-mode *:focus {
-    outline: 3px solid var(--focus-color, #007AFF) !important;
-    outline-offset: 2px !important;
-  }
-
-  .reduce-motion * {
-    animation: none !important;
-    transition: none !important;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      animation: none !important;
-      transition: none !important;
-    }
-  }
-
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-`;
-
-const styleSheet = document.createElement("style");
-styleSheet.textContent = accessibilityStyles;
-document.head.appendChild(styleSheet);
 
 export default EnvironmentContext;

@@ -12,9 +12,6 @@ import { useEnvironmentSettings } from "../../../context/EnvironmentContext";
 export interface CarouselItem {
   id: string | number;
   content: ReactNode;
-  tagImage?: {
-    carouselTag: string;
-  };
 }
 
 interface CarouselProps {
@@ -76,7 +73,7 @@ const Carousel: React.FC<CarouselProps> = ({
 
   const previousSlide = useCallback(() => {
     setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + items.length) % items.length
+      (prevIndex) => (prevIndex - 1 + items.length) % items.length,
     );
   }, [items.length]);
 
@@ -85,7 +82,7 @@ const Carousel: React.FC<CarouselProps> = ({
       setCurrentIndex(index);
       onSlideChange?.(index);
     },
-    [onSlideChange]
+    [onSlideChange],
   );
 
   // Touch event handlers
@@ -105,7 +102,7 @@ const Carousel: React.FC<CarouselProps> = ({
       setTouchEnd(currentTouch);
       setDragOffset(diff);
     },
-    [touchStart]
+    [touchStart],
   );
 
   const handleTouchEnd = useCallback(() => {
@@ -149,7 +146,7 @@ const Carousel: React.FC<CarouselProps> = ({
       setTouchEnd(currentX);
       setDragOffset(diff);
     },
-    [touchStart, isDragging]
+    [touchStart, isDragging],
   );
 
   const handleMouseUp = useCallback(() => {
@@ -249,12 +246,14 @@ const Carousel: React.FC<CarouselProps> = ({
                   index === currentIndex
                     ? "opacity-100 translate-x-0 z-10"
                     : index === (currentIndex + 1) % items.length
-                    ? "opacity-0 translate-x-full z-0"
-                    : index === (currentIndex - 1 + items.length) % items.length
-                    ? "opacity-0 -translate-x-full z-0"
-                    : "opacity-0 translate-x-full z-0"
+                      ? "opacity-0 translate-x-full z-0"
+                      : index ===
+                          (currentIndex - 1 + items.length) % items.length
+                        ? "opacity-0 -translate-x-full z-0"
+                        : "opacity-0 translate-x-full z-0"
                 }`}
                 aria-hidden={index !== currentIndex}
+                {...(index !== currentIndex ? ({ inert: "" } as object) : {})}
                 role="group"
                 aria-roledescription="slide"
                 style={{
@@ -267,24 +266,6 @@ const Carousel: React.FC<CarouselProps> = ({
                 {item.content}
               </div>
 
-              {item.tagImage && (
-                <button
-                  type="button"
-                  className="absolute bottom-4 right-4 z-30 flex items-center justify-center rounded-xl
-                           surface-card p-3 border border-light-border/55 dark:border-dark-border/40
-                           transition-colors hover:bg-light-elevated/80 dark:hover:bg-dark-surface/80 cursor-pointer min-h-[48px] min-w-[48px]"
-                >
-                  <img
-                    src={item.tagImage?.carouselTag}
-                    alt={t("a11y.shared.carouselTag")}
-                    width={32}
-                    height={32}
-                    loading="lazy"
-                    decoding="async"
-                    className="h-6 w-6 sm:h-8 sm:w-8 dark:invert"
-                  />
-                </button>
-              )}
             </div>
           ))}
         </div>

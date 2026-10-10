@@ -19,10 +19,12 @@ export const ProjectTechStackBar: React.FC<ProjectTechStackBarProps> = ({
       <div className="py-1.5 sm:py-2 min-w-0">
         <div
           role="list"
+          // Scrolls sideways on narrow screens; focusable so the keyboard can.
+          tabIndex={0}
           aria-label={t("features.projectDetails.techStackBar.ariaLabel", {
             project: project.title,
           })}
-          className="flex w-full min-w-0 max-w-full flex-nowrap items-center gap-1.5 sm:gap-2 overflow-x-auto overflow-y-hidden overscroll-x-contain scroll-smooth touch-pan-x scrollbar-hide pr-2 sm:pr-3 [-webkit-overflow-scrolling:touch]"
+          className="flex w-full min-w-0 max-w-full flex-nowrap items-center gap-1.5 sm:gap-2 overflow-x-auto overflow-y-hidden overscroll-x-contain scroll-smooth touch-pan-x scrollbar-hide pr-2 sm:pr-3 [-webkit-overflow-scrolling:touch] rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60"
         >
           {/* Plain, static tags: cursor-default already says these aren't
               clickable, so the hover lift and colour shift they used to get

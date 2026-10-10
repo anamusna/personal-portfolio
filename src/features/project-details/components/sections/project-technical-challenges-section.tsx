@@ -54,23 +54,23 @@ export const ProjectTechnicalChallengesSection: React.FC<ProjectSectionProps> = 
       </div>
 
       <div className="space-y-6 sm:space-y-8">
-        {project.technicalChallengesOvercome && (
+        {project.technicalChallengesOvercome?.length ? (
           <ChallengeList
             title={t(
               "features.projectDetails.sections.technicalChallenges.overcameTitle",
             )}
             items={project.technicalChallengesOvercome}
           />
-        )}
+        ) : null}
 
-        {project.technicalChallenges && (
+        {project.technicalChallenges?.length ? (
           <ChallengeList
             title={t(
               "features.projectDetails.sections.technicalChallenges.ongoingTitle",
             )}
             items={project.technicalChallenges}
           />
-        )}
+        ) : null}
       </div>
     </section>
   );

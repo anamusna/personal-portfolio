@@ -158,6 +158,7 @@ const Accordion: React.FC<AccordionProps> = ({
               onKeyDown={(e) => !isDisabled && handleKeyDown(e, item.id)}
               disabled={isDisabled}
               aria-expanded={isOpen}
+              id={`accordion-header-${item.id}`}
               aria-controls={`accordion-content-${item.id}`}
               type="button"
               tabIndex={isDisabled ? -1 : 0}
@@ -218,29 +219,39 @@ const Accordion: React.FC<AccordionProps> = ({
               </div>
             </button>
 
+            {/* Animating grid rows from 0fr to 1fr opens the panel to its
+                real height (max-height capped long answers). A closed panel
+                is inert: out of the tab order and the accessibility tree. */}
             <div
               className={clsx(
-                "accordion-content transition-all duration-300 overflow-hidden",
-                isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+                "accordion-content grid transition-[grid-template-rows,opacity] duration-300",
+                isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
               )}
+              {...(isOpen ? {} : ({ inert: "" } as object))}
             >
               <div
                 id={`accordion-content-${item.id}`}
-                className={clsx(
-                  "transition-all duration-300 rounded-b-xl",
-                  currentSize.content,
-                  currentTheme.content,
-                  contentClassName
-                )}
+                // No padding here: padding would keep a closed panel open by
+                // its own height.
+                className="min-h-0 overflow-hidden"
                 role="region"
                 aria-labelledby={`accordion-header-${item.id}`}
               >
-                <div className="prose prose-sm max-w-none dark:prose-invert">
-                  {typeof item.answer === "string" ? (
-                    <MarkdownRenderer content={item.answer} />
-                  ) : (
-                    item.answer
+                <div
+                  className={clsx(
+                    "rounded-b-xl",
+                    currentSize.content,
+                    currentTheme.content,
+                    contentClassName
                   )}
+                >
+                  <div className="prose prose-sm max-w-none dark:prose-invert">
+                    {typeof item.answer === "string" ? (
+                      <MarkdownRenderer content={item.answer} />
+                    ) : (
+                      item.answer
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

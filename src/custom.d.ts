@@ -62,3 +62,22 @@ declare module "*.webp" {
   const content: string;
   export default content;
 }
+
+// webpack's `require.context`, used to load the private story content only if
+// it is present (see data/private-content.ts). @types/webpack-env is not a
+// dependency of this project.
+interface RequireContext {
+  keys: () => string[];
+  (id: string): any;
+}
+
+declare namespace NodeJS {
+  interface Require {
+    context: (
+      directory: string,
+      useSubdirectories?: boolean,
+      regExp?: RegExp,
+      mode?: "sync" | "eager" | "weak" | "lazy" | "lazy-once",
+    ) => RequireContext;
+  }
+}

@@ -1,3 +1,11 @@
+/**
+ * What a headline item is evidence of. A measured result has a number behind
+ * it; an architectural change is a verified change to the system; context
+ * describes the situation. They are presented differently so a change never
+ * reads like a number.
+ */
+export type ProjectMetricKind = "measured" | "change" | "context";
+
 export type ProjectRole =
   | "Frontend"
   | "Backend"
@@ -25,7 +33,9 @@ export interface Project {
   profile: string;
   metrics?: {
     primary: string;
+    primaryKind: ProjectMetricKind;
     secondary: string;
+    secondaryKind: ProjectMetricKind;
   };
   technicalInsights: TechnicalInsight[];
   outcome: ProjectOutcome;

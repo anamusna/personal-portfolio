@@ -13,6 +13,7 @@ import {
   SPOTLIGHT_CATEGORY_ORDER,
   SPOTLIGHT_ENTRIES,
 } from "../data/about/spotlightData";
+import { useLocation } from "react-router-dom";
 import i18n, { DEFAULT_LANGUAGE } from "../i18n";
 
 export interface SpotlightResult {
@@ -49,7 +50,9 @@ const SpotlightSearchContext = createContext<SpotlightSearchState | null>(null);
 
 const SCORE_THRESHOLD = 1;
 const DEBOUNCE_DELAY = 260;
-const CHAT_DELAY = 800;
+// Answers are looked up locally, so there is nothing to wait for. A longer
+// delay with a typing indicator would pretend to be a model thinking.
+const CHAT_DELAY = 0;
 
 const normalize = (value: string) => value.trim().toLowerCase();
 
@@ -119,9 +122,30 @@ const buildResult = (entry: SpotlightEntry): SpotlightResult => ({
   response: entry.response,
 });
 
-const matchScore = (query: string, entry: SpotlightEntry) => {
+// Words that carry no signal for matching, in English and German. The
+// person's own name is included because it appears in nearly every entry.
+const STOP_WORDS = new Set(
+  (
+    "a an the and or of to in on at for with from by is are was were be been do does did how what who whom whose " +
+    "which when where why can could would should will his her him he she it its this that these those about into " +
+    "over than then there their they them you your i me my we our us as if not no yes ansu ansus ansumana darboe " +
+    "wie was wer wo wann warum welche welcher welches ist sind war waren hat haben hatte kann könnte soll wird " +
+    "der die das den dem des ein eine einen einem einer und oder mit bei von zu zum zur im am auf für über durch " +
+    "nach vor aus ihm ihn er sie es sich ich mein dein"
+  ).split(" "),
+);
+
+const tokenize = (value: string): string[] =>
+  value
+    .split(/[^\p{L}\p{N}.+#]+/u)
+    .filter((token) => token.length > 2 && !STOP_WORDS.has(token));
+
+export const matchScore = (query: string, entry: SpotlightEntry) => {
   const normalizedQuery = normalize(query);
-  const tokens = normalizedQuery.split(/\s+/);
+  const tokens = tokenize(normalizedQuery);
+  const queryTokens = tokens.length ? tokens : [normalizedQuery];
+  const title = normalize(entry.title);
+  const description = entry.description.toLowerCase();
   let score = 0;
 
   entry.keywords.forEach((keyword) => {
@@ -130,16 +154,25 @@ const matchScore = (query: string, entry: SpotlightEntry) => {
       score += 3;
     } else if (normalizedKeyword.includes(normalizedQuery)) {
       score += 2;
-    } else if (tokens.some((token) => normalizedKeyword.includes(token))) {
+    } else if (queryTokens.some((token) => normalizedKeyword.includes(token))) {
       score += 1;
     }
   });
 
-  if (normalize(entry.title).includes(normalizedQuery)) {
+  if (title === normalizedQuery) {
+    score += 4;
+  } else if (title.includes(normalizedQuery)) {
     score += 2;
   }
+  score += Math.min(
+    3,
+    queryTokens.filter((token) => title.includes(token)).length,
+  );
 
-  if (entry.description.toLowerCase().includes(normalizedQuery)) {
+  if (description.includes(normalizedQuery)) {
+    score += 1;
+  }
+  if (queryTokens.filter((token) => description.includes(token)).length >= 2) {
     score += 1;
   }
 
@@ -223,6 +256,15 @@ export const SpotlightSearchProvider: React.FC<{
     setIsSearching(false);
     resetChatTimer();
   }, [resetChatTimer]);
+
+  // Answers link to pages on the site. Following one should leave the
+  // visitor on that page, not behind the open panel.
+  const { pathname } = useLocation();
+  const closeSpotlightRef = useRef(closeSpotlight);
+  closeSpotlightRef.current = closeSpotlight;
+  useEffect(() => {
+    closeSpotlightRef.current();
+  }, [pathname]);
 
   const performSearch = useCallback(
     (query: string) => {
@@ -328,18 +370,16 @@ export const SpotlightSearchProvider: React.FC<{
     }
 
     const trimmed = searchInput.trim();
-    if (!trimmed && results[selectedIndex]) {
-      enterChatMode(results[selectedIndex].title, results[selectedIndex]);
-      return;
-    }
-
-    if (results.length > 0 && selectedIndex < results.length) {
-      enterChatMode(results[selectedIndex].title, results[selectedIndex]);
-      return;
-    }
-
-    if (trimmed) {
+    // A typed question is answered as typed. `results` is debounced and can
+    // still belong to an earlier query, so it is only used when the visitor
+    // has nothing typed or has picked a result with the arrow keys.
+    if (trimmed && selectedIndex === 0) {
       enterChatMode(trimmed);
+      return;
+    }
+
+    if (results[selectedIndex]) {
+      enterChatMode(results[selectedIndex].title, results[selectedIndex]);
     }
   }, [enterChatMode, isChatMode, results, searchInput, selectedIndex]);
 
@@ -413,7 +453,14 @@ export const SpotlightSearchProvider: React.FC<{
         } else {
           closeSpotlight();
         }
-      } else if ((showModal || showSpotlight) && !isChatMode) {
+      } else if (
+        (showModal || showSpotlight) &&
+        !isChatMode &&
+        // Only steer from the search field. Elsewhere, Enter must keep
+        // activating whatever button has focus.
+        event.target instanceof HTMLElement &&
+        event.target.dataset.spotlightInput !== undefined
+      ) {
         if (event.key === "ArrowDown") {
           event.preventDefault();
           moveSelection("down");

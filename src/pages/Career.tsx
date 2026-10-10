@@ -5,7 +5,6 @@ import { motion } from "motion/react";
 import React, { useMemo } from "react";
 import HeroHeader from "../components/elements/hero-header";
 import SectionHeader from "../components/elements/section-header";
-import CareerImpactStrip from "../components/sections/career/career-impact-strip";
 import Journey from "../components/sections/career/career-journey";
 import CareerLeadershipStrip from "../components/sections/career/career-leadership-strip";
 import CareerNextSteps from "../components/sections/career/career-next-steps";
@@ -96,7 +95,7 @@ const Career: React.FC = () => {
               highlightText={milestones.highlightText}
             />
           </div>
-          <Journey hideHeader />
+          <Journey />
         </motion.section>
 
         <motion.section
@@ -134,14 +133,9 @@ const Career: React.FC = () => {
               highlightText={roles.highlightText}
             />
           </div>
-          <CareerTimeline hideHeader />
+          <CareerTimeline />
         </motion.section>
 
-        {/* No project-card gallery here: it repeated the same six roles
-            already covered by the timeline and role list above, with the
-            same card treatment as /projects. CareerNextSteps below already
-            sends the reader there for the technical detail per role. */}
-        <CareerImpactStrip />
         <CareerNextSteps />
       </div>
     </div>

@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useEnvironmentSettings } from "../../../context/EnvironmentContext";
 
@@ -46,21 +46,26 @@ const Toast: React.FC<ToastProps> = ({
   const { fontSize } = useEnvironmentSettings();
   const { t } = useTranslation("ansumana");
 
-  useEffect(() => {
-    if (duration > 0) {
-      const timer = setTimeout(() => {
-        if (onClose) onClose();
-        if (onDismiss) onDismiss();
-      }, duration);
-      return () => clearTimeout(timer);
-    }
-  }, [duration, onClose, onDismiss]);
+  // The callbacks are usually fresh functions on every parent render. Keeping
+  // them in a ref stops each re-render from restarting the dismiss timer.
+  const callbacksRef = useRef({ onClose, onDismiss });
+  callbacksRef.current = { onClose, onDismiss };
 
+  useEffect(() => {
+    if (!isVisible || duration <= 0) return;
+    const timer = setTimeout(() => {
+      callbacksRef.current.onClose?.();
+      callbacksRef.current.onDismiss?.();
+    }, duration);
+    return () => clearTimeout(timer);
+  }, [duration, isVisible]);
+
+  // 700-level backgrounds keep white text above 4.5:1.
   const variantClasses = {
-    info: "bg-blue-500 text-white",
-    success: "bg-green-500 text-white",
-    warning: "bg-yellow-500 text-white",
-    error: "bg-red-500 text-white",
+    info: "bg-blue-700 text-white",
+    success: "bg-green-700 text-white",
+    warning: "bg-amber-800 text-white",
+    error: "bg-red-700 text-white",
   };
 
   const sizeClasses = {
@@ -83,11 +88,10 @@ const Toast: React.FC<ToastProps> = ({
 
   return (
     <div
-      role="alert"
-      aria-live="polite"
+      role={(variant || type) === "error" ? "alert" : "status"}
       data-testid="toast"
       className={clsx(
-        "fixed z-50 min-w-[300px] max-w-md rounded-lg shadow-lg",
+        "fixed z-[90] w-[calc(100vw-2rem)] max-w-md rounded-lg shadow-lg sm:w-auto sm:min-w-[300px]",
         variantClasses[variant || type],
         positionClasses[position],
         sizeClasses[fontSize || size],

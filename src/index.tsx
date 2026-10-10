@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import "./i18n";
+import { applyDetectedLanguage } from "./i18n";
 import "./index.css";
 
 // App already wraps its tree in a single EnvironmentProvider; a second one
@@ -23,3 +23,5 @@ if (rootElement.hasChildNodes()) {
 } else {
   ReactDOM.createRoot(rootElement).render(appTree);
 }
+
+void applyDetectedLanguage();

@@ -23,6 +23,8 @@ const Testimonials: React.FC = () => {
     openFeedbackForm,
     closeFeedbackForm,
     handleSubmit,
+    isSubmitting,
+    submitError,
     toast,
     dismissToast,
   } = useTestimonialFeedback();
@@ -50,6 +52,8 @@ const Testimonials: React.FC = () => {
                 onChange={setFeedback}
                 onClose={closeFeedbackForm}
                 onSubmit={handleSubmit}
+                isSubmitting={isSubmitting}
+                submitError={submitError}
               />
             )}
           </div>

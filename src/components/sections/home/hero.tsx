@@ -3,6 +3,13 @@ import { SECTION_VARIANTS, SECTION_VIEWPORT } from "constants/section-motion";
 import { ABOUT_HERO_STYLES } from "data/aboutHeroData";
 import { home } from "data/home";
 import { homePageContent } from "data/homePage";
+import {
+  faBullhorn,
+  faHospital,
+  faPeopleGroup,
+  faRocket,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "motion/react";
 import React, { memo, useMemo } from "react";
 import { Link } from "react-router-dom";
@@ -51,6 +58,11 @@ const threadItemVariants = {
   },
 };
 
+// One icon per proof card, in the order the cards appear in the locale file.
+// Monochrome icons rather than the emoji the copy used to carry: emoji render
+// differently on every platform and read as template decoration.
+const THREAD_ICONS = [faHospital, faBullhorn, faRocket, faPeopleGroup];
+
 const Hero: React.FC = memo(() => {
   const { t } = useTranslation("ansumana");
   const { identity } = homePageContent;
@@ -96,18 +108,18 @@ const Hero: React.FC = memo(() => {
               viewport={SECTION_VIEWPORT}
               aria-label={t("a11y.home.identity.domainsAndProjects")}
             >
-              {identity.threads.map((thread) => (
+              {identity.threads.map((thread, index) => (
                 <motion.li key={thread.label} variants={threadItemVariants}>
                   <Link
                     to={thread.href}
                     className={`${SURFACE_CARD_INTERACTIVE} group flex items-start gap-3 p-4 border-violet-200/35 dark:border-violet-500/25 hover:border-indigo-400/50 dark:hover:border-indigo-400/40 min-h-[44px] transition-colors h-full`}
                   >
-                    <span
-                      className="text-2xl flex-shrink-0 leading-none pt-0.5"
+                    <FontAwesomeIcon
+                      icon={THREAD_ICONS[index] ?? faRocket}
+                      className="h-5 w-5 flex-shrink-0 pt-0.5 text-indigo-600 dark:text-indigo-400"
+                      fixedWidth
                       aria-hidden
-                    >
-                      {thread.emoji}
-                    </span>
+                    />
                     <span className="min-w-0 flex-1">
                       <span className="block text-sm sm:text-base font-semibold text-heading leading-snug group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                         {thread.label}
@@ -154,7 +166,6 @@ const Hero: React.FC = memo(() => {
             viewport={SECTION_VIEWPORT}
           >
             <HeroImage
-              showStats={false}
               className="w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto lg:mx-0 lg:ml-auto"
             />
           </motion.div>

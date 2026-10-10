@@ -94,7 +94,10 @@ const Blog: React.FC = () => {
             >
               <div className={`${SURFACE_CARD_PANEL} p-3 sm:p-5`}>
                 <h2 className="sr-only">{t("a11y.blog.gridHeading")}</h2>
-                <BlogGrid selectedTags={selectedTags} />
+                <BlogGrid
+                  selectedTags={selectedTags}
+                  onClearFilters={() => setSelectedTags([])}
+                />
               </div>
             </motion.div>
           </div>

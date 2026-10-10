@@ -34,10 +34,10 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog, className = "" }) => {
       {/* A real link, not a button with a navigate() handler: the post needs a
           crawlable href, and readers expect middle-click and copy-link. */}
       <Link to={`/blog/${blog.titleSlug}`} className="block w-full text-left">
-        <div className="relative aspect-video overflow-hidden bg-light-elevated dark:bg-dark-surface">
+        <div className="relative aspect-[1200/630] overflow-hidden bg-[#0f172a]">
           <img
             src={imageError ? blogImages["react.png"] : blogImage}
-            alt={blog.title}
+            alt=""
             width={640}
             height={360}
             loading="lazy"
@@ -55,7 +55,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog, className = "" }) => {
             {blog.tags?.map((tag) => (
               <span
                 key={tag}
-                className="px-3 py-1 text-sm font-medium text-primary-light dark:text-primary-dark
+                className="px-3 py-1 text-sm font-medium text-primary-light dark:text-indigo-300
                          bg-primary-light/10 dark:bg-primary-dark/10 rounded-full"
               >
                 {tag}
@@ -76,7 +76,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog, className = "" }) => {
               <Icon
                 icon={faCalendar}
                 size="sm"
-                className="text-primary-light/70 dark:text-primary-dark/70"
+                className="text-primary-light/70 dark:text-indigo-400/70"
               />
               {blog.date}
             </span>
@@ -84,13 +84,13 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog, className = "" }) => {
               <Icon
                 icon={faClock}
                 size="sm"
-                className="text-primary-light/70 dark:text-primary-dark/70"
+                className="text-primary-light/70 dark:text-indigo-400/70"
               />
               {t("pages.blog.cards.readTime", { minutes: blog.readTime })}
             </span>
           </div>
 
-          <div className="mt-4 text-primary-light dark:text-primary-dark font-medium">
+          <div className="mt-4 text-primary-light dark:text-indigo-400 font-medium">
             {t("common.actions.readMore")}
           </div>
         </div>

@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { AnimatePresence, motion } from "motion/react";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { preferredScrollBehavior } from "utils/scroll-behavior";
 
 interface ScrollToTopButtonProps {
   className?: string;
@@ -44,7 +45,7 @@ const ScrollToTopButton: React.FC<ScrollToTopButtonProps> = ({
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: preferredScrollBehavior(),
     });
   };
 

@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { SITE_URL } from "data/site-config";
 
 // Types
 interface MarkdownRendererProps {
@@ -25,14 +27,13 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
 
   const LINK_CLASSES = isCompact
     ? "underline underline-offset-2 text-current hover:text-current/90 transition-colors duration-200"
-    : "text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors duration-200 font-medium underline decoration-2 underline-offset-2 hover:decoration-emerald-700 dark:hover:decoration-emerald-300";
+    : "text-emerald-700 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors duration-200 font-medium underline decoration-2 underline-offset-2 hover:decoration-emerald-700 dark:hover:decoration-emerald-300";
 
   // Helper function to get link properties based on URL
   const getLinkProps = (url: string): LinkProps => {
     const isMailto = url.startsWith("mailto:");
     const isTel = url.startsWith("tel:");
-    const isInternal =
-      url.startsWith("/") || url.includes("ansumana-darboe.netlify.app");
+    const isInternal = url.startsWith("/") || url.startsWith(SITE_URL);
     const isExternal = !isMailto && !isTel && !isInternal;
 
     return {
@@ -48,7 +49,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
     type: MarkdownType,
     elementContent: string,
     index: number,
-    url?: string
+    url?: string,
   ): JSX.Element => {
     switch (type) {
       case "bold":
@@ -68,11 +69,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
         return (
           <em
             key={index}
-            className={
-              isCompact
-                ? "italic text-inherit"
-                : "italic text-body"
-            }
+            className={isCompact ? "italic text-inherit" : "italic text-body"}
           >
             {elementContent}
           </em>
@@ -93,6 +90,21 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
       case "link":
         if (!url) return <span key={index}>{elementContent}</span>;
         const linkProps = getLinkProps(url);
+        if (
+          linkProps.target === "_self" &&
+          !linkProps.rel &&
+          !/^(mailto|tel):/.test(url)
+        ) {
+          // Internal: client-side navigation instead of a full page reload.
+          const path = url.startsWith(SITE_URL)
+            ? url.slice(SITE_URL.length) || "/"
+            : url;
+          return (
+            <Link key={index} to={path} className={linkProps.className}>
+              {elementContent}
+            </Link>
+          );
+        }
         return (
           <a
             key={index}
@@ -216,9 +228,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
                   />
                   <span
                     className={
-                      isCompact
-                        ? "text-inherit"
-                        : "text-body leading-relaxed"
+                      isCompact ? "text-inherit" : "text-body leading-relaxed"
                     }
                   >
                     {parseInlineMarkdown(cleanItem)}

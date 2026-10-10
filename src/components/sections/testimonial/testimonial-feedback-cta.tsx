@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import AnimatedCTAButton from "components/elements/animated-cta-button";
 import { SURFACE_CARD_PANEL } from "tailwind/styles/surfaceCard";
 import { TEXT_BODY, TEXT_CARD_TITLE } from "tailwind/styles/textTokens";
+import avatarImage from "images/ansu-avatar.webp";
 
 type TestimonialFeedbackCtaProps = {
   onOpenForm: () => void;
@@ -24,7 +25,7 @@ export const TestimonialFeedbackCta: React.FC<TestimonialFeedbackCtaProps> = ({
       <div className="flex flex-col items-center gap-4 sm:gap-6">
         <div className="relative h-12 w-12 overflow-hidden rounded-full border border-light-border/55 dark:border-dark-border/40">
           <img
-            src="/images/ansu.jpg"
+            src={avatarImage}
             alt={t("pages.testimonials.feedbackCta.imageAlt")}
             width={48}
             height={48}

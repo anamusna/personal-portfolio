@@ -244,7 +244,7 @@ const AnimatedCTAButton: React.FC<AnimatedCTAButtonProps> = memo(
             ? "bg-transparent"
             : isGlass
               ? "glass-2"
-              : "bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600",
+              : "bg-indigo-600 dark:bg-indigo-600 hover:bg-indigo-700 dark:hover:bg-indigo-700",
           variant === "outline"
             ? "text-indigo-600 dark:text-indigo-400 bg-transparent hover:bg-indigo-50 dark:hover:bg-indigo-950/30"
             : isTransparent

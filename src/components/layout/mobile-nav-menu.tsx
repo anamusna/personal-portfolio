@@ -187,6 +187,7 @@ const MobileNavMenu: React.FC<MobileNavMenuProps> = ({ navigation }) => {
                       <Link
                         key={item.url}
                         to={href}
+                        onClick={closeMenu}
                         className={clsx(
                           "flex items-center justify-between rounded-xl px-4 py-3 text-base font-medium transition-colors duration-200 min-h-[44px]",
                           "focus:outline-none focus-visible:ring-2 focus-visible:ring-royal-primary/50",

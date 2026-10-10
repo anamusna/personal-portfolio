@@ -289,7 +289,10 @@ const CTAButtons: React.FC<CTAButtonsProps> = memo(
   }) => {
     const getLayoutClasses = () => {
       const layouts = {
-        horizontal: "w-full flex flex-col sm:flex-row",
+        // From sm up the buttons sit side by side and wrap onto a new row
+        // as whole buttons when they do not fit; labels never break inside a
+        // button. Below sm they stack full width.
+        horizontal: "w-full flex flex-col sm:flex-row sm:flex-wrap",
         vertical: "w-full flex flex-col",
         stacked: "w-full flex flex-col space-y-3 sm:space-y-4",
       };
@@ -315,7 +318,8 @@ const CTAButtons: React.FC<CTAButtonsProps> = memo(
     };
 
     const getButtonWidthClasses = () => {
-      return "w-full sm:w-auto";
+      // white-space is inherited, so this keeps the label on one line.
+      return "w-full sm:w-auto sm:shrink-0 sm:whitespace-nowrap";
     };
 
     return (

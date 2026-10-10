@@ -3,6 +3,7 @@ import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { SPOTLIGHT_ENTRIES } from "data/about/spotlightData";
 import { SpotlightResult } from "hooks/useSpotlightSearch";
+import avatarImage from "images/ansu-avatar.webp";
 
 interface ChatSuggestionsProps {
   suggestions: SpotlightResult[];
@@ -35,9 +36,6 @@ const GROUPS: QuestionGroup[] = [
       "hover:border-amber-200/80 hover:bg-amber-50/60 dark:hover:border-amber-500/25 dark:hover:bg-amber-500/8",
     ids: [
       "background-roots",
-      "story-community-lesson",
-      "story-first-code",
-      "story-berlin-arrival",
       "journey-football",
       "journey-teaching",
     ],
@@ -152,7 +150,7 @@ const ChatSuggestions: React.FC<ChatSuggestionsProps> = ({
         }}
       >
         <img
-          src="/images/ansu.jpg"
+          src={avatarImage}
           alt={t("spotlight.suggestions.avatarAlt")}
           loading="lazy"
           decoding="async"
@@ -169,7 +167,7 @@ const ChatSuggestions: React.FC<ChatSuggestionsProps> = ({
         <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100">
           {t("spotlight.suggestions.title")}
         </h3>
-        <p className="text-[10px] font-medium uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
+        <p className="text-[10px] font-medium uppercase tracking-widest text-emerald-700 dark:text-emerald-400">
           {t("spotlight.suggestions.meta", {
             questions: TOTAL_QUESTIONS,
             topics: GROUPS.length,
